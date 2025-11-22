@@ -14,6 +14,14 @@ FROM maven:3.9.5-eclipse-temurin-21 AS build
 # 指定构建过程中的工作目录
 WORKDIR /app
 
+# 设置 JAVA_HOME 环境变量（确保 Maven 可以找到 Java）
+# 动态查找并设置 JAVA_HOME
+RUN JAVA_HOME_PATH=$(dirname $(dirname $(readlink -f $(which java)))) && \
+    echo "export JAVA_HOME=$JAVA_HOME_PATH" >> /etc/profile && \
+    echo "JAVA_HOME=$JAVA_HOME_PATH" >> /etc/environment
+ENV JAVA_HOME=/usr/local/openjdk-21
+ENV PATH=$JAVA_HOME/bin:$PATH
+
 # 将 Maven 配置文件拷贝到工作目录
 # settings.xml 使用国内镜像源以提高下载速度
 COPY settings.xml pom.xml /app/
@@ -27,7 +35,9 @@ COPY dcp-admin-api/pom.xml /app/dcp-admin-api/
 
 # 下载依赖（利用 Docker 缓存层，只有 pom.xml 变化时才重新下载）
 # 使用自定义 settings.xml 配置国内镜像源
-RUN mvn -s /app/settings.xml -f /app/pom.xml dependency:go-offline -B
+# 确保 JAVA_HOME 在命令执行时可用
+RUN export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) && \
+    mvn -s /app/settings.xml -f /app/pom.xml dependency:go-offline -B
 
 # 将 src 目录下所有文件，拷贝到工作目录中（.dockerignore 中文件除外）
 COPY dcp-admin-common/src /app/dcp-admin-common/src
@@ -37,7 +47,9 @@ COPY dcp-admin-api/src /app/dcp-admin-api/src
 # 注意：dcp-admin-core 模块暂时为空，跳过复制
 
 # 执行代码编译命令，跳过测试以加快构建速度
-RUN mvn -s /app/settings.xml -f /app/pom.xml clean package -DskipTests -B
+# 确保 JAVA_HOME 在命令执行时可用
+RUN export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) && \
+    mvn -s /app/settings.xml -f /app/pom.xml clean package -DskipTests -B
 
 # ================================
 # Stage 2: 运行阶段
