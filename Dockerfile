@@ -14,19 +14,9 @@ FROM maven:3.9.5-eclipse-temurin-21 AS build
 # 指定构建过程中的工作目录
 WORKDIR /app
 
-# 设置 JAVA_HOME 环境变量（确保 Maven 可以找到 Java）
-# Eclipse Temurin JDK 21 在 Maven 镜像中的标准路径
-# 检查并设置 JAVA_HOME 到系统环境文件
-RUN if [ -d "/usr/local/openjdk-21" ]; then \
-        echo "export JAVA_HOME=/usr/local/openjdk-21" >> /etc/profile && \
-        echo "JAVA_HOME=/usr/local/openjdk-21" >> /etc/environment; \
-    elif [ -d "/opt/java/openjdk-21" ]; then \
-        echo "export JAVA_HOME=/opt/java/openjdk-21" >> /etc/profile && \
-        echo "JAVA_HOME=/opt/java/openjdk-21" >> /etc/environment; \
-    fi
-# 设置环境变量（Maven 镜像中 Eclipse Temurin JDK 21 的标准路径）
-ENV JAVA_HOME=/usr/local/openjdk-21
-ENV PATH=$JAVA_HOME/bin:$PATH
+# 验证 Java 安装（Maven 基础镜像应该已经配置好 Java）
+# 如果 JAVA_HOME 未设置或路径不存在，将在后续 RUN 命令中动态设置
+RUN java -version || (echo "Java not found in PATH" && exit 1)
 
 # 将 Maven 配置文件拷贝到工作目录
 # settings.xml 使用国内镜像源以提高下载速度
@@ -42,14 +32,23 @@ COPY dcp-admin-api/pom.xml /app/dcp-admin-api/
 # 下载依赖（利用 Docker 缓存层，只有 pom.xml 变化时才重新下载）
 # 使用自定义 settings.xml 配置国内镜像源
 # 确保 JAVA_HOME 在命令执行时可用
-RUN if [ -z "$JAVA_HOME" ] || [ ! -d "$JAVA_HOME" ]; then \
-        if [ -d "/usr/local/openjdk-21" ]; then \
-            export JAVA_HOME="/usr/local/openjdk-21"; \
-        elif [ -d "/opt/java/openjdk-21" ]; then \
-            export JAVA_HOME="/opt/java/openjdk-21"; \
-        fi; \
+RUN JAVA_HOME_TO_USE="" && \
+    if [ -d "/usr/local/openjdk-21" ]; then \
+        JAVA_HOME_TO_USE="/usr/local/openjdk-21"; \
+    elif [ -d "/opt/java/openjdk-21" ]; then \
+        JAVA_HOME_TO_USE="/opt/java/openjdk-21"; \
+    elif [ -d "/usr/lib/jvm/java-21-openjdk" ]; then \
+        JAVA_HOME_TO_USE="/usr/lib/jvm/java-21-openjdk"; \
+    elif [ -n "$JAVA_HOME" ] && [ -d "$JAVA_HOME" ]; then \
+        JAVA_HOME_TO_USE="$JAVA_HOME"; \
+    else \
+        echo "Error: Cannot find Java installation"; \
+        exit 1; \
     fi && \
+    export JAVA_HOME="$JAVA_HOME_TO_USE" && \
+    export PATH="$JAVA_HOME/bin:$PATH" && \
     echo "Using JAVA_HOME: $JAVA_HOME" && \
+    java -version && \
     mvn -s /app/settings.xml -f /app/pom.xml dependency:go-offline -B
 
 # 将 src 目录下所有文件，拷贝到工作目录中（.dockerignore 中文件除外）
@@ -61,14 +60,23 @@ COPY dcp-admin-api/src /app/dcp-admin-api/src
 
 # 执行代码编译命令，跳过测试以加快构建速度
 # 确保 JAVA_HOME 在命令执行时可用
-RUN if [ -z "$JAVA_HOME" ] || [ ! -d "$JAVA_HOME" ]; then \
-        if [ -d "/usr/local/openjdk-21" ]; then \
-            export JAVA_HOME="/usr/local/openjdk-21"; \
-        elif [ -d "/opt/java/openjdk-21" ]; then \
-            export JAVA_HOME="/opt/java/openjdk-21"; \
-        fi; \
+RUN JAVA_HOME_TO_USE="" && \
+    if [ -d "/usr/local/openjdk-21" ]; then \
+        JAVA_HOME_TO_USE="/usr/local/openjdk-21"; \
+    elif [ -d "/opt/java/openjdk-21" ]; then \
+        JAVA_HOME_TO_USE="/opt/java/openjdk-21"; \
+    elif [ -d "/usr/lib/jvm/java-21-openjdk" ]; then \
+        JAVA_HOME_TO_USE="/usr/lib/jvm/java-21-openjdk"; \
+    elif [ -n "$JAVA_HOME" ] && [ -d "$JAVA_HOME" ]; then \
+        JAVA_HOME_TO_USE="$JAVA_HOME"; \
+    else \
+        echo "Error: Cannot find Java installation"; \
+        exit 1; \
     fi && \
+    export JAVA_HOME="$JAVA_HOME_TO_USE" && \
+    export PATH="$JAVA_HOME/bin:$PATH" && \
     echo "Using JAVA_HOME: $JAVA_HOME" && \
+    java -version && \
     mvn -s /app/settings.xml -f /app/pom.xml clean package -DskipTests -B
 
 # ================================
