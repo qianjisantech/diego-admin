@@ -14,9 +14,12 @@ FROM maven:3.9.5-eclipse-temurin-21 AS build
 # 指定构建过程中的工作目录
 WORKDIR /app
 
-# 将 Maven 配置文件拷贝到工作目录
-# settings.xml 使用国内镜像源以提高下载速度
-COPY settings.xml pom.xml /app/
+# ====== 设置 JAVA_HOME 环境变量（修复 Maven 构建问题）======
+ENV JAVA_HOME=/opt/java/openjdk
+ENV PATH="${JAVA_HOME}/bin:${PATH}"
+
+# 将主 POM 文件拷贝到工作目录（不再使用 settings.xml）
+COPY pom.xml /app/
 
 # 将各模块的 pom.xml 拷贝到工作目录
 COPY dcp-admin-common/pom.xml /app/dcp-admin-common/
@@ -27,9 +30,9 @@ COPY dcp-admin-api/pom.xml /app/dcp-admin-api/
 COPY dcp-admin-rbac/pom.xml /app/dcp-admin-rbac/
 
 # 下载依赖（利用 Docker 缓存层，只有 pom.xml 变化时才重新下载）
-# 使用自定义 settings.xml 配置国内镜像源
+# 使用 Maven 中央仓库下载依赖
 # 即使 dependency:go-offline 失败也继续，因为 package 阶段会重新下载依赖
-RUN mvn -s /app/settings.xml -f /app/pom.xml dependency:go-offline -B || true
+RUN mvn -f /app/pom.xml dependency:go-offline -B || true
 
 # 将 src 目录下所有文件，拷贝到工作目录中（.dockerignore 中文件除外）
 COPY dcp-admin-common/src /app/dcp-admin-common/src
@@ -40,7 +43,7 @@ COPY dcp-admin-api/src /app/dcp-admin-api/src
 COPY dcp-admin-rbac/src /app/dcp-admin-rbac/src
 
 # 执行代码编译命令，跳过测试以加快构建速度
-RUN mvn -s /app/settings.xml -f /app/pom.xml clean package -DskipTests -B
+RUN mvn -f /app/pom.xml clean package -DskipTests -B
 
 # ================================
 # Stage 2: 运行阶段
