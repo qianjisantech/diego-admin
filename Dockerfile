@@ -84,11 +84,6 @@ EXPOSE 80
 # JVM 参数配置
 ENV JAVA_OPTS="-Xms512m -Xmx1024m -XX:+UseG1GC -XX:MaxGCPauseMillis=200"
 
-# 健康检查
-# 使用自定义的健康检查接口，初始等待 40 秒以便应用启动
-HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
-    CMD curl -f http://localhost:80/api/health || exit 1
-
 # 执行启动命令
 # 写多行独立的 CMD 命令是错误写法！只有最后一行 CMD 命令会被执行，之前的都会被忽略，导致业务报错。
 # 请参考 Docker 官方文档之 CMD 命令：https://docs.docker.com/engine/reference/builder/#cmd
