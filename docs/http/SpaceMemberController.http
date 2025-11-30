@@ -1,0 +1,40 @@
+### 空间成员管理接口
+
+@baseUrl = http://localhost
+
+### 添加空间成员
+POST {{baseUrl}}/space/member
+Content-Type: application/json
+
+{
+  "spaceId": 1,
+  "userId": 1,
+  "role": "member"
+}
+
+### 更新空间成员
+PUT {{baseUrl}}/space/member/1
+Content-Type: application/json
+
+{
+  "role": "admin"
+}
+
+### 删除空间成员（物理删除）
+DELETE {{baseUrl}}/space/member/1
+
+### 分页查询空间成员（带用户信息）
+POST {{baseUrl}}/space/member/page
+Content-Type: application/json
+
+{
+  "current": 1,
+  "size": 10,
+  "spaceId": null,
+  "userId": null,
+  "role": ""
+}
+
+### 获取可添加的用户列表
+GET {{baseUrl}}/space/member/available-users/1
+

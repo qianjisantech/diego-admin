@@ -1,0 +1,20 @@
+### 限流示例接口
+
+@baseUrl = http://localhost
+
+### 全局限流示例（60秒内最多访问10次）
+GET {{baseUrl}}/api/example/global
+
+### IP限流示例（每个IP 60秒内最多访问5次）
+GET {{baseUrl}}/api/example/ip
+
+### 用户限流示例（每个用户 60秒内最多访问3次）
+POST {{baseUrl}}/api/example/user
+Authorization: Bearer {{token}}
+
+### 登录限流示例（使用配置文件预设值，每个IP 5分钟内最多尝试5次）
+POST {{baseUrl}}/api/example/login
+
+### 发送验证码限流示例（使用配置文件预设值，每个IP每天最多发送10次）
+POST {{baseUrl}}/api/example/send-code
+

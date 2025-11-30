@@ -1,0 +1,83 @@
+### 反馈管理接口
+
+@baseUrl = http://localhost
+
+### 创建反馈管理
+POST {{baseUrl}}/feedback
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "反馈标题",
+  "content": "反馈内容",
+  "type": "bug",
+  "status": "pending",
+  "priority": "high"
+}
+
+### 更新反馈管理
+PUT {{baseUrl}}/feedback/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "更新后的标题",
+  "content": "更新后的内容",
+  "type": "feature",
+  "status": "resolved",
+  "priority": "medium"
+}
+
+### 删除反馈管理
+DELETE {{baseUrl}}/feedback/1
+Authorization: Bearer {{token}}
+
+### 根据ID查询反馈管理
+GET {{baseUrl}}/feedback/1
+Authorization: Bearer {{token}}
+
+### 查询反馈管理列表
+GET {{baseUrl}}/feedback/list
+Authorization: Bearer {{token}}
+
+### 分页查询反馈管理
+POST {{baseUrl}}/feedback/page
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "current": 1,
+  "size": 10,
+  "type": null,
+  "status": null,
+  "priority": null,
+  "submitterId": null,
+  "assigneeId": null,
+  "keyword": ""
+}
+
+### 点赞反馈
+POST {{baseUrl}}/feedback/1/like
+Authorization: Bearer {{token}}
+
+### 取消点赞反馈
+POST {{baseUrl}}/feedback/1/unlike
+Authorization: Bearer {{token}}
+
+### 获取反馈的评论列表
+GET {{baseUrl}}/feedback/1/comments
+Authorization: Bearer {{token}}
+
+### 添加反馈评论
+POST {{baseUrl}}/feedback/1/comments
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "content": "这是一条评论"
+}
+
+### 删除反馈评论
+DELETE {{baseUrl}}/feedback/1/comments/1
+Authorization: Bearer {{token}}
+

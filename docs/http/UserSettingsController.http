@@ -1,0 +1,50 @@
+### 用户设置管理接口
+
+@baseUrl = http://localhost
+
+### 创建用户设置
+POST {{baseUrl}}/user-settings
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "userId": 1,
+  "language": "zh-CN",
+  "theme": "light"
+}
+
+### 更新用户设置
+PUT {{baseUrl}}/user-settings/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "language": "en-US",
+  "theme": "dark"
+}
+
+### 删除用户设置
+DELETE {{baseUrl}}/user-settings/1
+Authorization: Bearer {{token}}
+
+### 根据ID查询用户设置
+GET {{baseUrl}}/user-settings/1
+Authorization: Bearer {{token}}
+
+### 查询用户设置列表
+GET {{baseUrl}}/user-settings/list
+Authorization: Bearer {{token}}
+
+### 分页查询用户设置
+POST {{baseUrl}}/user-settings/page
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "current": 1,
+  "size": 10,
+  "userId": null,
+  "language": "",
+  "theme": ""
+}
+

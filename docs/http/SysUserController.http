@@ -1,0 +1,53 @@
+### 用户管理接口（RBAC）
+
+@baseUrl = http://localhost
+
+### 分页查询用户
+POST {{baseUrl}}/rbac/user/page
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "current": 1,
+  "size": 10,
+  "keyword": "",
+  "status": null,
+  "roleId": null
+}
+
+### 获取用户详情
+GET {{baseUrl}}/rbac/user/1
+Authorization: Bearer {{token}}
+
+### 分配角色
+POST {{baseUrl}}/rbac/user/1/assign-role
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "roleIds": [1, 2]
+}
+
+### 重置密码
+POST {{baseUrl}}/rbac/user/1/reset-password
+Authorization: Bearer {{token}}
+
+### 更新用户状态
+POST {{baseUrl}}/rbac/user/1/status?status=1
+Authorization: Bearer {{token}}
+
+### 编辑用户
+PUT {{baseUrl}}/rbac/user/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "username": "newusername",
+  "email": "newemail@example.com",
+  "phone": "13800138000"
+}
+
+### 删除用户
+DELETE {{baseUrl}}/rbac/user/1
+Authorization: Bearer {{token}}
+

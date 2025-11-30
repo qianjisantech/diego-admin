@@ -1,9 +1,38 @@
 spring:
+  # 数据源配置（本地开发环境 - 连接外网数据库）
   datasource:
-    #  rm-uf6vr2e018e95e4hz6o.mysql.rds.aliyuncs.com 外网 rm-uf6vr2e018e95e4hz.mysql.rds.aliyuncs.com
-    url: jdbc:mysql://rm-uf6vr2e018e95e4hz6o.mysql.rds.aliyuncs.com:3306/dcp?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 外网数据库配置（本地开发使用外网地址）
+    # 外网: rm-uf6vr2e018e95e4hz.mysql.rds.aliyuncs.com
+    url: jdbc:mysql://rm-uf6vr2e018e95e4hz.mysql.rds.aliyuncs.com:3306/dcp?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
     password: Sy122812
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat,wall
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-username: admin
+        login-password: admin
+        reset-enable: false
 
   # 邮件配置
   mail:

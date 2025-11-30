@@ -1,0 +1,54 @@
+### 视图管理接口
+
+@baseUrl = http://localhost
+
+### 创建视图管理
+POST {{baseUrl}}/workspace/view
+Content-Type: application/json
+
+{
+  "name": "我的视图",
+  "type": "list",
+  "spaceId": 1,
+  "ownerId": 1,
+  "isPublic": 0,
+  "config": "{}"
+}
+
+### 更新视图管理
+PUT {{baseUrl}}/workspace/view/1
+Content-Type: application/json
+
+{
+  "name": "更新后的视图名称",
+  "type": "kanban",
+  "config": "{\"columns\": []}"
+}
+
+### 删除视图管理
+DELETE {{baseUrl}}/workspace/view/1
+
+### 根据ID查询视图管理
+GET {{baseUrl}}/workspace/view/1
+
+### 查询视图管理列表（不含文件夹结构）
+GET {{baseUrl}}/workspace/view/list
+
+### 查询视图树形列表（包含文件夹和视图的树形结构）
+GET {{baseUrl}}/workspace/view/tree-list
+
+### 分页查询视图管理
+POST {{baseUrl}}/workspace/view/page
+Content-Type: application/json
+
+{
+  "current": 1,
+  "size": 10,
+  "spaceId": null,
+  "folderId": null,
+  "type": "",
+  "ownerId": null,
+  "isPublic": null,
+  "keyword": ""
+}
+

@@ -1,0 +1,47 @@
+### 菜单管理接口
+
+@baseUrl = http://localhost
+
+### 创建菜单
+POST {{baseUrl}}/rbac/menu
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "menuName": "测试菜单",
+  "menuCode": "test_menu",
+  "parentId": null,
+  "menuType": "menu",
+  "path": "/test",
+  "icon": "test-icon",
+  "sortOrder": 1,
+  "status": 1
+}
+
+### 更新菜单
+PUT {{baseUrl}}/rbac/menu/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "menuName": "更新后的菜单名",
+  "path": "/updated",
+  "status": 1
+}
+
+### 删除菜单
+DELETE {{baseUrl}}/rbac/menu/1
+Authorization: Bearer {{token}}
+
+### 根据ID查询菜单
+GET {{baseUrl}}/rbac/menu/1
+Authorization: Bearer {{token}}
+
+### 获取菜单树
+GET {{baseUrl}}/rbac/menu/tree
+Authorization: Bearer {{token}}
+
+### 获取菜单列表
+GET {{baseUrl}}/rbac/menu/list
+Authorization: Bearer {{token}}
+

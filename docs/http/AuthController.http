@@ -1,0 +1,39 @@
+### 认证管理接口
+
+@baseUrl = http://localhost
+
+### 用户登录
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "2497822530@qq.com",
+  "password": "123456"
+}
+
+### 用户登出
+POST {{baseUrl}}/auth/logout
+Authorization: Bearer {{token}}
+
+### 获取用户权限信息
+GET {{baseUrl}}/auth/profile
+Authorization: Bearer {{token}}
+
+### 发送邮箱验证码
+POST {{baseUrl}}/auth/send-code
+Content-Type: application/json
+
+{
+  "email": "test@example.com"
+}
+
+### 用户注册
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "code": "123456",
+  "password": "123456"
+}
+

@@ -1,9 +1,39 @@
 spring:
+  # 数据源配置（生产环境 - Docker部署 - 连接内网数据库）
   datasource:
-    #  rm-uf6vr2e018e95e4hz6o.mysql.rds.aliyuncs.com rm-uf6vr2e018e95e4hz.mysql.rds.aliyuncs.com
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 生产数据库配置（阿里云RDS内网地址）
+    # 内网: rm-uf6vr2e018e95e4hz6o.mysql.rds.aliyuncs.com
+    # 外网: rm-uf6vr2e018e95e4hz.mysql.rds.aliyuncs.com
     url: jdbc:mysql://rm-uf6vr2e018e95e4hz6o.mysql.rds.aliyuncs.com:3306/dcp?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=Asia/Shanghai
     username: root
     password: Sy122812
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat,wall
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-username: admin
+        login-password: admin
+        reset-enable: false
 
 logging:
   level:

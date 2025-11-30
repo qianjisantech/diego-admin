@@ -1,0 +1,79 @@
+### 配置管理接口
+
+@baseUrl = http://localhost
+
+### 创建配置
+POST {{baseUrl}}/rbac/config
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "configKey": "test_config",
+  "configValue": "test_value",
+  "configGroup": "system",
+  "description": "测试配置",
+  "status": 1
+}
+
+### 更新配置
+PUT {{baseUrl}}/rbac/config/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "configValue": "updated_value",
+  "description": "更新后的描述"
+}
+
+### 删除配置
+DELETE {{baseUrl}}/rbac/config/1
+Authorization: Bearer {{token}}
+
+### 分页查询配置
+POST {{baseUrl}}/rbac/config/page
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "current": 1,
+  "size": 10,
+  "configGroup": "",
+  "keyword": ""
+}
+
+### 根据配置组查询配置
+GET {{baseUrl}}/rbac/config/group/system
+Authorization: Bearer {{token}}
+
+### 查询字段配置列表
+GET {{baseUrl}}/rbac/config/field-config/list/workspace
+Authorization: Bearer {{token}}
+
+### 更新字段配置
+PUT {{baseUrl}}/rbac/config/field-config/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "isVisible": true,
+  "isRequired": false,
+  "isEditable": true
+}
+
+### 批量更新字段配置
+PUT {{baseUrl}}/rbac/config/field-config/batch
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "moduleCode": "workspace",
+  "configs": [
+    {
+      "id": 1,
+      "isVisible": true,
+      "isRequired": false,
+      "isEditable": true
+    }
+  ]
+}
+

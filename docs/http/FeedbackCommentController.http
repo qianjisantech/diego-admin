@@ -1,0 +1,43 @@
+### 反馈评论管理接口
+
+@baseUrl = http://localhost
+
+### 创建反馈评论管理
+POST {{baseUrl}}/feedback-comment
+Content-Type: application/json
+
+{
+  "feedbackId": 1,
+  "userId": 1,
+  "content": "评论内容"
+}
+
+### 更新反馈评论管理
+PUT {{baseUrl}}/feedback-comment/1
+Content-Type: application/json
+
+{
+  "content": "更新后的评论内容"
+}
+
+### 删除反馈评论管理
+DELETE {{baseUrl}}/feedback-comment/1
+
+### 根据ID查询反馈评论管理
+GET {{baseUrl}}/feedback-comment/1
+
+### 查询反馈评论管理列表
+GET {{baseUrl}}/feedback-comment/list
+
+### 分页查询反馈评论管理
+POST {{baseUrl}}/feedback-comment/page
+Content-Type: application/json
+
+{
+  "current": 1,
+  "size": 10,
+  "feedbackId": null,
+  "userId": null,
+  "keyword": ""
+}
+

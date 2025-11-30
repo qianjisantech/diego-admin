@@ -1,0 +1,45 @@
+### 事项评论管理接口
+
+@baseUrl = http://localhost
+
+### 创建事项评论管理
+POST {{baseUrl}}/workspace/issue-comment
+Content-Type: application/json
+
+{
+  "issueId": 1,
+  "userId": 1,
+  "content": "这是一条评论",
+  "parentId": null
+}
+
+### 更新事项评论管理
+PUT {{baseUrl}}/workspace/issue-comment/1
+Content-Type: application/json
+
+{
+  "content": "更新后的评论内容"
+}
+
+### 删除事项评论管理
+DELETE {{baseUrl}}/workspace/issue-comment/1
+
+### 根据ID查询事项评论管理
+GET {{baseUrl}}/workspace/issue-comment/1
+
+### 查询事项评论管理列表
+GET {{baseUrl}}/workspace/issue-comment/list
+
+### 分页查询事项评论管理
+POST {{baseUrl}}/workspace/issue-comment/page
+Content-Type: application/json
+
+{
+  "current": 1,
+  "size": 10,
+  "issueId": null,
+  "userId": null,
+  "parentId": null,
+  "keyword": ""
+}
+

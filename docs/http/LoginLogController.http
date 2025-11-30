@@ -1,0 +1,46 @@
+### 登录日志管理接口
+
+@baseUrl = http://localhost
+
+### 创建登录日志管理
+POST {{baseUrl}}/login-log
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "loginIp": "127.0.0.1",
+  "status": "success",
+  "os": "Windows",
+  "browser": "Chrome"
+}
+
+### 更新登录日志管理
+PUT {{baseUrl}}/login-log/1
+Content-Type: application/json
+
+{
+  "status": "failed"
+}
+
+### 删除登录日志管理
+DELETE {{baseUrl}}/login-log/1
+
+### 根据ID查询登录日志管理
+GET {{baseUrl}}/login-log/1
+
+### 查询登录日志管理列表
+GET {{baseUrl}}/login-log/list
+
+### 分页查询登录日志管理
+POST {{baseUrl}}/login-log/page
+Content-Type: application/json
+
+{
+  "current": 1,
+  "size": 10,
+  "userId": null,
+  "loginIp": "",
+  "status": "",
+  "keyword": ""
+}
+

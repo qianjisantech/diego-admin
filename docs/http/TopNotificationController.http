@@ -1,0 +1,40 @@
+### 顶部通知管理接口
+
+@baseUrl = http://localhost
+
+### 创建顶部通知
+POST {{baseUrl}}/feedback/top-notification
+Content-Type: application/json
+
+{
+  "title": "顶部通知标题",
+  "content": "顶部通知内容",
+  "type": 1,
+  "status": 0
+}
+
+### 更新顶部通知
+PUT {{baseUrl}}/feedback/top-notification/1
+Content-Type: application/json
+
+{
+  "title": "更新后的标题",
+  "content": "更新后的内容",
+  "type": 2
+}
+
+### 删除顶部通知
+DELETE {{baseUrl}}/feedback/top-notification/1
+
+### 根据ID查询顶部通知
+GET {{baseUrl}}/feedback/top-notification/1
+
+### 发布顶部通知
+POST {{baseUrl}}/feedback/top-notification/1/publish
+
+### 获取当前已发布的顶部通知
+GET {{baseUrl}}/feedback/top-notification/published
+
+### 分页查询顶部通知列表
+GET {{baseUrl}}/feedback/top-notification/page?current=1&pageSize=10&status=null&type=null
+

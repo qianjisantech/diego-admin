@@ -1,0 +1,8 @@
+### 用户管理接口（旧版）
+
+@baseUrl = http://localhost
+
+### 获取用户列表（仅包含 id, username, userCode, email）
+GET {{baseUrl}}/user/list
+Authorization: Bearer {{token}}
+

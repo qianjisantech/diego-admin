@@ -1,0 +1,55 @@
+### 发布日志管理接口
+
+@baseUrl = http://localhost
+
+### 创建发布日志管理
+POST {{baseUrl}}/changelog
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "version": "1.0.0",
+  "title": "版本更新",
+  "content": "更新内容",
+  "type": "feature",
+  "publisherId": 1
+}
+
+### 更新发布日志管理
+PUT {{baseUrl}}/changelog/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "version": "1.0.1",
+  "title": "更新后的标题",
+  "content": "更新后的内容",
+  "type": "bugfix"
+}
+
+### 删除发布日志管理
+DELETE {{baseUrl}}/changelog/1
+Authorization: Bearer {{token}}
+
+### 根据ID查询发布日志管理
+GET {{baseUrl}}/changelog/1
+Authorization: Bearer {{token}}
+
+### 查询发布日志管理列表
+GET {{baseUrl}}/changelog/list
+Authorization: Bearer {{token}}
+
+### 分页查询发布日志管理
+POST {{baseUrl}}/changelog/page
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "current": 1,
+  "size": 10,
+  "version": "",
+  "type": "",
+  "publisherId": null,
+  "keyword": ""
+}
+

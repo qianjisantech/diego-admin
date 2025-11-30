@@ -1,0 +1,47 @@
+### 事项附件管理接口
+
+@baseUrl = http://localhost
+
+### 创建事项附件管理
+POST {{baseUrl}}/workspace/issue-attachment
+Content-Type: application/json
+
+{
+  "issueId": 1,
+  "uploaderId": 1,
+  "fileName": "test.pdf",
+  "fileType": "pdf",
+  "fileSize": 1024,
+  "filePath": "/uploads/test.pdf"
+}
+
+### 更新事项附件管理
+PUT {{baseUrl}}/workspace/issue-attachment/1
+Content-Type: application/json
+
+{
+  "fileName": "updated.pdf"
+}
+
+### 删除事项附件管理
+DELETE {{baseUrl}}/workspace/issue-attachment/1
+
+### 根据ID查询事项附件管理
+GET {{baseUrl}}/workspace/issue-attachment/1
+
+### 查询事项附件管理列表
+GET {{baseUrl}}/workspace/issue-attachment/list
+
+### 分页查询事项附件管理
+POST {{baseUrl}}/workspace/issue-attachment/page
+Content-Type: application/json
+
+{
+  "current": 1,
+  "size": 10,
+  "issueId": null,
+  "uploaderId": null,
+  "fileType": "",
+  "keyword": ""
+}
+

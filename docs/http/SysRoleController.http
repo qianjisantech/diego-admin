@@ -1,0 +1,64 @@
+### 角色管理接口
+
+@baseUrl = http://localhost
+
+### 创建角色
+POST {{baseUrl}}/rbac/role
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "roleName": "测试角色",
+  "roleCode": "test_role",
+  "description": "这是一个测试角色",
+  "status": 1
+}
+
+### 更新角色
+PUT {{baseUrl}}/rbac/role/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "roleName": "更新后的角色名",
+  "description": "更新后的描述",
+  "status": 1
+}
+
+### 删除角色
+DELETE {{baseUrl}}/rbac/role/1
+Authorization: Bearer {{token}}
+
+### 根据ID查询角色
+GET {{baseUrl}}/rbac/role/1
+Authorization: Bearer {{token}}
+
+### 分页查询角色
+POST {{baseUrl}}/rbac/role/page
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "current": 1,
+  "size": 10,
+  "keyword": "",
+  "status": null
+}
+
+### 获取所有角色列表
+GET {{baseUrl}}/rbac/role/list
+Authorization: Bearer {{token}}
+
+### 分配角色权限
+POST {{baseUrl}}/rbac/role/1/assign-permission
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "menuIds": [1, 2, 3, 4, 5]
+}
+
+### 获取角色已分配的菜单ID列表
+GET {{baseUrl}}/rbac/role/1/menu-ids
+Authorization: Bearer {{token}}
+

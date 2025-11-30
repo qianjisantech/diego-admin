@@ -1,0 +1,57 @@
+### 事项管理接口
+
+@baseUrl = http://localhost
+
+### 创建事项
+POST {{baseUrl}}/workspace/issue
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "事项标题",
+  "description": "事项描述",
+  "spaceId": 1,
+  "type": "task",
+  "priority": "high",
+  "status": "todo"
+}
+
+### 更新事项
+PUT {{baseUrl}}/workspace/issue/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "更新后的标题",
+  "description": "更新后的描述",
+  "status": "in_progress"
+}
+
+### 删除事项
+DELETE {{baseUrl}}/workspace/issue/1
+Authorization: Bearer {{token}}
+
+### 根据ID查询事项详情（包含扩展字段）
+GET {{baseUrl}}/workspace/issue/1
+Authorization: Bearer {{token}}
+
+### 分页查询事项
+POST {{baseUrl}}/workspace/issue/page
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "current": 1,
+  "size": 10,
+  "spaceId": null,
+  "type": "",
+  "status": "",
+  "priority": "",
+  "assigneeId": null,
+  "keyword": ""
+}
+
+### 搜索事项（支持事项单号和标题搜索）
+GET {{baseUrl}}/workspace/issue/search?keyword=测试
+Authorization: Bearer {{token}}
+

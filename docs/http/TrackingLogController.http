@@ -1,0 +1,33 @@
+### 埋点管理接口
+
+@baseUrl = http://localhost
+
+### 分页查询埋点日志
+POST {{baseUrl}}/tracking/page
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "current": 1,
+  "size": 10,
+  "userId": null,
+  "event": "",
+  "startTime": null,
+  "endTime": null
+}
+
+### 保存埋点日志
+POST {{baseUrl}}/tracking/save
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "event": "click",
+  "page": "/home",
+  "data": {}
+}
+
+### 查询埋点日志详情
+GET {{baseUrl}}/tracking/1
+Authorization: Bearer {{token}}
+

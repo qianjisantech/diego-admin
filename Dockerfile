@@ -87,4 +87,5 @@ ENV JAVA_OPTS="-Xms512m -Xmx1024m -XX:+UseG1GC -XX:MaxGCPauseMillis=200"
 # 执行启动命令
 # 写多行独立的 CMD 命令是错误写法！只有最后一行 CMD 命令会被执行，之前的都会被忽略，导致业务报错。
 # 请参考 Docker 官方文档之 CMD 命令：https://docs.docker.com/engine/reference/builder/#cmd
-CMD ["sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app/app.jar"]
+# 使用 prod profile 启动，连接生产数据库
+CMD ["sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app/app.jar --spring.profiles.active=prod"]

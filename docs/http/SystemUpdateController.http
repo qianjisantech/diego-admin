@@ -1,0 +1,40 @@
+### 系统更新管理接口
+
+@baseUrl = http://localhost
+
+### 创建系统更新
+POST {{baseUrl}}/feedback/system-update
+Content-Type: application/json
+
+{
+  "title": "系统更新标题",
+  "content": "系统更新内容",
+  "version": "1.0.0",
+  "status": 0
+}
+
+### 更新系统更新
+PUT {{baseUrl}}/feedback/system-update/1
+Content-Type: application/json
+
+{
+  "title": "更新后的标题",
+  "content": "更新后的内容",
+  "version": "1.0.1"
+}
+
+### 删除系统更新
+DELETE {{baseUrl}}/feedback/system-update/1
+
+### 根据ID查询系统更新
+GET {{baseUrl}}/feedback/system-update/1
+
+### 发布系统更新
+POST {{baseUrl}}/feedback/system-update/1/publish
+
+### 获取当前已发布的系统更新
+GET {{baseUrl}}/feedback/system-update/published
+
+### 分页查询系统更新列表
+GET {{baseUrl}}/feedback/system-update/page?current=1&pageSize=10&status=null
+

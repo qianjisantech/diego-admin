@@ -1,0 +1,45 @@
+### 视图文件夹管理接口
+
+@baseUrl = http://localhost
+
+### 创建视图文件夹
+POST {{baseUrl}}/workspace/view-folder
+Content-Type: application/json
+
+{
+  "name": "我的文件夹",
+  "ownerId": 1,
+  "parentId": null,
+  "sortOrder": 0
+}
+
+### 更新视图文件夹
+PUT {{baseUrl}}/workspace/view-folder/1
+Content-Type: application/json
+
+{
+  "name": "更新后的文件夹名称",
+  "sortOrder": 1
+}
+
+### 删除视图文件夹
+DELETE {{baseUrl}}/workspace/view-folder/1
+
+### 根据ID查询视图文件夹管理
+GET {{baseUrl}}/workspace/view-folder/1
+
+### 查询视图文件夹管理列表
+GET {{baseUrl}}/workspace/view-folder/list
+
+### 分页查询视图文件夹管理
+POST {{baseUrl}}/workspace/view-folder/page
+Content-Type: application/json
+
+{
+  "current": 1,
+  "size": 10,
+  "parentId": null,
+  "ownerId": null,
+  "keyword": ""
+}
+

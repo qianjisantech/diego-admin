@@ -1,0 +1,23 @@
+### 操作日志管理接口
+
+@baseUrl = http://localhost
+
+### 分页查询操作日志
+POST {{baseUrl}}/operation-log/page
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "current": 1,
+  "size": 10,
+  "userId": null,
+  "operation": "",
+  "module": "",
+  "startTime": null,
+  "endTime": null
+}
+
+### 根据ID查询操作日志
+GET {{baseUrl}}/operation-log/1
+Authorization: Bearer {{token}}
+
