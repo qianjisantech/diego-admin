@@ -1,6 +1,8 @@
 package com.dcp.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.dcp.common.dto.BannerNotificationQueryDTO;
 import com.dcp.common.vo.BannerNotificationVO;
 import com.dcp.entity.BannerNotification;
 
@@ -20,4 +22,12 @@ public interface IBannerNotificationService extends IService<BannerNotification>
      * @return 激活的Banner列表VO
      */
     List<BannerNotificationVO> getActiveBanners();
+
+    /**
+     * 分页查询Banner通知管理
+     *
+     * @param query 查询条件
+     * @return 分页结果
+     */
+    Page<BannerNotification> pageBannerNotification(BannerNotificationQueryDTO query);
 }

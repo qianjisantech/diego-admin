@@ -12,12 +12,15 @@ import com.dcp.entity.AnnouncementUser;
 import com.dcp.mapper.AnnouncementMapper;
 import com.dcp.mapper.AnnouncementUserRelationMapper;
 import com.dcp.service.IAnnouncementService;
+import com.dcp.service.IAnnouncementUserRelationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -34,6 +37,7 @@ public class AnnouncementServiceImpl extends ServiceImpl<AnnouncementMapper, Ann
 
     private final AnnouncementMapper announcementMapper;
     private final AnnouncementUserRelationMapper announcementUserRelationMapper;
+    private final IAnnouncementUserRelationService relationService;
 
     /**
      * 保存公告
@@ -234,5 +238,70 @@ public class AnnouncementServiceImpl extends ServiceImpl<AnnouncementMapper, Ann
         vo.setCreateTime(announcement.getCreateTime());
         vo.setUpdateTime(announcement.getUpdateTime());
         return vo;
+    }
+
+    /**
+     * 标记公告为已读
+     *
+     * @param userId         用户ID
+     * @param announcementId 公告ID
+     */
+    @Override
+    public void markAnnouncementAsRead(Long userId, Long announcementId) {
+        log.info("标记公告为已读: userId={}, announcementId={}", userId, announcementId);
+
+        if (userId == null) {
+            throw new RuntimeException("用户未登录");
+        }
+
+        // 1. 获取公告详情
+        Announcement announcement = this.getById(announcementId);
+        if (announcement == null) {
+            throw new RuntimeException("公告不存在");
+        }
+
+        // 2. 提取公告的版本号
+        String latestVersion = extractVersionFromTitle(announcement.getTitle());
+
+        // 3. 获取用户当前版本
+        String currentVersion = "1.0.0"; // 默认版本
+        AnnouncementUser latestRelation = relationService.getLatestByUserId(userId);
+        if (latestRelation != null && latestRelation.getLatestVersion() != null) {
+            currentVersion = latestRelation.getLatestVersion();
+        }
+
+        // 4. 更新或创建关联记录
+        boolean success = relationService.updateOrCreateRelation(userId, announcementId, currentVersion, latestVersion);
+
+        if (!success) {
+            throw new RuntimeException("标记已读失败");
+        }
+
+        log.info("标记公告为已读成功: userId={}, announcementId={}, version: {} -> {}",
+                userId, announcementId, currentVersion, latestVersion);
+    }
+
+    /**
+     * 从公告标题中提取版本号
+     * 支持格式: "v1.1.0 系统更新"、"系统更新 v1.1.0"、"1.1.0版本更新"等
+     *
+     * @param title 公告标题
+     * @return 版本号，如果无法提取则返回默认版本
+     */
+    private String extractVersionFromTitle(String title) {
+        if (title == null || title.isEmpty()) {
+            return "1.0.1";
+        }
+
+        // 使用正则表达式提取版本号: v?数字.数字.数字
+        Pattern pattern = Pattern.compile("v?(\\d+\\.\\d+\\.\\d+)");
+        Matcher matcher = pattern.matcher(title);
+
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+
+        // 如果无法提取版本号，返回默认值
+        return "1.0.1";
     }
 }

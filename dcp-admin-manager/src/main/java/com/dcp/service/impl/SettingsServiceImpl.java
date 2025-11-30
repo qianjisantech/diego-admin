@@ -2,6 +2,7 @@ package com.dcp.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.dcp.common.exception.BusinessException;
 import com.dcp.common.request.ChangePasswordRequest;
 import com.dcp.common.request.UpdateAccountSettingsRequest;
 import com.dcp.common.request.UpdateNotificationSettingsRequest;
@@ -19,6 +20,7 @@ import com.dcp.rbac.mapper.SysUserMapper;
 import com.dcp.mapper.UserSettingsMapper;
 import com.dcp.service.ISettingsService;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -114,7 +116,7 @@ public class SettingsServiceImpl implements ISettingsService {
         UserSettingsGroupedVO.AccountSettings account = new UserSettingsGroupedVO.AccountSettings();
         account.setUserId(sysUser.getId());
         account.setUsername(sysUser.getUsername());
-        account.setName(sysUser.getUserCode());
+        account.setUserCode(sysUser.getUserCode());
         account.setEmail(sysUser.getEmail());
         account.setPhone(sysUser.getPhone());
         account.setAvatar(sysUser.getAvatar());
@@ -155,7 +157,7 @@ public class SettingsServiceImpl implements ISettingsService {
     public void updateAccountSettings(Long userId, UpdateAccountSettingsRequest request) {
         SysUser sysUser = sysUserMapper.selectById(userId);
         if (sysUser == null) {
-            throw new RuntimeException("用户不存在");
+            throw new BusinessException("用户不存在");
         }
 
         if (request.getEmail() != null) {
@@ -164,7 +166,9 @@ public class SettingsServiceImpl implements ISettingsService {
         if (request.getPhone() != null) {
             sysUser.setPhone(request.getPhone());
         }
-
+        if (StringUtils.isNotEmpty(request.getUsername())){
+            sysUser.setUsername(request.getUsername());
+        }
         sysUserMapper.updateById(sysUser);
     }
 

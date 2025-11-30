@@ -1,6 +1,5 @@
 package com.dcp.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dcp.common.Result;
 import com.dcp.common.dto.WorkspaceIssueAttachmentQueryDTO;
@@ -9,7 +8,6 @@ import com.dcp.service.IWorkspaceIssueAttachmentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -67,26 +65,11 @@ public class WorkspaceIssueAttachmentController {
     @Operation(summary = "分页查询事项附件管理")
     @PostMapping("/page")
     public Result<Page<WorkspaceIssueAttachment>> page(@RequestBody WorkspaceIssueAttachmentQueryDTO query) {
-        Page<WorkspaceIssueAttachment> page = new Page<>(query.getCurrent(), query.getSize());
-
-        LambdaQueryWrapper<WorkspaceIssueAttachment> queryWrapper = new LambdaQueryWrapper<>();
-
-        if (query.getIssueId() != null) {
-            queryWrapper.eq(WorkspaceIssueAttachment::getIssueId, query.getIssueId());
+        try {
+            Page<WorkspaceIssueAttachment> page = workspaceIssueAttachmentService.pageIssueAttachment(query);
+            return Result.success(page);
+        } catch (Exception e) {
+            return Result.error(e.getMessage());
         }
-        if (query.getUploaderId() != null) {
-            queryWrapper.eq(WorkspaceIssueAttachment::getUploaderId, query.getUploaderId());
-        }
-        if (StringUtils.hasText(query.getFileType())) {
-            queryWrapper.eq(WorkspaceIssueAttachment::getFileType, query.getFileType());
-        }
-        if (StringUtils.hasText(query.getKeyword())) {
-            queryWrapper.like(WorkspaceIssueAttachment::getFileName, query.getKeyword());
-        }
-
-        queryWrapper.orderByDesc(WorkspaceIssueAttachment::getCreateTime);
-
-        page = workspaceIssueAttachmentService.page(page, queryWrapper);
-        return Result.success(page);
     }
 }

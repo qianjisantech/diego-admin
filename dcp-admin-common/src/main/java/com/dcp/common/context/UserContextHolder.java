@@ -25,10 +25,10 @@ public class UserContextHolder {
      *
      * @param userId   用户ID
      * @param username 用户名
-     * @param nickname 昵称
+     * @param userCode
      */
-    public static void setUser(Long userId, String username, String nickname) {
-        UserContext userContext = new UserContext(userId, username, nickname);
+    public static void setUser(Long userId, String username, String userCode) {
+        UserContext userContext = new UserContext(userId, username, userCode);
         CONTEXT_HOLDER.set(userContext);
     }
 
@@ -66,9 +66,9 @@ public class UserContextHolder {
      *
      * @return 昵称
      */
-    public static String getNickname() {
+    public static String getUserCode() {
         UserContext userContext = CONTEXT_HOLDER.get();
-        return userContext != null ? userContext.getNickname() : null;
+        return userContext != null ? userContext.getUserCode() : null;
     }
 
     /**

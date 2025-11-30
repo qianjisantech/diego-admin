@@ -42,7 +42,7 @@ public class PermissionAspect {
         // 获取当前用户ID
         Long userId = UserContextHolder.getUserId();
         String username = UserContextHolder.getUsername();
-
+        String userCode = UserContextHolder.getUserCode();
         // 如果用户未登录，抛出异常
         if (userId == null) {
             log.warn("[权限校验] 用户未登录，拒绝访问");
@@ -72,7 +72,7 @@ public class PermissionAspect {
         List<String> userPermissions = menuService.getUserMenuPermissions(userId);
 
         // admin用户拥有所有权限
-        if ("admin".equalsIgnoreCase(username) || userPermissions.contains("*:*:*")) {
+        if ("admin".equalsIgnoreCase(userCode) || userPermissions.contains("*:*:*")) {
             log.debug("[权限校验] 用户 {} 是管理员，拥有所有权限", username);
             return;
         }

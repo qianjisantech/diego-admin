@@ -1,6 +1,8 @@
 package com.dcp.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.dcp.common.dto.FeedbackCommentQueryDTO;
 import com.dcp.entity.FeedbackComment;
 
 /**
@@ -11,4 +13,11 @@ import com.dcp.entity.FeedbackComment;
  */
 public interface IFeedbackCommentService extends IService<FeedbackComment> {
 
+    /**
+     * 分页查询反馈评论管理
+     *
+     * @param query 查询条件
+     * @return 分页结果
+     */
+    Page<FeedbackComment> pageFeedbackComment(FeedbackCommentQueryDTO query);
 }

@@ -1,6 +1,8 @@
 package com.dcp.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.dcp.common.dto.WorkspaceIssueActivityQueryDTO;
 import com.dcp.entity.WorkspaceIssueActivity;
 
 /**
@@ -11,4 +13,11 @@ import com.dcp.entity.WorkspaceIssueActivity;
  */
 public interface IWorkspaceIssueActivityService extends IService<WorkspaceIssueActivity> {
 
+    /**
+     * 分页查询事项活动记录管理
+     *
+     * @param query 查询条件
+     * @return 分页结果
+     */
+    Page<WorkspaceIssueActivity> pageIssueActivity(WorkspaceIssueActivityQueryDTO query);
 }

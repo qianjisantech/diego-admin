@@ -91,7 +91,7 @@ public class WorkspaceIssueServiceImpl extends ServiceImpl<WorkspaceIssueMapper,
             UserContext userContext = UserContextHolder.getUser();
             if (ObjectUtils.isNotEmpty(userContext)) {
                 workspaceIssue.setReporterId(userContext.getUserId());
-                workspaceIssue.setReporterName(userContext.getNickname());
+                workspaceIssue.setReporterName(userContext.getUserCode());
                 workspaceIssue.setReporterCode(userContext.getUsername());
             }
         } else {

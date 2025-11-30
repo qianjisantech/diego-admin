@@ -35,7 +35,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         // 从用户上下文获取当前登录用户信息
         Long userId = UserContextHolder.getUserId();
         String username = UserContextHolder.getUsername();
-        String nickname = UserContextHolder.getNickname();
+        String nickname = UserContextHolder.getUserCode();
 
         if (userId != null) {
             // 填充创建人ID
@@ -68,7 +68,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         // 从用户上下文获取当前登录用户信息
         Long userId = UserContextHolder.getUserId();
         String username = UserContextHolder.getUsername();
-        String nickname = UserContextHolder.getNickname();
+        String nickname = UserContextHolder.getUserCode();
 
         if (userId != null) {
             // 填充更新人ID

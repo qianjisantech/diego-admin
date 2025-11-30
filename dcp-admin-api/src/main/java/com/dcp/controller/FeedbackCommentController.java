@@ -1,6 +1,5 @@
 package com.dcp.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dcp.common.Result;
 import com.dcp.common.dto.FeedbackCommentQueryDTO;
@@ -9,7 +8,6 @@ import com.dcp.service.IFeedbackCommentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -67,23 +65,11 @@ public class FeedbackCommentController {
     @Operation(summary = "分页查询反馈评论管理")
     @PostMapping("/page")
     public Result<Page<FeedbackComment>> page(@RequestBody FeedbackCommentQueryDTO query) {
-        Page<FeedbackComment> page = new Page<>(query.getCurrent(), query.getSize());
-
-        LambdaQueryWrapper<FeedbackComment> queryWrapper = new LambdaQueryWrapper<>();
-
-        if (query.getFeedbackId() != null) {
-            queryWrapper.eq(FeedbackComment::getFeedbackId, query.getFeedbackId());
+        try {
+            Page<FeedbackComment> page = feedbackCommentService.pageFeedbackComment(query);
+            return Result.success(page);
+        } catch (Exception e) {
+            return Result.error(e.getMessage());
         }
-        if (query.getUserId() != null) {
-            queryWrapper.eq(FeedbackComment::getUserId, query.getUserId());
-        }
-        if (StringUtils.hasText(query.getKeyword())) {
-            queryWrapper.like(FeedbackComment::getContent, query.getKeyword());
-        }
-
-        queryWrapper.orderByDesc(FeedbackComment::getCreateTime);
-
-        page = feedbackCommentService.page(page, queryWrapper);
-        return Result.success(page);
     }
 }

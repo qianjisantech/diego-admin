@@ -1,6 +1,5 @@
 package com.dcp.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dcp.common.Result;
 import com.dcp.common.dto.WorkspaceSubtaskQueryDTO;
@@ -9,7 +8,6 @@ import com.dcp.service.IWorkspaceSubtaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -67,23 +65,11 @@ public class WorkspaceSubtaskController {
     @Operation(summary = "分页查询子任务管理")
     @PostMapping("/page")
     public Result<Page<WorkspaceSubtask>> page(@RequestBody WorkspaceSubtaskQueryDTO query) {
-        Page<WorkspaceSubtask> page = new Page<>(query.getCurrent(), query.getSize());
-
-        LambdaQueryWrapper<WorkspaceSubtask> queryWrapper = new LambdaQueryWrapper<>();
-
-        if (query.getIssueId() != null) {
-            queryWrapper.eq(WorkspaceSubtask::getIssueId, query.getIssueId());
+        try {
+            Page<WorkspaceSubtask> page = workspaceSubtaskService.pageSubtask(query);
+            return Result.success(page);
+        } catch (Exception e) {
+            return Result.error(e.getMessage());
         }
-        if (query.getCompleted() != null) {
-            queryWrapper.eq(WorkspaceSubtask::getCompleted, query.getCompleted());
-        }
-        if (StringUtils.hasText(query.getKeyword())) {
-            queryWrapper.like(WorkspaceSubtask::getTitle, query.getKeyword());
-        }
-
-        queryWrapper.orderByDesc(WorkspaceSubtask::getCreateTime);
-
-        page = workspaceSubtaskService.page(page, queryWrapper);
-        return Result.success(page);
     }
 }

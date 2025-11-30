@@ -1,6 +1,5 @@
 package com.dcp.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dcp.common.Result;
 import com.dcp.common.annotation.RequiresPermission;
@@ -10,7 +9,6 @@ import com.dcp.service.IUserSettingsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -74,23 +72,11 @@ public class UserSettingsController {
     @RequiresPermission("settings:view")
     @PostMapping("/page")
     public Result<Page<SysUserSettings>> page(@RequestBody UserSettingsQueryDTO query) {
-        Page<SysUserSettings> page = new Page<>(query.getCurrent(), query.getSize());
-
-        LambdaQueryWrapper<SysUserSettings> queryWrapper = new LambdaQueryWrapper<>();
-
-        if (query.getUserId() != null) {
-            queryWrapper.eq(SysUserSettings::getUserId, query.getUserId());
+        try {
+            Page<SysUserSettings> page = userSettingsService.pageUserSettings(query);
+            return Result.success(page);
+        } catch (Exception e) {
+            return Result.error(e.getMessage());
         }
-        if (StringUtils.hasText(query.getLanguage())) {
-            queryWrapper.eq(SysUserSettings::getLanguage, query.getLanguage());
-        }
-        if (StringUtils.hasText(query.getTheme())) {
-            queryWrapper.eq(SysUserSettings::getTheme, query.getTheme());
-        }
-
-        queryWrapper.orderByDesc(SysUserSettings::getUpdateTime);
-
-        page = userSettingsService.page(page, queryWrapper);
-        return Result.success(page);
     }
 }

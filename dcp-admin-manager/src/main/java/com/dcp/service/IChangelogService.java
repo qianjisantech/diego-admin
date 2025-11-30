@@ -1,6 +1,8 @@
 package com.dcp.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.dcp.common.dto.ChangelogQueryDTO;
 import com.dcp.entity.SysChangelog;
 
 /**
@@ -11,4 +13,11 @@ import com.dcp.entity.SysChangelog;
  */
 public interface IChangelogService extends IService<SysChangelog> {
 
+    /**
+     * 分页查询发布日志管理
+     *
+     * @param query 查询条件
+     * @return 分页结果
+     */
+    Page<SysChangelog> pageChangelog(ChangelogQueryDTO query);
 }

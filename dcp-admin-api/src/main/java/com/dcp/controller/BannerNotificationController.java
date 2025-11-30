@@ -1,6 +1,5 @@
 package com.dcp.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dcp.common.Result;
 import com.dcp.common.dto.BannerNotificationQueryDTO;
@@ -9,7 +8,6 @@ import com.dcp.service.IBannerNotificationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -67,27 +65,11 @@ public class BannerNotificationController {
     @Operation(summary = "分页查询Banner通知管理")
     @PostMapping("/page")
     public Result<Page<BannerNotification>> page(@RequestBody BannerNotificationQueryDTO query) {
-        Page<BannerNotification> page = new Page<>(query.getCurrent(), query.getSize());
-
-        LambdaQueryWrapper<BannerNotification> queryWrapper = new LambdaQueryWrapper<>();
-
-        if (StringUtils.hasText(query.getStatus())) {
-            queryWrapper.eq(BannerNotification::getStatus, query.getStatus());
+        try {
+            Page<BannerNotification> page = bannerNotificationService.pageBannerNotification(query);
+            return Result.success(page);
+        } catch (Exception e) {
+            return Result.error(e.getMessage());
         }
-        if (StringUtils.hasText(query.getType())) {
-            queryWrapper.eq(BannerNotification::getType, query.getType());
-        }
-        if (StringUtils.hasText(query.getKeyword())) {
-            queryWrapper.and(wrapper -> wrapper
-                .like(BannerNotification::getTitle, query.getKeyword())
-                .or()
-                .like(BannerNotification::getContent, query.getKeyword())
-            );
-        }
-
-        queryWrapper.orderByDesc(BannerNotification::getCreateTime);
-
-        page = bannerNotificationService.page(page, queryWrapper);
-        return Result.success(page);
     }
 }

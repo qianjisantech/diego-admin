@@ -21,7 +21,7 @@ public class UpdateAccountSettingsRequest implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户昵称/姓名
+     * 用戶名
      */
     @Size(max = 50, message = "昵称长度不能超过50个字符")
     private String username;
@@ -29,7 +29,7 @@ public class UpdateAccountSettingsRequest implements Serializable {
     /**
      * 用户编码
      */
-    @Size(max = 50, message = "用户编码不能超过50个字符")
+    @Size(max = 50, message = "姓名不能超过50个字符")
     private String userCode;
     /**
      * 邮箱

@@ -1,6 +1,5 @@
 package com.dcp.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dcp.common.Result;
 import com.dcp.common.dto.LoginLogQueryDTO;
@@ -9,7 +8,6 @@ import com.dcp.service.ILoginLogService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -67,32 +65,11 @@ public class LoginLogController {
     @Operation(summary = "分页查询登录日志管理")
     @PostMapping("/page")
     public Result<Page<SysLoginLog>> page(@RequestBody LoginLogQueryDTO query) {
-        Page<SysLoginLog> page = new Page<>(query.getCurrent(), query.getSize());
-
-        LambdaQueryWrapper<SysLoginLog> queryWrapper = new LambdaQueryWrapper<>();
-
-        if (query.getUserId() != null) {
-            queryWrapper.eq(SysLoginLog::getUserId, query.getUserId());
+        try {
+            Page<SysLoginLog> page = loginLogService.pageLoginLog(query);
+            return Result.success(page);
+        } catch (Exception e) {
+            return Result.error(e.getMessage());
         }
-        if (StringUtils.hasText(query.getLoginIp())) {
-            queryWrapper.eq(SysLoginLog::getLoginIp, query.getLoginIp());
-        }
-        if (StringUtils.hasText(query.getStatus())) {
-            queryWrapper.eq(SysLoginLog::getStatus, query.getStatus());
-        }
-        if (StringUtils.hasText(query.getKeyword())) {
-            queryWrapper.and(wrapper -> wrapper
-                .like(SysLoginLog::getLoginIp, query.getKeyword())
-                .or()
-                .like(SysLoginLog::getOs, query.getKeyword())
-                .or()
-                .like(SysLoginLog::getBrowser, query.getKeyword())
-            );
-        }
-
-        queryWrapper.orderByDesc(SysLoginLog::getLoginTime);
-
-        page = loginLogService.page(page, queryWrapper);
-        return Result.success(page);
     }
 }

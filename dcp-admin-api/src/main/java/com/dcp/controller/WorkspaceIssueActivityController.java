@@ -1,6 +1,5 @@
 package com.dcp.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dcp.common.Result;
 import com.dcp.common.dto.WorkspaceIssueActivityQueryDTO;
@@ -9,7 +8,6 @@ import com.dcp.service.IWorkspaceIssueActivityService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -67,31 +65,11 @@ public class WorkspaceIssueActivityController {
     @Operation(summary = "分页查询事项活动记录管理")
     @PostMapping("/page")
     public Result<Page<WorkspaceIssueActivity>> page(@RequestBody WorkspaceIssueActivityQueryDTO query) {
-        Page<WorkspaceIssueActivity> page = new Page<>(query.getCurrent(), query.getSize());
-
-        LambdaQueryWrapper<WorkspaceIssueActivity> queryWrapper = new LambdaQueryWrapper<>();
-
-        if (query.getIssueId() != null) {
-            queryWrapper.eq(WorkspaceIssueActivity::getIssueId, query.getIssueId());
+        try {
+            Page<WorkspaceIssueActivity> page = workspaceIssueActivityService.pageIssueActivity(query);
+            return Result.success(page);
+        } catch (Exception e) {
+            return Result.error(e.getMessage());
         }
-        if (StringUtils.hasText(query.getActivityType())) {
-            queryWrapper.eq(WorkspaceIssueActivity::getAction, query.getActivityType());
-        }
-        if (query.getUserId() != null) {
-            queryWrapper.eq(WorkspaceIssueActivity::getUserId, query.getUserId());
-        }
-        if (StringUtils.hasText(query.getKeyword())) {
-            queryWrapper.and(wrapper -> wrapper
-                .like(WorkspaceIssueActivity::getAction, query.getKeyword())
-                .or().like(WorkspaceIssueActivity::getField, query.getKeyword())
-                .or().like(WorkspaceIssueActivity::getOldValue, query.getKeyword())
-                .or().like(WorkspaceIssueActivity::getNewValue, query.getKeyword())
-            );
-        }
-
-        queryWrapper.orderByDesc(WorkspaceIssueActivity::getCreateTime);
-
-        page = workspaceIssueActivityService.page(page, queryWrapper);
-        return Result.success(page);
     }
 }

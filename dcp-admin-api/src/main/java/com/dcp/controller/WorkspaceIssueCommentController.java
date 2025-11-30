@@ -1,6 +1,5 @@
 package com.dcp.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dcp.common.Result;
 import com.dcp.common.dto.WorkspaceIssueCommentQueryDTO;
@@ -9,7 +8,6 @@ import com.dcp.service.IWorkspaceIssueCommentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -67,26 +65,11 @@ public class WorkspaceIssueCommentController {
     @Operation(summary = "分页查询事项评论管理")
     @PostMapping("/page")
     public Result<Page<WorkspaceIssueComment>> page(@RequestBody WorkspaceIssueCommentQueryDTO query) {
-        Page<WorkspaceIssueComment> page = new Page<>(query.getCurrent(), query.getSize());
-
-        LambdaQueryWrapper<WorkspaceIssueComment> queryWrapper = new LambdaQueryWrapper<>();
-
-        if (query.getIssueId() != null) {
-            queryWrapper.eq(WorkspaceIssueComment::getIssueId, query.getIssueId());
+        try {
+            Page<WorkspaceIssueComment> page = workspaceIssueCommentService.pageIssueComment(query);
+            return Result.success(page);
+        } catch (Exception e) {
+            return Result.error(e.getMessage());
         }
-        if (query.getUserId() != null) {
-            queryWrapper.eq(WorkspaceIssueComment::getUserId, query.getUserId());
-        }
-        if (query.getParentId() != null) {
-            queryWrapper.eq(WorkspaceIssueComment::getParentId, query.getParentId());
-        }
-        if (StringUtils.hasText(query.getKeyword())) {
-            queryWrapper.like(WorkspaceIssueComment::getContent, query.getKeyword());
-        }
-
-        queryWrapper.orderByDesc(WorkspaceIssueComment::getCreateTime);
-
-        page = workspaceIssueCommentService.page(page, queryWrapper);
-        return Result.success(page);
     }
 }

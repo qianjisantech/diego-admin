@@ -4,8 +4,10 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
     # 生产数据库配置（阿里云RDS内网地址）
-    # 内网: rm-uf6vr2e018e95e4hz.mysql.rds.aliyuncs.com
-    url: jdbc:mysql://rm-uf6vr2e018e95e4hz6o.mysql.rds.aliyuncs.com:3306/dcp?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=Asia/Shanghai
+    # 内网: rm-uf6vr2e018e95e4hz6o.mysql.rds.aliyuncs.com
+    # 外网: rm-uf6vr2e018e95e4hz.mysql.rds.aliyuncs.com
+    # 注意：内网地址只能在阿里云内网环境访问，本地测试请使用dev环境连接外网地址
+    url: jdbc:mysql://rm-uf6vr2e018e95e4hz6o.mysql.rds.aliyuncs.com:3306/dcp?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
     password: Sy122812
     druid:

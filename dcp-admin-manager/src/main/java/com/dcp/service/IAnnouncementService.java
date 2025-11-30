@@ -28,4 +28,12 @@ public interface IAnnouncementService extends IService<Announcement> {
     Announcement getLatestUnreadUpdateAnnouncement(Long userId);
 
     Page<AnnouncementVO> queryPage(AnnouncementQueryRequest request);
+
+    /**
+     * 标记公告为已读
+     *
+     * @param userId         用户ID
+     * @param announcementId 公告ID
+     */
+    void markAnnouncementAsRead(Long userId, Long announcementId);
 }

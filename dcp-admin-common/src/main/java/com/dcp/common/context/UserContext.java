@@ -26,7 +26,7 @@ public class UserContext {
     private String username;
 
     /**
-     * 昵称
+     * 用戶編碼
      */
-    private String nickname;
+    private String userCode;
 }

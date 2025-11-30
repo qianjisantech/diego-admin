@@ -49,7 +49,7 @@ public class UserSettingsGroupedVO implements Serializable {
 
         private Long userId;
         private String username;
-        private String name;
+        private String userCode;
         private String email;
         private String phone;
         private String avatar;
