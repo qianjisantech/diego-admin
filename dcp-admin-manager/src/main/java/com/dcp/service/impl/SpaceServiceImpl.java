@@ -3,8 +3,10 @@ package com.dcp.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.dcp.common.context.UserContextHolder;
 import com.dcp.common.dto.SpaceQueryDTO;
 import com.dcp.common.exception.BusinessException;
+import com.dcp.common.exception.DataPermissionException;
 import com.dcp.common.request.SpaceRequest;
 import com.dcp.common.util.BeanConverter;
 import com.dcp.common.vo.SpaceVO;
@@ -21,6 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -41,7 +44,19 @@ public class SpaceServiceImpl extends ServiceImpl<SpaceMapper, Space> implements
 
     @Override
     public SpaceVO getSpaceById(Long id) {
+        // 数据权限检查：只能查询当前用户是成员的空间
+        Long currentUserId = UserContextHolder.getUserId();
+        if (currentUserId != null && !isAdminUser(currentUserId)) {
+            if (!spaceMemberService.isSpaceMember(id, currentUserId)) {
+                throw new DataPermissionException("您没有权限访问该空间的数据");
+            }
+        }
+        
         Space space = getById(id);
+        if (space == null) {
+            return null;
+        }
+        
         SpaceVO spaceVO = BeanConverter.convert(space, SpaceVO::new);
         // 填充负责人名称
         if (spaceVO != null && spaceVO.getOwnerId() != null) {
@@ -55,7 +70,24 @@ public class SpaceServiceImpl extends ServiceImpl<SpaceMapper, Space> implements
 
     @Override
     public List<SpaceVO> listAllSpaces() {
-        List<Space> list = list();
+        // 数据权限过滤：只返回当前用户是成员的空间
+        Long currentUserId = UserContextHolder.getUserId();
+        List<Space> list;
+        
+        if (currentUserId != null && !isAdminUser(currentUserId)) {
+            // 普通用户：只查询用户是成员的空间
+            List<Long> userSpaceIds = spaceMemberService.getUserSpaceIds(currentUserId);
+            if (userSpaceIds.isEmpty()) {
+                return Collections.emptyList();
+            }
+            LambdaQueryWrapper<Space> queryWrapper = new LambdaQueryWrapper<>();
+            queryWrapper.in(Space::getId, userSpaceIds);
+            list = list(queryWrapper);
+        } else {
+            // admin 用户：可以查询所有空间
+            list = list();
+        }
+        
         List<SpaceVO> voList = BeanConverter.convertList(list, SpaceVO::new);
         // 批量填充负责人名称
         fillOwnerNames(voList);
@@ -67,6 +99,18 @@ public class SpaceServiceImpl extends ServiceImpl<SpaceMapper, Space> implements
         Page<Space> page = new Page<>(query.getCurrent(), query.getSize());
 
         LambdaQueryWrapper<Space> queryWrapper = new LambdaQueryWrapper<>();
+
+        // 数据权限过滤：只查询当前用户是成员的空间
+        Long currentUserId = UserContextHolder.getUserId();
+        if (currentUserId != null && !isAdminUser(currentUserId)) {
+            List<Long> userSpaceIds = spaceMemberService.getUserSpaceIds(currentUserId);
+            if (userSpaceIds.isEmpty()) {
+                // 用户不是任何空间的成员，返回空结果
+                Page<SpaceVO> emptyPage = new Page<>(query.getCurrent(), query.getSize(), 0);
+                return emptyPage;
+            }
+            queryWrapper.in(Space::getId, userSpaceIds);
+        }
 
         // 空间名称条件
         if (StringUtils.hasText(query.getName())) {
@@ -108,11 +152,37 @@ public class SpaceServiceImpl extends ServiceImpl<SpaceMapper, Space> implements
     public List<SpaceVO> listByOwner(Long ownerId) {
         LambdaQueryWrapper<Space> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Space::getOwnerId, ownerId);
+        
+        // 数据权限过滤：只返回当前用户是成员的空间
+        Long currentUserId = UserContextHolder.getUserId();
+        if (currentUserId != null && !isAdminUser(currentUserId)) {
+            List<Long> userSpaceIds = spaceMemberService.getUserSpaceIds(currentUserId);
+            if (userSpaceIds.isEmpty()) {
+                return Collections.emptyList();
+            }
+            queryWrapper.in(Space::getId, userSpaceIds);
+        }
+        
         List<Space> list = list(queryWrapper);
         List<SpaceVO> voList = BeanConverter.convertList(list, SpaceVO::new);
         // 批量填充负责人名称
         fillOwnerNames(voList);
         return voList;
+    }
+
+    /**
+     * 判断用户是否是管理员
+     */
+    private boolean isAdminUser(Long userId) {
+        if (userId == null) {
+            return false;
+        }
+        SysUser user = userService.getById(userId);
+        if (user == null) {
+            return false;
+        }
+        // 判断是否是 admin 用户
+        return "admin".equalsIgnoreCase(user.getUsername()) || "admin".equalsIgnoreCase(user.getUserCode());
     }
 
     /**
