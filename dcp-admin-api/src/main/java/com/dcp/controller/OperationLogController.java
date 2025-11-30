@@ -28,7 +28,7 @@ public class OperationLogController {
     private final IOperationLogService operationLogService;
 
     @Operation(summary = "分页查询操作日志")
-    @RequiresPermission("operationlog:view")
+    @RequiresPermission("record:operation:view")
     @PostMapping("/page")
     public Result<PageVO<OperationLogVO>> page(@RequestBody OperationLogQueryDTO query) {
         Page<OperationLogVO> page = operationLogService.pageQuery(query);
@@ -36,7 +36,7 @@ public class OperationLogController {
     }
 
     @Operation(summary = "根据ID查询操作日志")
-    @RequiresPermission("operationlog:view")
+    @RequiresPermission("record:operation:view")
     @GetMapping("/{id}")
     public Result<OperationLogVO> getById(@PathVariable Long id) {
         SysOperationLog log = operationLogService.getById(id);

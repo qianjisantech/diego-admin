@@ -30,7 +30,7 @@ public class TrackingLogController {
     private final ITrackingLogService trackingLogService;
 
     @Operation(summary = "分页查询埋点日志")
-    @RequiresPermission("tracking:view")
+    @RequiresPermission("record:tracking:view")
     @PostMapping("/page")
     public Result<PageVO<TrackingLogVO>> page(@RequestBody TrackingLogQueryDTO query) {
         log.info("[分页查询埋点日志] 查询参数: {}", query);
@@ -47,7 +47,7 @@ public class TrackingLogController {
     }
 
     @Operation(summary = "查询埋点日志详情")
-    @RequiresPermission("tracking:view")
+    @RequiresPermission("record:tracking:view")
     @GetMapping("/{id}")
     public Result<TrackingLogVO> getById(@PathVariable Long id) {
         log.info("[查询埋点日志详情] ID: {}", id);
