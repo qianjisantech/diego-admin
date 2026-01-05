@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qianjisan.system.request.SysMenuRequest;
 import com.qianjisan.system.vo.SysMenuVO;
 import com.qianjisan.system.entity.SysMenu;
+import com.qianjisan.system.entity.SysUser;
 import com.qianjisan.system.mapper.SysMenuMapper;
 import com.qianjisan.system.service.ISysMenuService;
+import com.qianjisan.system.service.ISysUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -28,6 +30,7 @@ import java.util.stream.Collectors;
 public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> implements ISysMenuService {
 
     private final SysMenuMapper menuMapper;
+    private final ISysUserService userService;
 
     @Override
     public void saveMenu(SysMenuRequest request) {
@@ -125,6 +128,34 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
                 .map(SysMenu::getPermission)
                 .filter(permission -> permission != null && !permission.isEmpty())
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean checkUserUriPermission(Long userId, String requestUri) {
+        // admin用户拥有所有权限
+        if ("admin".equalsIgnoreCase(getUserCodeById(userId))) {
+            return true;
+        }
+
+        // 检查用户是否有该URI的访问权限
+        int count = menuMapper.checkUserUriPermission(userId, requestUri);
+        return count > 0;
+    }
+
+    /**
+     * 根据用户ID获取用户编码
+     *
+     * @param userId 用户ID
+     * @return 用户编码
+     */
+    private String getUserCodeById(Long userId) {
+        try {
+            SysUser user = userService.getById(userId);
+            return user != null ? user.getUserCode() : null;
+        } catch (Exception e) {
+            log.error("获取用户编码失败，用户ID: {}", userId, e);
+            return null;
+        }
     }
 
     /**

@@ -26,6 +26,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns(
                         "/auth/login",           // 登录接口不需要验证
                         "/auth/register",        // 注册接口不需要验证
+                        "/console/self/company/invite/info/**",
+                        "/tracking/report",
                         "/swagger-ui/**",        // Swagger UI
                         "/swagger-resources/**", // Swagger资源
                         "/v3/api-docs/**",       // OpenAPI文档

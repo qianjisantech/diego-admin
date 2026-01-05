@@ -1,5 +1,6 @@
 package com.qianjisan.core;
 
+import com.qianjisan.core.utils.TraceLogger;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -34,8 +35,14 @@ public class Result<T> implements Serializable {
      */
     private Long timestamp;
 
+    /**
+     * 链路追踪ID
+     */
+    private String traceId;
+
     public Result() {
         this.timestamp = System.currentTimeMillis();
+        this.traceId = TraceLogger.getTraceIdWithoutPrefix();
     }
 
     public Result(String message, T data, Boolean success) {
@@ -43,6 +50,7 @@ public class Result<T> implements Serializable {
         this.data = data;
         this.success = success;
         this.timestamp = System.currentTimeMillis();
+        this.traceId = TraceLogger.getTraceIdWithoutPrefix();
     }
 
     /**

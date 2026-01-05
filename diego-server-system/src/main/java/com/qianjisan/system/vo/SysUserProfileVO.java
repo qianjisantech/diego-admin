@@ -1,7 +1,7 @@
 package com.qianjisan.system.vo;
 
 import com.qianjisan.core.request.SpaceVO;
-import com.qianjisan.common.vo.CompanyVo;
+import com.qianjisan.enterprise.vo.CompanyVo;
 
 import lombok.Data;
 
@@ -39,15 +39,6 @@ public class SysUserProfileVO implements Serializable {
      */
     private String[] roles;
 
-    /**
-     * 可访问的空间列表
-     */
-    private List<SpaceVO> spaces;
-
-    /**
-     * 可访问的空间ID列表
-     */
-    private Long[] spaceIds;
 
     /**
      * 当前用户所属企业列表
@@ -59,26 +50,4 @@ public class SysUserProfileVO implements Serializable {
      */
     private Long[] companyIds;
 
-    /**
-     * 数据权限配置
-     */
-    private DataPermissions dataPermissions;
-
-    /**
-     * 数据权限内部类
-     */
-    @Data
-    public static class DataPermissions implements Serializable {
-        private static final long serialVersionUID = 1L;
-
-        /**
-         * 是否拥有所有空间的访问权限
-         */
-        private Boolean allSpaces;
-
-        /**
-         * 拥有的空间ID列表
-         */
-        private Long[] ownedSpaces;
-    }
 }

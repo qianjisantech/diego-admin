@@ -48,4 +48,26 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
      */
     @Select("SELECT * FROM sys_menu WHERE status = 1 AND is_deleted = 0 ORDER BY sort_order ASC")
     List<SysMenu> selectAllActiveMenus();
+
+    /**
+     * 根据URI查询菜单
+     *
+     * @param uri 请求URI
+     * @return 菜单信息
+     */
+    @Select("SELECT * FROM sys_menu WHERE path = #{uri} AND status = 1 AND is_deleted = 0 LIMIT 1")
+    SysMenu selectMenuByUri(@Param("uri") String uri);
+
+    /**
+     * 检查用户是否有访问指定URI的权限
+     *
+     * @param userId 用户ID
+     * @param uri 请求URI
+     * @return 是否有权限（0-无权限，1-有权限）
+     */
+    @Select("SELECT COUNT(1) FROM sys_menu m " +
+            "INNER JOIN sys_role_menu srm ON m.id = srm.menu_id " +
+            "INNER JOIN sys_user_role sur ON srm.role_id = sur.role_id " +
+            "WHERE sur.user_id = #{userId} AND m.path = #{uri} AND m.status = 1 AND m.is_deleted = 0")
+    int checkUserUriPermission(@Param("userId") Long userId, @Param("uri") String uri);
 }

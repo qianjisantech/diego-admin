@@ -82,7 +82,8 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 
             log.debug("更新填充完成 - 用户ID: {}, 用户名: {}, 昵称: {}", userId, username, nickname);
         } else {
-            log.warn("用户上下文为空，无法填充更新人信息");
+            // 用户上下文为空（可能是登录前操作），记录调试信息但不警告
+            log.debug("用户上下文为空，无法填充更新人信息（可能为登录前操作）");
         }
     }
 }

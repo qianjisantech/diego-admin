@@ -1,5 +1,12 @@
 package com.qianjisan.core.context;
 
+import com.qianjisan.core.exception.BusinessException;
+
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 用户上下文持有者
  * 使用ThreadLocal存储当前请求的用户信息
@@ -7,9 +14,11 @@ package com.qianjisan.core.context;
  * @author DCP Team
  * @since 2024-12-20
  */
+
 public class UserContextHolder {
 
     private static final ThreadLocal<UserContext> CONTEXT_HOLDER = new ThreadLocal<>();
+    private static final Logger log = LoggerFactory.getLogger(UserContextHolder.class);
 
     /**
      * 设置当前用户信息
@@ -38,7 +47,12 @@ public class UserContextHolder {
      * @return 用户上下文
      */
     public static UserContext getUser() {
-        return CONTEXT_HOLDER.get();
+        UserContext userContext = CONTEXT_HOLDER.get();
+        System.out.println("获取当前用户信息:"+ userContext);
+        if (userContext==null) {
+            throw new BusinessException("未登录或登录已过期");
+        }
+        return userContext;
     }
 
     /**
@@ -47,8 +61,11 @@ public class UserContextHolder {
      * @return 用户ID
      */
     public static Long getUserId() {
-        UserContext userContext = CONTEXT_HOLDER.get();
-        return userContext != null ? userContext.getUserId() : null;
+        UserContext userContext = getUser();
+        if (userContext.getUserId()==null){
+            throw new BusinessException("未登录或登录已过期");
+        }
+        return  userContext.getUserId();
     }
 
     /**
@@ -58,7 +75,11 @@ public class UserContextHolder {
      */
     public static String getUsername() {
         UserContext userContext = CONTEXT_HOLDER.get();
-        return userContext != null ? userContext.getUsername() : null;
+
+        if (StringUtils.isBlank(userContext.getUsername())){
+            throw new BusinessException("未登录或登录已过期");
+        }
+        return userContext.getUsername();
     }
 
     /**
@@ -68,7 +89,11 @@ public class UserContextHolder {
      */
     public static String getUserCode() {
         UserContext userContext = CONTEXT_HOLDER.get();
-        return userContext != null ? userContext.getUserCode() : null;
+
+        if (StringUtils.isBlank(userContext.getUserCode())){
+            throw new BusinessException("未登录或登录已过期");
+        }
+        return userContext.getUserCode() ;
     }
 
     /**

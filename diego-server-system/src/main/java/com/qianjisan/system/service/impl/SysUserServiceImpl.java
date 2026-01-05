@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -234,7 +235,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public void updateLastLoginTime(Long userId) {
         SysUser sysUser = new SysUser();
         sysUser.setId(userId);
-        sysUser.setLastLoginTime(java.time.LocalDateTime.now());
+        sysUser.setLastLoginTime(LocalDateTime.now());
         this.updateById(sysUser);
     }
 

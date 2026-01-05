@@ -34,9 +34,6 @@ public class Company extends BaseEntity {
     @TableField("short_name")
     private String shortName;
 
-    /** 统一社会信用代码 */
-    @TableField("credit_code")
-    private String creditCode;
 
     /** 公司描述 */
     @TableField("description")
@@ -61,5 +58,14 @@ public class Company extends BaseEntity {
     /** 状态：1-启用，0-禁用 */
     @TableField("status")
     private Integer status;
+
+    /** 企业规模 */
+    @TableField("company_size")
+    private String companySize;
+
+
+    /** 所属行业 */
+    @TableField("industry")
+    private String industry;
 }
 

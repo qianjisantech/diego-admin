@@ -42,7 +42,7 @@ public class OperationLogAspect {
     /**
      * 定义切点：拦截所有Controller层的方法
      */
-    @Pointcut("execution(* com.qianjisan.controller..*.*(..))")
+    @Pointcut("execution(* com.qianjisan..*.controller..*.*(..))")
     public void operationLog() {
     }
 

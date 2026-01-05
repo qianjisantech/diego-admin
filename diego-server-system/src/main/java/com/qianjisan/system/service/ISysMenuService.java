@@ -67,4 +67,13 @@ public interface ISysMenuService extends IService<SysMenu> {
      * @return 权限标识列表
      */
     List<String> getUserMenuPermissions(Long userId);
+
+    /**
+     * 检查用户是否有访问指定URI的权限
+     *
+     * @param userId 用户ID
+     * @param requestUri 请求URI
+     * @return 是否有权限
+     */
+    boolean checkUserUriPermission(Long userId, String requestUri);
 }

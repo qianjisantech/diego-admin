@@ -1,0 +1,46 @@
+### 获取当前用户的企业列表
+GET {{baseUrl}}/self/companies
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# 响应示例：
+# 成功响应：
+# {
+#   "code": 200,
+#   "message": "获取企业列表成功",
+#   "data": [
+#     {
+#       "id": 1,
+#       "companyCode": "QJS001",
+#       "companyName": "千机伞科技股份有限公司",
+#       "shortName": "千机伞科技",
+#       "creditCode": "91110000MA00000001",
+#       "description": "专注于企业级项目管理解决方案的科技公司",
+#       "contactPerson": "张三",
+#       "contactPhone": "13800138001",
+#       "contactEmail": "contact@qianjisan.com",
+#       "address": "北京市朝阳区建国门外大街1号"
+#     },
+#     {
+#       "id": 2,
+#       "companyCode": "QJS002",
+#       "companyName": "千机伞软件开发有限公司",
+#       "shortName": "千机伞软件",
+#       "creditCode": "91110000MA00000002",
+#       "description": "千机伞科技的全资子公司，专注于软件开发服务",
+#       "contactPerson": "李四",
+#       "contactPhone": "13800138002",
+#       "contactEmail": "dev@qianjisan.com",
+#       "address": "北京市海淀区中关村大厦B座"
+#     }
+#   ]
+# }
+
+# 失败响应：
+# {
+#   "code": 500,
+#   "message": "用户未登录",
+#   "data": null
+# }

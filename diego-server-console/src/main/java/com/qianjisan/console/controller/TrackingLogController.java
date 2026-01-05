@@ -36,7 +36,6 @@ public class TrackingLogController {
     private final ISysTrackingLogService trackingLogService;
 
     @Operation(summary = "分页查询埋点日志")
-    @RequiresPermission("record:tracking:view")
     @PostMapping("/page")
     public Result<PageVO<SysTrackingLogVO>> page(@RequestBody SysTrackingLogQueryRequest request) {
         log.info("[分页查询埋点日志] 查询参数: {}", request);
@@ -53,7 +52,6 @@ public class TrackingLogController {
     }
 
     @Operation(summary = "查询埋点日志详情")
-    @RequiresPermission("record:tracking:view")
     @GetMapping("/{id}")
     public Result<SysTrackingLogVO> getById(@PathVariable Long id) {
         log.info("[查询埋点日志详情] ID: {}", id);
@@ -62,7 +60,6 @@ public class TrackingLogController {
     }
 
     @Operation(summary = "统计埋点类型数量（柱状图）", description = "展示年月日每个埋点类型的量")
-    @RequiresPermission("record:tracking:view")
     @PostMapping("/report/event-type-statistics")
     public Result<List<EventTypeStatisticsVO>> eventTypeStatistics(@RequestBody TrackingReportQueryRequest request) {
         log.info("[统计埋点类型数量] 查询参数: {}", request);
@@ -71,7 +68,6 @@ public class TrackingLogController {
     }
 
     @Operation(summary = "统计用户活跃量", description = "展示用户的活跃量")
-    @RequiresPermission("record:tracking:view")
     @PostMapping("/report/user-activity")
     public Result<List<UserActivityVO>> userActivity(@RequestBody SysTrackingLogQueryRequest request) {
         log.info("[统计用户活跃量] 查询参数: {}", request);
@@ -80,7 +76,6 @@ public class TrackingLogController {
     }
 
     @Operation(summary = "埋点报表（整合）", description = "返回事件类型统计与用户活跃报表")
-    @RequiresPermission("record:tracking:view")
     @PostMapping("/report")
     public Result<Map<String, Object>> report(@RequestBody TrackingReportQueryRequest request) {
         log.info("[埋点报表] 查询参数: {}", request);

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+
 /**
  * 在应用启动完成后打印各模块加载情况（检测每个模块是否有加载的 Bean）
  */
@@ -30,10 +31,9 @@ public class ModuleStartupLogger implements ApplicationListener<ApplicationReady
         map.put("common", "com.qianjisan.common");
         map.put("console", "com.qianjisan.console");
         map.put("system", "com.qianjisan.system");
-        map.put("issue", "com.qianjisan.issue");
-        map.put("auth", "qianjisan.auth");
-        map.put("view", "com.qianjisan.view");
-        map.put("cs", "com.qianjisan.cs");
+        map.put("enterprise", "com.qianjisan.enterprise");
+        map.put("auth", "com.qianjisan.auth");
+
         return map;
     }
 
@@ -79,6 +79,6 @@ public class ModuleStartupLogger implements ApplicationListener<ApplicationReady
         }
 
         sb.append("--------------------------------------------------\n");
-        System.out.println(sb.toString());
+        System.out.println(sb);
     }
 }

@@ -12,7 +12,7 @@
     </parent>
 
     <artifactId>diego-server-common</artifactId>
-    <name>dcp-admin-common</name>
+    <name>diego-server-common</name>
     <description>公共服务模块</description>
 
     <dependencies>
