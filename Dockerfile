@@ -32,8 +32,9 @@ COPY diego-server-console/pom.xml      /app/diego-server-console/
 COPY diego-server-admin/pom.xml        /app/diego-server-admin/
 # 下载依赖（利用 Docker 缓存层，只有 pom.xml 变化时才重新下载）
 # 使用 Maven 中央仓库下载依赖
+# 定义revision属性以解决版本变量解析问题
 # 即使 dependency:go-offline 失败也继续，因为 package 阶段会重新下载依赖
-RUN mvn -f /app/pom.xml dependency:go-offline -B || true
+RUN mvn -f /app/pom.xml dependency:go-offline -B -Drevision=1.0.0-SNAPSHOT || true
 
 # 将 src 目录下所有文件，拷贝到工作目录中（.dockerignore 中文件除外）
 COPY diego-server-core/src        /app/diego-server-core/src
@@ -44,7 +45,8 @@ COPY diego-server-auth/src        /app/diego-server-auth/src
 COPY diego-server-console/src     /app/diego-server-console/src
 COPY diego-server-admin/src       /app/diego-server-admin/src
 # 执行代码编译命令，跳过测试以加快构建速度
-RUN mvn -f /app/pom.xml clean package -DskipTests -B
+# 定义revision属性以解决版本变量解析问题
+RUN mvn -f /app/pom.xml clean package -DskipTests -B -Drevision=1.0.0-SNAPSHOT
 
 # ================================
 # Stage 2: 运行阶段
