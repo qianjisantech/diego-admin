@@ -40,7 +40,8 @@ COPY diego-server-admin/src       /app/diego-server-admin/src
 COPY diego-server-auth/src        /app/diego-server-auth/src
 COPY diego-server-core/src        /app/diego-server-core/src
 COPY diego-server-enterprise/src  /app/diego-server-enterprise/src
-COPY diego-server-system/src     /app/diego-server-system/src
+COPY diego-server-system/src      /app/diego-server-system/src
+COPY diego-server-console/src     /app/diego-server-console/src
 # 执行代码编译命令，跳过测试以加快构建速度
 RUN mvn -f /app/pom.xml clean package -DskipTests -B
 
