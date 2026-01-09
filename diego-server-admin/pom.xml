@@ -24,6 +24,11 @@
             <groupId>com.qianjisan</groupId>
             <artifactId>diego-server-console</artifactId>
         </dependency>
+        <!-- 添加Spring Boot启动器 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
         <!-- Druid 数据源 -->
 
         <!-- 依赖 enterprise 模块 -->
