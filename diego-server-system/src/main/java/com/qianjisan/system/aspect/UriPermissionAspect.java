@@ -44,10 +44,14 @@ public class UriPermissionAspect {
 
     /**
      * 权限校验切面
-     * 拦截所有Controller方法，进行URI权限校验
+     * 【已放开】所有接口权限全部放开，不进行URI权限校验
      */
     @Before("controllerMethods()")
     public void checkUriPermission(JoinPoint joinPoint) {
+        // 【权限放开】不再进行任何权限校验，所有接口都可以访问
+        // 如果需要恢复权限检查，请取消下面的注释
+
+        /*
         // 获取当前请求
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (requestAttributes == null) {
@@ -93,6 +97,20 @@ public class UriPermissionAspect {
 
         log.debug("[URI权限校验] 用户 {} (ID: {}) 权限校验通过，访问URI: {} {}",
             username, userId, requestMethod, requestUri);
+        */
+
+        // 记录请求信息（可选）
+        try {
+            ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+            if (requestAttributes != null) {
+                HttpServletRequest request = requestAttributes.getRequest();
+                String requestUri = request.getRequestURI();
+                String requestMethod = request.getMethod();
+                log.debug("[权限放开] 允许访问: {} {}", requestMethod, requestUri);
+            }
+        } catch (Exception e) {
+            // 忽略获取请求信息时的异常
+        }
     }
 
     /**

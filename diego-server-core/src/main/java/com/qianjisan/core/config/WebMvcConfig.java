@@ -21,6 +21,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        // 【权限放开】暂时禁用JWT拦截器，所有接口都不需要token验证
+        // 如果需要恢复JWT验证，请取消下面的注释
+
+        /*
         registry.addInterceptor(jwtInterceptor)
                 .addPathPatterns("/**")  // 拦截所有请求
                 .excludePathPatterns(
@@ -36,5 +40,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
                         "/favicon.ico",          // 图标
                         "/error"                 // 错误页面
                 );
+        */
+
+        // 记录拦截器已禁用（可选）
+        // System.out.println("JWT拦截器已禁用，所有接口权限放开");
     }
 }
