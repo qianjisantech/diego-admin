@@ -1,10 +1,11 @@
 package com.qianjisan.auth.controller;
 
+import com.qianjisan.auth.request.RegisterRequest;
+import com.qianjisan.auth.request.SendCodeRequest;
 import com.qianjisan.auth.service.IAuthService;
+import com.qianjisan.auth.vo.UserProfileVO;
 import com.qianjisan.core.Result;
 import com.qianjisan.core.context.UserContextHolder;
-import com.qianjisan.system.vo.SysUserProfileVO;
-import com.qianjisan.system.vo.UserInfoVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import com.qianjisan.auth.request.LoginRequest;
 import com.qianjisan.auth.vo.LoginResponseVO;
 import java.util.ArrayList;
-import java.util.Map;
 
 /**
  * 认证控制器
@@ -39,10 +39,13 @@ public class AuthController {
 
     @Operation(summary = "用户登录")
     @PostMapping("/login")
-    public Result<LoginResponseVO> login(@Valid @RequestBody LoginRequest request) {
+    public Result<LoginResponseVO> login( @RequestBody @Valid LoginRequest request) {
         try {
-            log.info("[用户登录] 邮箱: {}, 记住我: {}", request.getEmail(), request.getRemember());
-            LoginResponseVO response = authService.login(request.getEmail(), request.getPassword());
+            String email = request.getEmail();
+            Boolean remember = request.getRemember();
+            String password = request.getPassword();
+            log.info("[用户登录] 邮箱: {}, 记住我: {}", email,remember);
+            LoginResponseVO response = authService.login(email, password);
             log.info("[用户登录] 成功");
             return Result.success("登录成功",response);
         } catch (Exception e) {
@@ -60,7 +63,7 @@ public class AuthController {
 
     @Operation(summary = "获取用户权限信息")
     @GetMapping("/profile")
-    public Result<SysUserProfileVO> getProfile() {
+    public Result<UserProfileVO> getProfile() {
         try {
             // 【权限放开模式】从 ThreadLocal 获取当前用户信息
             Long userId = UserContextHolder.getUserId();
@@ -68,11 +71,10 @@ public class AuthController {
             // 如果没有用户信息（权限放开模式），返回默认的profile信息
             if (userId == null) {
                 log.info("[获取用户权限信息] 权限放开模式，返回默认用户信息");
-                SysUserProfileVO defaultProfile = new SysUserProfileVO();
+                UserProfileVO defaultProfile = new UserProfileVO();
 
                 // 设置默认用户信息（访客模式）
-                UserInfoVO defaultUserInfo = new UserInfoVO();
-                defaultUserInfo.setId(0L);
+                UserProfileVO.UserInfoVo defaultUserInfo = new UserProfileVO.UserInfoVo();
                 defaultUserInfo.setName("访客用户");
                 defaultUserInfo.setUserCode("guest");
                 defaultUserInfo.setEmail("guest@example.com");
@@ -87,7 +89,7 @@ public class AuthController {
             }
 
             log.info("[获取用户权限信息] 用户ID: {}", userId);
-            SysUserProfileVO profile = authService.getUserProfile(userId);
+          UserProfileVO profile = authService.getUserProfile(userId);
             log.info("[获取用户权限信息] 成功");
             return Result.success(profile);
         } catch (Exception e) {
@@ -98,10 +100,9 @@ public class AuthController {
 
     @Operation(summary = "发送邮箱验证码")
     @PostMapping("/send-code")
-    public Result<String> sendVerificationCode(@RequestBody Map<String, String> request) {
+    public Result<String> sendVerificationCode(@RequestBody @Valid SendCodeRequest request) {
         try {
-            String email = request.get("email");
-
+            String email = request.getEmail();
             log.info("[发送验证码] 邮箱: {}", email);
             authService.sendVerificationCode(email);
             log.info("[发送验证码] 成功");
@@ -114,12 +115,12 @@ public class AuthController {
 
     @Operation(summary = "用户注册")
     @PostMapping("/register")
-    public Result<String> register(@RequestBody Map<String, String> request) {
-        try {
-            String email = request.get("email");
-            String code = request.get("code");
-            String password = request.get("password");
+    public Result<String> register(@RequestBody @Valid RegisterRequest request) {
 
+        try {
+            String email = request.getEmail();
+            String code = request.getCode();
+            String password = request.getPassword();
             log.info("[用户注册] 邮箱: {}", email);
             authService.register(email, code, password);
             log.info("[用户注册] 成功");

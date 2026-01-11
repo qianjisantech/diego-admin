@@ -1,7 +1,7 @@
 package com.qianjisan.auth.service;
 
-import com.qianjisan.system.vo.SysUserProfileVO;
 import com.qianjisan.auth.vo.LoginResponseVO;
+import com.qianjisan.auth.vo.UserProfileVO;
 
 
 /**
@@ -43,5 +43,5 @@ public interface IAuthService {
      * @param userId 用户ID
      * @return 用户权限信息
      */
-    SysUserProfileVO getUserProfile(Long userId);
+    UserProfileVO getUserProfile(Long userId);
 }

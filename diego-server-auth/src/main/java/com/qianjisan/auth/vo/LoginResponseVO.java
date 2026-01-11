@@ -1,7 +1,6 @@
 package com.qianjisan.auth.vo;
 
 
-import com.qianjisan.system.vo.UserInfoVO;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -22,8 +21,4 @@ public class LoginResponseVO implements Serializable {
      */
     private String token;
 
-    /**
-     * 用户信息
-     */
-    private UserInfoVO userInfo;
 }

@@ -2,8 +2,9 @@ package com.qianjisan.system.controller;
 
 import com.qianjisan.core.Result;
 import com.qianjisan.system.request.SysMenuRequest;
-import com.qianjisan.system.vo.SysMenuVO;
+import com.qianjisan.system.vo.SysMenuTreeVO;
 import com.qianjisan.system.service.ISysMenuService;
+import com.qianjisan.system.vo.SysMenuVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -78,9 +79,9 @@ public class SysMenuController {
 
     @Operation(summary = "获取菜单树")
     @GetMapping("/tree")
-    public Result<List<SysMenuVO>> getTree() {
+    public Result<List<SysMenuTreeVO>> getTree() {
         try {
-            List<SysMenuVO> tree = menuService.getMenuTree();
+            List<SysMenuTreeVO> tree = menuService.getMenuTree();
             return Result.success(tree);
         } catch (Exception e) {
             log.error("获取菜单树失败，失败原因：{}", e.getMessage());

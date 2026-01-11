@@ -3,6 +3,7 @@ package com.qianjisan.system.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qianjisan.system.request.SysMenuRequest;
+import com.qianjisan.system.vo.SysMenuTreeVO;
 import com.qianjisan.system.vo.SysMenuVO;
 import com.qianjisan.system.entity.SysMenu;
 import com.qianjisan.system.entity.SysUser;
@@ -48,15 +49,15 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     }
 
     @Override
-    public List<SysMenuVO> getMenuTree() {
+    public List<SysMenuTreeVO> getMenuTree() {
         // 查询所有菜单
         LambdaQueryWrapper<SysMenu> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByAsc(SysMenu::getSortOrder);
         List<SysMenu> allMenus = menuMapper.selectList(wrapper);
 
         // 转换为VO
-        List<SysMenuVO> allMenuVOs = allMenus.stream().map(menu -> {
-            SysMenuVO vo = new SysMenuVO();
+        List<SysMenuTreeVO> allMenuVOs = allMenus.stream().map(menu -> {
+            SysMenuTreeVO vo = new SysMenuTreeVO();
             BeanUtils.copyProperties(menu, vo);
             return vo;
         }).collect(Collectors.toList());
@@ -91,7 +92,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     }
 
     @Override
-    public List<SysMenuVO> getUserMenuTree(Long userId) {
+    public List<SysMenuTreeVO> getUserMenuTree(Long userId) {
         List<SysMenu> userMenus;
 
         // 查询用户的菜单（通过角色关联）
@@ -102,8 +103,8 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         }
 
         // 转换为VO
-        List<SysMenuVO> menuVOs = userMenus.stream().map(menu -> {
-            SysMenuVO vo = new SysMenuVO();
+        List<SysMenuTreeVO> menuVOs = userMenus.stream().map(menu -> {
+            SysMenuTreeVO vo = new SysMenuTreeVO();
             BeanUtils.copyProperties(menu, vo);
             return vo;
         }).collect(Collectors.toList());
@@ -165,13 +166,13 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
      * @param parentId 父菜单ID
      * @return 菜单树
      */
-    private List<SysMenuVO> buildMenuTree(List<SysMenuVO> allMenus, Long parentId) {
-        List<SysMenuVO> result = new ArrayList<>();
+    private List<SysMenuTreeVO> buildMenuTree(List<SysMenuTreeVO> allMenus, Long parentId) {
+        List<SysMenuTreeVO> result = new ArrayList<>();
 
-        for (SysMenuVO menu : allMenus) {
+        for (SysMenuTreeVO menu : allMenus) {
             if (menu.getParentId().equals(parentId)) {
                 // 递归查找子菜单
-                List<SysMenuVO> children = buildMenuTree(allMenus, menu.getId());
+                List<SysMenuTreeVO> children = buildMenuTree(allMenus, menu.getId());
                 if (!children.isEmpty()) {
                     menu.setChildren(children);
                 }

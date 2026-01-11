@@ -2,8 +2,9 @@ package com.qianjisan.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.qianjisan.system.request.SysMenuRequest;
-import com.qianjisan.system.vo.SysMenuVO;
+import com.qianjisan.system.vo.SysMenuTreeVO;
 import com.qianjisan.system.entity.SysMenu;
+import com.qianjisan.system.vo.SysMenuVO;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ public interface ISysMenuService extends IService<SysMenu> {
      *
      * @return 菜单树
      */
-    List<SysMenuVO> getMenuTree();
+    List<SysMenuTreeVO> getMenuTree();
 
     /**
      * 获取菜单列表
@@ -58,7 +59,7 @@ public interface ISysMenuService extends IService<SysMenu> {
      * @param userId 用户ID
      * @return 菜单树
      */
-    List<SysMenuVO> getUserMenuTree(Long userId);
+    List<SysMenuTreeVO> getUserMenuTree(Long userId);
 
     /**
      * 根据用户ID获取菜单权限标识列表

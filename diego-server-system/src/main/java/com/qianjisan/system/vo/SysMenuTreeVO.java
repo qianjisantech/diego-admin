@@ -1,7 +1,9 @@
 package com.qianjisan.system.vo;
 
 
+import com.qianjisan.core.BaseVO;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
@@ -12,7 +14,7 @@ import java.util.List;
  * @since 2024-12-20
  */
 @Data
-public class SysMenuVO  {
+public class SysMenuTreeVO {
 
     /**
      * ID
@@ -74,5 +76,5 @@ public class SysMenuVO  {
     /**
      * 子菜单列表
      */
-    private List<SysMenuVO> children;
+    private List<SysMenuTreeVO> children;
 }

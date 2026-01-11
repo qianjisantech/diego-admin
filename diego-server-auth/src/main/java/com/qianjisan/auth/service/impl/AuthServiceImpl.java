@@ -1,11 +1,13 @@
 package com.qianjisan.auth.service.impl;
 
 
+import cn.hutool.core.collection.CollectionUtil;
 import com.qianjisan.auth.service.IAuthService;
 import com.qianjisan.auth.service.IVerificationCodeService;
+import com.qianjisan.auth.vo.UserProfileVO;
 import com.qianjisan.console.dto.SelfUserCompanyDTO;
 import com.qianjisan.console.mapper.UserCompanyMapper;
-import com.qianjisan.console.service.ICompanyService;
+
 import com.qianjisan.core.context.UserContextHolder;
 import com.qianjisan.core.exception.BusinessException;
 import com.qianjisan.core.utils.BeanConverter;
@@ -16,18 +18,20 @@ import com.qianjisan.enterprise.vo.CompanyVo;
 import com.qianjisan.system.entity.SysUser;
 import com.qianjisan.system.service.ISysMenuService;
 import com.qianjisan.system.service.ISysUserService;
+import com.qianjisan.system.vo.SysMenuTreeVO;
 import com.qianjisan.system.vo.SysMenuVO;
-import com.qianjisan.system.vo.SysUserProfileVO;
 import com.qianjisan.common.service.IAsyncEmailService;
-import com.qianjisan.system.vo.UserInfoVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import com.qianjisan.auth.vo.LoginResponseVO;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 认证服务实现类
@@ -71,9 +75,9 @@ public class AuthServiceImpl implements IAuthService {
 
         // 设置用户上下文（用于后续操作的用户信息填充）
         UserContextHolder.setUser(
-            sysUser.getId(),
-            sysUser.getName(),
-            sysUser.getUserCode()
+                sysUser.getId(),
+                sysUser.getName(),
+                sysUser.getUserCode()
         );
 
         // 登录成功后更新最后登录时间
@@ -88,10 +92,6 @@ public class AuthServiceImpl implements IAuthService {
         // 构建返回结果
         LoginResponseVO response = new LoginResponseVO();
         response.setToken(token);
-
-        // 用户信息（不返回密码）
-        UserInfoVO userInfoVO = BeanConverter.convert(sysUser, UserInfoVO::new);
-        response.setUserInfo(userInfoVO);
 
         log.info("[AuthService] 用户登录成功，邮箱: {}, 用户编码: {}", email, sysUser.getUserCode());
         return response;
@@ -123,77 +123,77 @@ public class AuthServiceImpl implements IAuthService {
     @Override
     public void register(String email, String code, String password) {
         try {
-        log.info("[AuthService] 用户注册: {}", email);
+            log.info("[AuthService] 用户注册: {}", email);
 
-        // 参数校验
-        if (!StringUtils.hasText(email)) {
-            throw new BusinessException("邮箱不能为空");
-        }
-        if (!StringUtils.hasText(code)) {
-            throw new BusinessException("验证码不能为空");
-        }
-        if (!StringUtils.hasText(password)) {
-            throw new BusinessException("密码不能为空");
-        }
-        if (password.length() < 6) {
-            throw new BusinessException("密码长度不能少于6位");
-        }
+            // 参数校验
+            if (!StringUtils.hasText(email)) {
+                throw new BusinessException("邮箱不能为空");
+            }
+            if (!StringUtils.hasText(code)) {
+                throw new BusinessException("验证码不能为空");
+            }
+            if (!StringUtils.hasText(password)) {
+                throw new BusinessException("密码不能为空");
+            }
+            if (password.length() < 6) {
+                throw new BusinessException("密码长度不能少于6位");
+            }
 
-        // 验证邮箱格式
-        String emailRegex = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
-        if (!email.matches(emailRegex)) {
-            throw new BusinessException("邮箱格式不正确");
-        }
+            // 验证邮箱格式
+            String emailRegex = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
+            if (!email.matches(emailRegex)) {
+                throw new BusinessException("邮箱格式不正确");
+            }
 
-        // 验证验证码
-        if (!verificationCodeService.verifyCode(email, code)) {
-            throw new BusinessException("验证码错误或已过期");
-        }
+            // 验证验证码
+            if (!verificationCodeService.verifyCode(email, code)) {
+                throw new BusinessException("验证码错误或已过期");
+            }
 
-        // 检查邮箱是否已注册
-        SysUser existingSysUser = userService.getUserByEmail(email);
-        if (existingSysUser != null) {
-            throw new BusinessException("该邮箱已被注册");
-        }
+            // 检查邮箱是否已注册
+            SysUser existingSysUser = userService.getUserByEmail(email);
+            if (existingSysUser != null) {
+                throw new BusinessException("该邮箱已被注册");
+            }
 
-        // 截取邮箱@前面的部分作为用户名
-        String name = email.split("@")[0];
+            // 截取邮箱@前面的部分作为用户名
+            String name = email.split("@")[0];
 
-        // 生成8位纯数字的用户编码
-        String userCode = UserCodeGenerator.generate();
+            // 生成8位纯数字的用户编码
+            String userCode = UserCodeGenerator.generate();
 
-        // 确保用户编码唯一性（如果重复则重新生成）
-        int retryCount = 0;
-        while (userService.getUserByUserCode(userCode) != null && retryCount < 10) {
-            userCode = UserCodeGenerator.generate();
-            retryCount++;
-        }
+            // 确保用户编码唯一性（如果重复则重新生成）
+            int retryCount = 0;
+            while (userService.getUserByUserCode(userCode) != null && retryCount < 10) {
+                userCode = UserCodeGenerator.generate();
+                retryCount++;
+            }
 
-        if (retryCount >= 10) {
-            throw new BusinessException("用户编码生成失败，请稍后重试");
-        }
+            if (retryCount >= 10) {
+                throw new BusinessException("用户编码生成失败，请稍后重试");
+            }
 
-        // 创建新用户
-        SysUser newSysUser = new SysUser();
-        newSysUser.setName(name);
-        newSysUser.setUserCode(userCode);
-        newSysUser.setEmail(email);
+            // 创建新用户
+            SysUser newSysUser = new SysUser();
+            newSysUser.setName(name);
+            newSysUser.setUserCode(userCode);
+            newSysUser.setEmail(email);
 
-        // 加密密码
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        newSysUser.setPassword(encoder.encode(password));
+            // 加密密码
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            newSysUser.setPassword(encoder.encode(password));
 
-        // 设置默认状态
-        newSysUser.setStatus(1); // 正常状态
-        UserContextHolder.setUser(
-                newSysUser.getId(),
-                newSysUser.getName(),
-                newSysUser.getUserCode()
-        );
-        // 保存用户
-        userService.save(newSysUser);
+            // 设置默认状态
+            newSysUser.setStatus(1); // 正常状态
+            UserContextHolder.setUser(
+                    newSysUser.getId(),
+                    newSysUser.getName(),
+                    newSysUser.getUserCode()
+            );
+            // 保存用户
+            userService.save(newSysUser);
 
-        // 自动分配"普通用户"角色
+            // 自动分配"普通用户"角色
 
             List<Long> roleIds = new ArrayList<>();
             roleIds.add(DEFAULT_USER_ROLE_ID);
@@ -205,13 +205,13 @@ public class AuthServiceImpl implements IAuthService {
             log.info("[AuthService] 用户注册成功，邮箱: {}, 用户名: {}, 用户编码: {}", email, name, userCode);
         } catch (Exception e) {
             log.error("[AuthService] 为新用户分配角色失败,错误: {}", e.getMessage(), e);
-            throw  new BusinessException(e.getMessage());
+            throw new BusinessException(e.getMessage());
         }
 
     }
 
     @Override
-    public SysUserProfileVO getUserProfile(Long userId) {
+    public UserProfileVO getUserProfile(Long userId) {
         log.info("[AuthService] 获取用户权限信息: {}", userId);
 
         if (userId == null) {
@@ -224,21 +224,22 @@ public class AuthServiceImpl implements IAuthService {
             throw new BusinessException("用户不存在");
         }
 
-        SysUserProfileVO profile = new SysUserProfileVO();
+        UserProfileVO profile = new UserProfileVO();
 
         // 用户基本信息
-        UserInfoVO userInfoVO = BeanConverter.convert(sysUser, UserInfoVO::new);
+        UserProfileVO.UserInfoVo userInfoVO = BeanConverter.convert(sysUser, UserProfileVO.UserInfoVo::new);
         profile.setUserInfo(userInfoVO);
 
         // 判断是否为 admin 用户
         boolean isAdmin = "admin".equalsIgnoreCase(sysUser.getName());
 
         // 获取用户菜单权限
-        List<SysMenuVO> menuTree = menuService.getUserMenuTree(userId);
+        List<SysMenuTreeVO> menuTrees = menuService.getUserMenuTree(userId);
         List<String> menuPermissions = menuService.getUserMenuPermissions(userId);
 
+
         // 检查用户是否有角色（通过菜单权限判断）
-        boolean hasRole = menuTree != null && !menuTree.isEmpty();
+        boolean hasRole = menuTrees != null && !menuTrees.isEmpty();
 
         if (!hasRole && !isAdmin) {
             // 没有角色的用户：返回空的权限和菜单
@@ -252,8 +253,31 @@ public class AuthServiceImpl implements IAuthService {
             return profile;
         }
 
+        if (CollectionUtil.isEmpty(menuTrees)) {
+            profile.setMenus(List.of());
+        } else {
+            List<UserProfileVO.UserMenuVo> userMenuVos = menuTrees.stream().map(menuTree -> {
+                UserProfileVO.UserMenuVo userMenuVo = new UserProfileVO.UserMenuVo();
+                userMenuVo.setId(menuTree.getId());
+                userMenuVo.setMenuName(menuTree.getMenuName());
+                userMenuVo.setMenuCode(menuTree.getMenuCode());
+                userMenuVo.setMenuType(menuTree.getMenuType());
+                userMenuVo.setComponent(menuTree.getComponent());
+                userMenuVo.setSortOrder(menuTree.getSortOrder());
+                userMenuVo.setPermission(menuTree.getPermission());
+                userMenuVo.setIcon(menuTree.getIcon());
+                userMenuVo.setPath(menuTree.getPath());
+                userMenuVo.setVisible(menuTree.getVisible());
+                userMenuVo.setComponent(menuTree.getComponent());
+                userMenuVo.setParentId(menuTree.getParentId());
+                userMenuVo.setChildren(menuTree.getChildren());
+                return userMenuVo;
+            }).collect(Collectors.toList());
+            profile.setMenus(userMenuVos);
+
+        }
         // 设置菜单相关信息
-        profile.setMenus(menuTree);
+
         profile.setMenuPermissions(menuPermissions.toArray(new String[0]));
 
         if (isAdmin) {
@@ -273,27 +297,27 @@ public class AuthServiceImpl implements IAuthService {
         try {
             List<SelfUserCompanyDTO> selfUserCompanyDTOS = userCompanyMapper.selectCompaniesByUserId(userId);
             if (selfUserCompanyDTOS != null && !selfUserCompanyDTOS.isEmpty()) {
-               
-                List<CompanyVo> companyVos = new ArrayList<>();
+
+                List<UserProfileVO.UserCompanyVo> companyVos = new ArrayList<>();
 
                 for (SelfUserCompanyDTO c : selfUserCompanyDTOS) {
-                    CompanyVo cv = new CompanyVo();
+                    UserProfileVO.UserCompanyVo cv = new UserProfileVO.UserCompanyVo();
                     cv.setId(c.getId());
                     cv.setCompanyCode(c.getCompanyCode());
                     cv.setCompanyName(c.getCompanyName());
-                    cv.setIsDefault(c.getIsDefault()==1);
+                    cv.setIsDefault(c.getIsDefault() == 1);
                     companyVos.add(cv);
                 }
-                log.info("[AuthService] getUserProfile 查询用户企业成功，用户ID: {}, 企业列表为 {}", userId,companyVos);
+                log.info("[AuthService] getUserProfile 查询用户企业成功，用户ID: {}, 企业列表为 {}", userId, companyVos);
                 profile.setCompanies(companyVos);
             } else {
                 profile.setCompanies(new ArrayList<>());
-                profile.setCompanyIds(new Long[0]);
+
             }
         } catch (Exception e) {
             log.error("[AuthService] getUserProfile 查询用户企业失败，用户ID: {}, 错误: {}", userId, e.getMessage());
             profile.setCompanies(new ArrayList<>());
-            profile.setCompanyIds(new Long[0]);
+
         }
 
         return profile;
