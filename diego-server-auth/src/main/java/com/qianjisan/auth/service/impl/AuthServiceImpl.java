@@ -70,7 +70,7 @@ public class AuthServiceImpl implements IAuthService {
         String token = JwtUtil.generateToken(sysUser.getId(), sysUser.getName(), sysUser.getUserCode());
 
         // 设置用户上下文（用于后续操作的用户信息填充）
-        com.qianjisan.core.context.UserContextHolder.setUser(
+        UserContextHolder.setUser(
             sysUser.getId(),
             sysUser.getName(),
             sysUser.getUserCode()
@@ -122,6 +122,7 @@ public class AuthServiceImpl implements IAuthService {
 
     @Override
     public void register(String email, String code, String password) {
+        try {
         log.info("[AuthService] 用户注册: {}", email);
 
         // 参数校验
@@ -184,25 +185,29 @@ public class AuthServiceImpl implements IAuthService {
 
         // 设置默认状态
         newSysUser.setStatus(1); // 正常状态
-
+        UserContextHolder.setUser(
+                newSysUser.getId(),
+                newSysUser.getName(),
+                newSysUser.getUserCode()
+        );
         // 保存用户
         userService.save(newSysUser);
 
         // 自动分配"普通用户"角色
-        try {
+
             List<Long> roleIds = new ArrayList<>();
             roleIds.add(DEFAULT_USER_ROLE_ID);
             userService.assignRoles(newSysUser.getId(), roleIds);
             log.info("[AuthService] 为新用户分配角色成功，用户ID: {}, 角色ID: {}", newSysUser.getId(), DEFAULT_USER_ROLE_ID);
+            // 删除验证码
+            verificationCodeService.removeCode(email);
+
+            log.info("[AuthService] 用户注册成功，邮箱: {}, 用户名: {}, 用户编码: {}", email, name, userCode);
         } catch (Exception e) {
-            log.error("[AuthService] 为新用户分配角色失败，用户ID: {}, 错误: {}", newSysUser.getId(), e.getMessage(), e);
-            // 角色分配失败不影响注册流程
+            log.error("[AuthService] 为新用户分配角色失败,错误: {}", e.getMessage(), e);
+            throw  new BusinessException(e.getMessage());
         }
 
-        // 删除验证码
-        verificationCodeService.removeCode(email);
-
-        log.info("[AuthService] 用户注册成功，邮箱: {}, 用户名: {}, 用户编码: {}", email, name, userCode);
     }
 
     @Override

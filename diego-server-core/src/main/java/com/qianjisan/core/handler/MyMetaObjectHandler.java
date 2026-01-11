@@ -34,10 +34,11 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         // 填充加入时间（用于 SpaceMember 表）
         this.strictInsertFill(metaObject, "joinTime", LocalDateTime.class, LocalDateTime.now());
 
-        // 从用户上下文获取当前登录用户信息
-        Long userId = UserContextHolder.getUserId();
-        String username = UserContextHolder.getUsername();
-        String nickname = UserContextHolder.getUserCode();
+        // 从用户上下文安全获取当前登录用户信息（权限放开模式下可能为 null）
+        com.qianjisan.core.context.UserContext userContext = UserContextHolder.getUserIfPresent();
+        Long userId = userContext != null ? userContext.getUserId() : null;
+        String username = userContext != null ? userContext.getUsername() : null;
+        String nickname = userContext != null ? userContext.getUserCode() : null;
 
         if (userId != null) {
             // 填充创建人ID
@@ -56,7 +57,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 
             log.debug("插入填充完成 - 用户ID: {}, 用户名: {}, 昵称: {}", userId, username, nickname);
         } else {
-            log.warn("用户上下文为空，无法填充创建人和更新人信息");
+            log.debug("用户上下文为空，无法填充创建人和更新人信息（可能为登录前操作）");
         }
     }
 
@@ -67,10 +68,11 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         // 填充更新时间
         this.strictUpdateFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
 
-        // 从用户上下文获取当前登录用户信息
-        Long userId = UserContextHolder.getUserId();
-        String username = UserContextHolder.getUsername();
-        String userCode = UserContextHolder.getUserCode();
+        // 从用户上下文安全获取当前登录用户信息（权限放开模式下可能为 null）
+        com.qianjisan.core.context.UserContext userContext = UserContextHolder.getUserIfPresent();
+        Long userId = userContext != null ? userContext.getUserId() : null;
+        String username = userContext != null ? userContext.getUsername() : null;
+        String userCode = userContext != null ? userContext.getUserCode() : null;
 
         if (userId != null) {
             // 填充更新人ID

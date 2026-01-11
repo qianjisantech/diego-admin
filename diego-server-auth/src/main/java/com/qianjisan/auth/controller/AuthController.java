@@ -47,7 +47,7 @@ public class AuthController {
             return Result.success("登录成功",response);
         } catch (Exception e) {
             log.error("[用户登录] 失败，失败原因：{}", e.getMessage(), e);
-            return Result.error(e.getMessage());
+            return Result.error("登录失败，失败原因为："+e.getMessage());
         }
     }
 
@@ -98,14 +98,14 @@ public class AuthController {
 
     @Operation(summary = "发送邮箱验证码")
     @PostMapping("/send-code")
-    public Result<Void> sendVerificationCode(@RequestBody Map<String, String> request) {
+    public Result<String> sendVerificationCode(@RequestBody Map<String, String> request) {
         try {
             String email = request.get("email");
 
             log.info("[发送验证码] 邮箱: {}", email);
             authService.sendVerificationCode(email);
             log.info("[发送验证码] 成功");
-            return Result.success();
+            return Result.success("发送验证码成功");
         } catch (Exception e) {
             log.error("[发送验证码] 失败，失败原因：{}", e.getMessage(), e);
             return Result.error(e.getMessage());
@@ -114,7 +114,7 @@ public class AuthController {
 
     @Operation(summary = "用户注册")
     @PostMapping("/register")
-    public Result<Void> register(@RequestBody Map<String, String> request) {
+    public Result<String> register(@RequestBody Map<String, String> request) {
         try {
             String email = request.get("email");
             String code = request.get("code");
@@ -123,7 +123,7 @@ public class AuthController {
             log.info("[用户注册] 邮箱: {}", email);
             authService.register(email, code, password);
             log.info("[用户注册] 成功");
-            return Result.success();
+            return Result.success("注册成功");
         } catch (Exception e) {
             log.error("[用户注册] 失败，失败原因：{}", e.getMessage(), e);
             return Result.error(e.getMessage());

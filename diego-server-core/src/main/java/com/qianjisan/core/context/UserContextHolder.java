@@ -56,6 +56,16 @@ public class UserContextHolder {
     }
 
     /**
+     * 获取当前用户信息（可能为 null）
+     * 不会抛出异常，供在权限放开或登录前的场景安全调用
+     *
+     * @return 用户上下文或 null
+     */
+    public static UserContext getUserIfPresent() {
+        return CONTEXT_HOLDER.get();
+    }
+
+    /**
      * 获取当前用户ID
      *
      * @return 用户ID

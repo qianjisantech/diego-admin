@@ -36,6 +36,7 @@ public class AsyncEmailServiceImpl implements IAsyncEmailService {
             log.info("[AsyncEmailService] 开始异步发送验证码邮件，邮箱: {}", email);
             emailService.sendVerificationCode(email, code);
             log.info("[AsyncEmailService] 异步发送验证码邮件成功，邮箱: {}", email);
+            log.info("[AsyncEmailService] 异步发送验证码邮件成功，验证码为: {}", code);
         } catch (Exception e) {
             log.error("[AsyncEmailService] 异步发送验证码邮件失败，邮箱: {}, 错误: {}", email, e.getMessage(), e);
             // 异步方法中的异常不会影响主流程，只记录日志即可

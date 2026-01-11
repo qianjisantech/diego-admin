@@ -57,7 +57,7 @@ public class CooperiseServerApplication implements CommandLineRunner {
         System.out.println(bold + cyan + "╚═══════════════════════════════════════════════════════════╝" + reset);
         System.out.println();
         log.info("========================================");
-        log.info("DCP Admin Application Started Successfully!");
+        log.info("Cooperise Server Application Started Successfully!");
     }
 
     @Override
