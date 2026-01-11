@@ -32,22 +32,22 @@ public class Issue extends BaseEntity {
     private String issueNo;
 
     /**
-     * 所属空间ID
+     * 所属企业ID
      */
-    @TableField("space_id")
-    private Long spaceId;
+    @TableField("company_id")
+    private Long companyId;
 
     /**
-     * 空间名称（冗余字段，便于查询）
+     * 企业名称（冗余字段，便于查询）
      */
-    @TableField("space_name")
-    private String spaceName;
+    @TableField("company_name")
+    private String companyName;
 
     /**
-     * 空间关键词（冗余字段，便于查询）
+     * 企业编码（冗余字段，便于查询）
      */
-    @TableField("space_keyword")
-    private String spaceKeyword;
+    @TableField("company_code")
+    private String companyCode;
 
     /**
      * 事项类型：1-任务、2-bug、3-需求、4-线上问题

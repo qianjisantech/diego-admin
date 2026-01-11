@@ -52,9 +52,9 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
         // 1. 处理空间信息
         if (request.getSpace() != null) {
             WorkSpaceIssueRequest.SpaceInfo space = request.getSpace();
-            workspaceIssue.setSpaceId(space.getSpaceId());
-            workspaceIssue.setSpaceName(space.getSpaceName());
-            workspaceIssue.setSpaceKeyword(space.getSpaceKeyword());
+            workspaceIssue.setCompanyId(space.getSpaceId());
+            workspaceIssue.setCompanyName(space.getSpaceName());
+            workspaceIssue.setCompanyCode(space.getSpaceKeyword());
 
             // 自动生成事项单号
             if (StringUtils.isEmpty(request.getIssueNo())) {
@@ -127,9 +127,9 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
         // 1. 处理空间信息
         if (request.getSpace() != null) {
             WorkSpaceIssueRequest.SpaceInfo space = request.getSpace();
-            workspaceIssue.setSpaceId(space.getSpaceId());
-            workspaceIssue.setSpaceName(space.getSpaceName());
-            workspaceIssue.setSpaceKeyword(space.getSpaceKeyword());
+            workspaceIssue.setCompanyId(space.getSpaceId());
+            workspaceIssue.setCompanyName(space.getSpaceName());
+            workspaceIssue.setCompanyCode(space.getSpaceKeyword());
 
             // 自动生成事项单号
             if (StringUtils.isEmpty(request.getIssueNo())) {
