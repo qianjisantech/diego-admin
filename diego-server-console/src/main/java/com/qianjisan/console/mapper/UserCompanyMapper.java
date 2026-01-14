@@ -35,7 +35,7 @@ public interface UserCompanyMapper extends BaseMapper<UserCompany> {
      * @param userId 用户ID
      * @return 企业ID列表 SelfUserCompanyDTO
      */
-    @Select("SELECT c.id,c.company_name,c.company_code,uc.is_default FROM user_company as uc LEFT JOIN company as c ON uc.company_id=c.id WHERE uc.user_id= #{userId}")
+    @Select("SELECT c.id,c.company_name,c.company_code,uc.is_default FROM user_company as uc LEFT JOIN company as c ON uc.company_id=c.id WHERE c.is_deleted=0 and uc.user_id= #{userId}")
     List<SelfUserCompanyDTO> selectCompaniesByUserId(Long userId);
 
     /**
@@ -53,6 +53,6 @@ public interface UserCompanyMapper extends BaseMapper<UserCompany> {
      * @param userId 用户ID
      * @return 默认企业ID
      */
-    @Select("SELECT company_id FROM user_company WHERE user_id = #{userId} AND is_default = 1 LIMIT 1")
+    @Select("SELECT company_id FROM user_company WHERE  is_deleted=1 and user_id = #{userId} AND is_default = 1 LIMIT 1")
     Long selectDefaultCompanyIdByUserId(Long userId);
 }
