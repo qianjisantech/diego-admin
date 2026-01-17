@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 事项附件请求类
+ * 事项附件请求�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -16,7 +16,7 @@ public class IssueAttachmentRequest implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 附件ID（更新时使用）
+     * 附件ID（更新时使用�?
      */
     private Long id;
 
@@ -26,7 +26,7 @@ public class IssueAttachmentRequest implements Serializable {
     private Long issueId;
 
     /**
-     * 文件名
+     * 文件�?
      */
     private String fileName;
 

@@ -17,12 +17,12 @@ public class RegisterRequest {
      * 邮箱
      */
     @NotBlank(message = "邮箱不能为空")
-    @Email(message = "邮箱格式不正确")
+    @Email(message = "邮箱格式不正�?)
     private String email;
     /**
-     * 验证码
+     * 验证�?
      */
-    @NotBlank(message = "验证码不能为空")
+    @NotBlank(message = "验证码不能为�?)
     private String code;
     /**
      * 密码

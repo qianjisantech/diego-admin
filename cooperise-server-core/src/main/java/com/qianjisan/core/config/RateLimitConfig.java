@@ -11,7 +11,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.scripting.support.ResourceScriptSource;
 
 /**
- * 限流配置类
+ * 限流配置�?
  *
  * @author Diego
  * @since 2024-11-21
@@ -32,18 +32,18 @@ public class RateLimitConfig {
 
     /**
      * 配置 RedisTemplate
-     * 如果项目中已有 RedisTemplate 配置，可以删除此方法
+     * 如果项目中已�?RedisTemplate 配置，可以删除此方法
      */
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(connectionFactory);
 
-        // 使用GenericJackson2JsonRedisSerializer来序列化和反序列化redis的value值
-        // GenericJackson2JsonRedisSerializer 内部会创建 ObjectMapper，支持类型信息
+        // 使用GenericJackson2JsonRedisSerializer来序列化和反序列化redis的value�?
+        // GenericJackson2JsonRedisSerializer 内部会创�?ObjectMapper，支持类型信�?
         GenericJackson2JsonRedisSerializer jackson2JsonRedisSerializer = new GenericJackson2JsonRedisSerializer();
 
-        // 使用StringRedisSerializer来序列化和反序列化redis的key值
+        // 使用StringRedisSerializer来序列化和反序列化redis的key�?
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
 
         // key采用String的序列化方式

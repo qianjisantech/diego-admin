@@ -24,7 +24,7 @@ public class LoginLogVO extends BaseVO {
     private Long userId;
 
     /**
-     * 用户名
+     * 用户�?
      */
     private String username;
 
@@ -49,7 +49,7 @@ public class LoginLogVO extends BaseVO {
     private String device;
 
     /**
-     * 浏览器
+     * 浏览�?
      */
     private String browser;
 
@@ -59,7 +59,7 @@ public class LoginLogVO extends BaseVO {
     private String os;
 
     /**
-     * 状态：1-成功，0-失败
+     * 状态：1-成功�?-失败
      */
     private Integer status;
 

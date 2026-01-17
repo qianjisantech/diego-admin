@@ -20,10 +20,10 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
     /**
      * 根据用户ID查询菜单列表（包含父级菜单）
      *
-     * 查询逻辑：
-     * 1. 查询用户直接拥有权限的菜单
-     * 2. 递归查询这些菜单的所有父级菜单
-     * 3. 合并去重，返回完整的菜单树所需的所有节点
+     * 查询逻辑�?
+     * 1. 查询用户直接拥有权限的菜�?
+     * 2. 递归查询这些菜单的所有父级菜�?
+     * 3. 合并去重，返回完整的菜单树所需的所有节�?
      *
      * @param userId 用户ID
      * @return 菜单列表（包含用户菜单及其所有父级菜单）
@@ -59,7 +59,7 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
     SysMenu selectMenuByUri(@Param("uri") String uri);
 
     /**
-     * 检查用户是否有访问指定URI的权限
+     * 检查用户是否有访问指定URI的权�?
      *
      * @param userId 用户ID
      * @param uri 请求URI

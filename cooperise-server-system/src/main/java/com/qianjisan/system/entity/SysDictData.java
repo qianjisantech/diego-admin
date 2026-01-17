@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 字典数据实体类
+ * 字典数据实体�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -38,7 +38,7 @@ public class SysDictData extends BaseEntity {
     private String dictLabel;
 
     /**
-     * 字典值
+     * 字典�?
      */
     @TableField("dict_value")
     private String dictValue;
@@ -50,13 +50,13 @@ public class SysDictData extends BaseEntity {
     private Integer sortOrder;
 
     /**
-     * 是否默认：1-是，0-否
+     * 是否默认�?-是，0-�?
      */
     @TableField("is_default")
     private Integer isDefault;
 
     /**
-     * 状态：1-启用，0-禁用
+     * 状态：1-启用�?-禁用
      */
     @TableField("status")
     private Integer status;

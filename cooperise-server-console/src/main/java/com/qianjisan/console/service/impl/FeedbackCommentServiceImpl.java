@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 /**
- * FeedbackComment服务实现类
+ * FeedbackComment服务实现�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -37,7 +37,7 @@ public class FeedbackCommentServiceImpl extends ServiceImpl<FeedbackCommentMappe
         }
         queryWrapper.orderByDesc(FeedbackComment::getCreateTime);
         page = this.page(page, queryWrapper);
-        log.info("[分页查询反馈评论管理] 成功，共 {} 条", page.getTotal());
+        log.info("[分页查询反馈评论管理] 成功，共 {} �?, page.getTotal());
         return page;
     }
 }

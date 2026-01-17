@@ -8,8 +8,8 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 /**
- * Bean转换工具类
- * 用于Entity和VO之间的转换
+ * Bean转换工具�?
+ * 用于Entity和VO之间的转�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -19,9 +19,9 @@ public class BeanConverter {
     /**
      * 单个对象转换
      *
-     * @param source 源对象
-     * @param targetSupplier 目标对象供应器
-     * @param <S> 源对象类型
+     * @param source 源对�?
+     * @param targetSupplier 目标对象供应�?
+     * @param <S> 源对象类�?
      * @param <T> 目标对象类型
      * @return 转换后的目标对象
      */
@@ -37,9 +37,9 @@ public class BeanConverter {
     /**
      * 列表转换
      *
-     * @param sourceList 源列表
-     * @param targetSupplier 目标对象供应器
-     * @param <S> 源对象类型
+     * @param sourceList 源列�?
+     * @param targetSupplier 目标对象供应�?
+     * @param <S> 源对象类�?
      * @param <T> 目标对象类型
      * @return 转换后的目标列表
      */
@@ -55,9 +55,9 @@ public class BeanConverter {
     /**
      * 分页对象转换
      *
-     * @param sourcePage 源分页对象
-     * @param targetSupplier 目标对象供应器
-     * @param <S> 源对象类型
+     * @param sourcePage 源分页对�?
+     * @param targetSupplier 目标对象供应�?
+     * @param <S> 源对象类�?
      * @param <T> 目标对象类型
      * @return 转换后的目标分页对象
      */
@@ -73,12 +73,12 @@ public class BeanConverter {
     }
 
     /**
-     * 带自定义转换逻辑的单个对象转换
+     * 带自定义转换逻辑的单个对象转�?
      *
-     * @param source 源对象
-     * @param targetSupplier 目标对象供应器
+     * @param source 源对�?
+     * @param targetSupplier 目标对象供应�?
      * @param customizer 自定义转换逻辑
-     * @param <S> 源对象类型
+     * @param <S> 源对象类�?
      * @param <T> 目标对象类型
      * @return 转换后的目标对象
      */
@@ -94,12 +94,12 @@ public class BeanConverter {
     }
 
     /**
-     * 带自定义转换逻辑的列表转换
+     * 带自定义转换逻辑的列表转�?
      *
-     * @param sourceList 源列表
-     * @param targetSupplier 目标对象供应器
+     * @param sourceList 源列�?
+     * @param targetSupplier 目标对象供应�?
      * @param customizer 自定义转换逻辑
-     * @param <S> 源对象类型
+     * @param <S> 源对象类�?
      * @param <T> 目标对象类型
      * @return 转换后的目标列表
      */
@@ -113,14 +113,14 @@ public class BeanConverter {
     }
 
     /**
-     * 自定义转换接口
+     * 自定义转换接�?
      */
     @FunctionalInterface
     public interface CustomConverter<S, T> {
         /**
          * 自定义转换逻辑
          *
-         * @param source 源对象
+         * @param source 源对�?
          * @param target 目标对象
          */
         void customize(S source, T target);

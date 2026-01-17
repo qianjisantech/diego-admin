@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 事项评论表
+ * 事项评论�?
  *
  * @author DCP Team
  * @since 2024-12-20

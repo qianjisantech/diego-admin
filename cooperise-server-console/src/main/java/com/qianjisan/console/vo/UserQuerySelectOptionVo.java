@@ -14,7 +14,7 @@ public class UserQuerySelectOptionVo {
     private Long id;
 
     /**
-     * 用户名
+     * 用户�?
      */
     private String name;
 
@@ -29,7 +29,7 @@ public class UserQuerySelectOptionVo {
     private String email;
 
     /**
-     * 手机号
+     * 手机�?
      */
     private String phone;
 

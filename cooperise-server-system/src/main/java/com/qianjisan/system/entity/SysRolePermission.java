@@ -9,7 +9,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 角色权限关联实体类
+ * 角色权限关联实体�?
  *
  * @author DCP Team
  * @since 2024-12-20

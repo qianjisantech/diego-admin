@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 /**
- * 反馈点赞服务实现类
+ * 反馈点赞服务实现�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -91,7 +91,7 @@ public class FeedbackLikeServiceImpl extends ServiceImpl<FeedbackLikeMapper, Fee
             Feedback feedback = feedbackMapper.selectById(feedbackId);
             if (feedback != null) {
                 Integer likes = feedback.getLikes() == null ? 0 : feedback.getLikes();
-                feedback.setLikes(Math.max(0, likes - 1)); // 确保不会是负数
+                feedback.setLikes(Math.max(0, likes - 1)); // 确保不会是负�?
                 feedbackMapper.updateById(feedback);
             }
         }

@@ -43,9 +43,9 @@ public interface ISysConfigService extends IService<SysConfig> {
     Page<SysConfigVO> queryConfigPage(SysConfigQueryRequest request);
 
     /**
-     * 根据配置组查询配置
+     * 根据配置组查询配�?
      *
-     * @param group 配置组
+     * @param group 配置�?
      * @return 配置列表
      */
     List<SysConfigVO> getConfigByGroup(String group);
@@ -64,7 +64,7 @@ public interface ISysConfigService extends IService<SysConfig> {
      * @param id 字段配置ID
      * @param isVisible 是否可见
      * @param isRequired 是否必填
-     * @param isEditable 是否可编辑
+     * @param isEditable 是否可编�?
      */
     void updateFieldConfig(Long id, Integer isVisible, Integer isRequired, Integer isEditable);
 

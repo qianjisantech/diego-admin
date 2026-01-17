@@ -34,7 +34,7 @@ public class ViewVO implements Serializable {
     private String description;
 
     /**
-     * 视图类型：gantt-甘特图、kanban-看板、table-表格、calendar-日历、resource-gantt-资源甘特图
+     * 视图类型：gantt-甘特图、kanban-看板、table-表格、calendar-日历、resource-gantt-资源甘特�?
      */
     private String type;
 
@@ -49,7 +49,7 @@ public class ViewVO implements Serializable {
     private Long ownerId;
 
     /**
-     * 是否公共：0-私有，1-公共
+     * 是否公共�?-私有�?-公共
      */
     private Integer isPublic;
 
@@ -59,7 +59,7 @@ public class ViewVO implements Serializable {
     private Long folderId;
 
     /**
-     * 视图配置（JSON格式）
+     * 视图配置（JSON格式�?
      */
     private String config;
 

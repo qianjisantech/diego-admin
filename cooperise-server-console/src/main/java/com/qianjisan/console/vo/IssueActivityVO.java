@@ -25,7 +25,7 @@ public class IssueActivityVO extends BaseVO {
     private Long userId;
 
     /**
-     * 操作用户名
+     * 操作用户�?
      */
     private String username;
 
@@ -50,12 +50,12 @@ public class IssueActivityVO extends BaseVO {
     private String field;
 
     /**
-     * 旧值
+     * 旧�?
      */
     private String oldValue;
 
     /**
-     * 新值
+     * 新�?
      */
     private String newValue;
 

@@ -32,9 +32,9 @@ public class SysDictDataRequest {
     private String dictLabel;
 
     /**
-     * 字典值
+     * 字典�?
      */
-    @NotBlank(message = "字典值不能为空")
+    @NotBlank(message = "字典值不能为�?)
     private String dictValue;
 
     /**
@@ -43,12 +43,12 @@ public class SysDictDataRequest {
     private Integer sortOrder;
 
     /**
-     * 是否默认：1-是，0-否
+     * 是否默认�?-是，0-�?
      */
     private Integer isDefault;
 
     /**
-     * 状态：1-启用，0-禁用
+     * 状态：1-启用�?-禁用
      */
     private Integer status;
 

@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 权限实体类（按钮权限）
+ * 权限实体类（按钮权限�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -50,7 +50,7 @@ public class SysPermission extends BaseEntity {
     private String description;
 
     /**
-     * 状态：1-启用，0-禁用
+     * 状态：1-启用�?-禁用
      */
     @TableField("status")
     private Integer status;

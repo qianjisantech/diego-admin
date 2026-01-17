@@ -16,7 +16,7 @@ public class UpdateInfoVO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 是否有更新
+     * 是否有更�?
      */
     private Boolean hasUpdate;
 
@@ -26,7 +26,7 @@ public class UpdateInfoVO implements Serializable {
     private String currentVersion;
 
     /**
-     * 最新版本
+     * 最新版�?
      */
     private String latestVersion;
 

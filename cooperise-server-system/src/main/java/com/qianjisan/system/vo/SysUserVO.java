@@ -23,7 +23,7 @@ public class SysUserVO extends BaseVO {
     private Long id;
 
     /**
-     * 用户名
+     * 用户�?
      */
     private String username;
 
@@ -38,7 +38,7 @@ public class SysUserVO extends BaseVO {
     private String email;
 
     /**
-     * 手机号
+     * 手机�?
      */
     private String phone;
 
@@ -48,12 +48,12 @@ public class SysUserVO extends BaseVO {
     private String avatar;
 
     /**
-     * 状态：1-正常，0-禁用
+     * 状态：1-正常�?-禁用
      */
     private Integer status;
 
     /**
-     * 最后登录时间
+     * 最后登录时�?
      */
     private LocalDateTime lastLoginTime;
 

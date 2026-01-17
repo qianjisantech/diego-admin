@@ -34,7 +34,7 @@ COPY cooperise-server-admin/pom.xml        /app/cooperise-server-admin/
 # 使用 Maven 中央仓库下载依赖
 # 定义revision属性以解决版本变量解析问题
 # 即使 dependency:go-offline 失败也继续，因为 package 阶段会重新下载依赖
-RUN mvn -f /app/pom.xml dependency:go-offline -B -Drevision=1.0.0-SNAPSHOT || true
+RUN mvn -f /app/pom.xml dependency:go-offline -B -Drevision=1.0.0-release || true
 
 # 将 src 目录下所有文件，拷贝到工作目录中（.dockerignore 中文件除外）
 COPY cooperise-server-core/src        /app/cooperise-server-core/src
@@ -46,9 +46,9 @@ COPY cooperise-server-console/src     /app/cooperise-server-console/src
 COPY cooperise-server-admin/src       /app/cooperise-server-admin/src
 
 
-RUN mvn -f /app/pom.xml clean install -DskipTests -N -B -Drevision=1.0.0-SNAPSHOT
+RUN mvn -f /app/pom.xml clean install -DskipTests -N -B -Drevision=1.0.0-release
 
-RUN mvn -f /app/pom.xml clean install -DskipTests -B -Drevision=1.0.0-SNAPSHOT -am
+RUN mvn -f /app/pom.xml clean install -DskipTests -B -Drevision=1.0.0-release -am
 
 FROM eclipse-temurin:21-jre-alpine
 

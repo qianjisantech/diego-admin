@@ -9,9 +9,9 @@ package com.qianjisan.common.service;
 public interface IEmailService {
 
     /**
-     * 发送简单文本邮件
+     * 发送简单文本邮�?
      *
-     * @param to      收件人邮箱
+     * @param to      收件人邮�?
      * @param subject 邮件主题
      * @param content 邮件内容
      */
@@ -20,17 +20,17 @@ public interface IEmailService {
     /**
      * 发送HTML格式邮件
      *
-     * @param to      收件人邮箱
+     * @param to      收件人邮�?
      * @param subject 邮件主题
-     * @param content HTML格式的邮件内容
+     * @param content HTML格式的邮件内�?
      */
     void sendHtmlMail(String to, String subject, String content);
 
     /**
      * 发送验证码邮件
      *
-     * @param to   收件人邮箱
-     * @param code 验证码
+     * @param to   收件人邮�?
+     * @param code 验证�?
      */
     void sendVerificationCode(String to, String code);
 }

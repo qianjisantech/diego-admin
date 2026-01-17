@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * Department 返回体 (VO)
+ * Department 返回�?(VO)
  */
 @Data
 public class DepartmentVo implements Serializable {

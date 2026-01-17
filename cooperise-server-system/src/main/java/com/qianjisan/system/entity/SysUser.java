@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 import java.time.LocalDateTime;
 
 /**
- * 用户实体类
+ * 用户实体�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -50,7 +50,7 @@ public class SysUser extends BaseEntity {
     private String email;
 
     /**
-     * 手机号
+     * 手机�?
      */
     @TableField("phone")
     private String phone;
@@ -62,13 +62,13 @@ public class SysUser extends BaseEntity {
     private String avatar;
 
     /**
-     * 状态：1-正常，0-禁用
+     * 状态：1-正常�?-禁用
      */
     @TableField("status")
     private Integer status;
 
     /**
-     * 最后登录时间
+     * 最后登录时�?
      */
     @TableField("last_login_time")
     private LocalDateTime lastLoginTime;

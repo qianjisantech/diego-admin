@@ -5,7 +5,7 @@ import org.slf4j.MDC;
 
 /**
  * 带traceid的日志工具类
- * 为所有日志自动添加traceid，支持链路追踪
+ * 为所有日志自动添加traceid，支持链路追�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -15,14 +15,14 @@ public class TraceLogger {
     private static final String TRACE_ID_KEY = "traceId";
 
     /**
-     * 获取当前traceid（带前缀）
+     * 获取当前traceid（带前缀�?
      */
     public static String getTraceId() {
         return MDC.get(TRACE_ID_KEY);
     }
 
     /**
-     * 获取当前traceid（不带前缀）
+     * 获取当前traceid（不带前缀�?
      */
     public static String getTraceIdWithoutPrefix() {
         String fullTraceId = getTraceId();
@@ -55,7 +55,7 @@ public class TraceLogger {
     }
 
     /**
-     * 带traceid的日志记录器包装类
+     * 带traceid的日志记录器包装�?
      */
     public static class TraceLoggerWrapper {
         private final Logger logger;

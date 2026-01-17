@@ -33,7 +33,7 @@ public class SysOperationLogRequest implements Serializable {
     private Long userId;
 
     /**
-     * 用户名
+     * 用户�?
      */
     private String username;
 
@@ -53,17 +53,17 @@ public class SysOperationLogRequest implements Serializable {
     private String ipAddress;
 
     /**
-     * 开始时间（格式：yyyy-MM-dd HH:mm:ss）
+     * 开始时间（格式：yyyy-MM-dd HH:mm:ss�?
      */
     private String startTime;
 
     /**
-     * 结束时间（格式：yyyy-MM-dd HH:mm:ss）
+     * 结束时间（格式：yyyy-MM-dd HH:mm:ss�?
      */
     private String endTime;
 
     /**
-     * 关键词搜索（用户名、请求路径、IP地址）
+     * 关键词搜索（用户名、请求路径、IP地址�?
      */
     private String keyword;
 }

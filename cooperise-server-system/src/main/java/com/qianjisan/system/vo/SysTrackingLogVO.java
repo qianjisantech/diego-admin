@@ -24,7 +24,7 @@ public class SysTrackingLogVO {
     private Long userId;
 
     /**
-     * 用户名
+     * 用户�?
      */
     private String username;
 
@@ -99,7 +99,7 @@ public class SysTrackingLogVO {
     private String userAgent;
 
     /**
-     * 浏览器
+     * 浏览�?
      */
     private String browser;
 

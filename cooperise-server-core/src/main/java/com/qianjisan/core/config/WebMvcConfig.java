@@ -22,14 +22,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         // 【权限放开】暂时禁用JWT拦截器，所有接口都不需要token验证
-        // 如果需要恢复JWT验证，请取消下面的注释
+        // 如果需要恢复JWT验证，请取消下面的注�?
 
         /*
         registry.addInterceptor(jwtInterceptor)
-                .addPathPatterns("/**")  // 拦截所有请求
+                .addPathPatterns("/**")  // 拦截所有请�?
                 .excludePathPatterns(
-                        "/auth/login",           // 登录接口不需要验证
-                        "/auth/register",        // 注册接口不需要验证
+                        "/auth/login",           // 登录接口不需要验�?
+                        "/auth/register",        // 注册接口不需要验�?
                         "/console/self/company/invite/info/**",
                         "/tracking/report",
                         "/swagger-ui/**",        // Swagger UI

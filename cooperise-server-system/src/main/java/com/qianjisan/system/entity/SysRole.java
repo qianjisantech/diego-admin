@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 角色实体类
+ * 角色实体�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -44,7 +44,7 @@ public class SysRole extends BaseEntity {
     private String description;
 
     /**
-     * 状态：1-启用，0-禁用
+     * 状态：1-启用�?-禁用
      */
     @TableField("status")
     private Integer status;

@@ -1,37 +1,37 @@
 package com.qianjisan.core.utils;
 
 /**
- * 雪花ID生成器
+ * 雪花ID生成�?
  * 基于Twitter的Snowflake算法生成分布式唯一ID
  *
- * 雪花ID结构：
- * - 1位符号位（始终为0）
+ * 雪花ID结构�?
+ * - 1位符号位（始终为0�?
  * - 41位时间戳（毫秒级，从2024-01-01开始）
  * - 5位数据中心ID
  * - 5位工作机器ID
  * - 12位序列号
  *
- * 生成的ID为64位long类型
+ * 生成的ID�?4位long类型
  *
  * @author DCP Team
  * @since 2024-12-20
  */
 public class SnowflakeIdGenerator {
 
-    // 起始时间戳 (2024-01-01 00:00:00)
+    // 起始时间�?(2024-01-01 00:00:00)
     private static final long START_TIMESTAMP = 1704067200000L;
 
-    // 各部分位数
+    // 各部分位�?
     private static final long SEQUENCE_BITS = 12;
     private static final long WORKER_ID_BITS = 5;
     private static final long DATACENTER_ID_BITS = 5;
 
-    // 最大值
+    // 最大�?
     private static final long MAX_SEQUENCE = ~(-1L << SEQUENCE_BITS);
     private static final long MAX_WORKER_ID = ~(-1L << WORKER_ID_BITS);
     private static final long MAX_DATACENTER_ID = ~(-1L << DATACENTER_ID_BITS);
 
-    // 位移偏移量
+    // 位移偏移�?
     private static final long WORKER_ID_SHIFT = SEQUENCE_BITS;
     private static final long DATACENTER_ID_SHIFT = SEQUENCE_BITS + WORKER_ID_BITS;
     private static final long TIMESTAMP_LEFT_SHIFT = SEQUENCE_BITS + WORKER_ID_BITS + DATACENTER_ID_BITS;
@@ -40,22 +40,22 @@ public class SnowflakeIdGenerator {
     private final long datacenterId;
     private final long workerId;
 
-    // 序列号和上次时间戳
+    // 序列号和上次时间�?
     private long sequence = 0L;
     private long lastTimestamp = -1L;
 
     /**
-     * 构造函数
+     * 构造函�?
      *
      * @param datacenterId 数据中心ID (0-31)
      * @param workerId 工作机器ID (0-31)
      */
     public SnowflakeIdGenerator(long datacenterId, long workerId) {
         if (datacenterId > MAX_DATACENTER_ID || datacenterId < 0) {
-            throw new IllegalArgumentException("数据中心ID必须在0-" + MAX_DATACENTER_ID + "之间");
+            throw new IllegalArgumentException("数据中心ID必须�?-" + MAX_DATACENTER_ID + "之间");
         }
         if (workerId > MAX_WORKER_ID || workerId < 0) {
-            throw new IllegalArgumentException("工作机器ID必须在0-" + MAX_WORKER_ID + "之间");
+            throw new IllegalArgumentException("工作机器ID必须�?-" + MAX_WORKER_ID + "之间");
         }
         this.datacenterId = datacenterId;
         this.workerId = workerId;
@@ -106,7 +106,7 @@ public class SnowflakeIdGenerator {
     }
 
     /**
-     * 获取当前时间戳
+     * 获取当前时间�?
      */
     private long getCurrentTimestamp() {
         return System.currentTimeMillis();
@@ -174,7 +174,7 @@ public class SnowflakeIdGenerator {
     }
 
     /**
-     * 生成雪花ID的便捷方法
+     * 生成雪花ID的便捷方�?
      */
     public static long generateId() {
         return getInstance().nextId();

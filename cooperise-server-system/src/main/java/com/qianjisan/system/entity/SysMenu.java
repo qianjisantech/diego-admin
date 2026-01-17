@@ -10,7 +10,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 菜单实体类
+ * 菜单实体�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -27,7 +27,7 @@ public class SysMenu extends BaseEntity {
     private Long id;
 
     /**
-     * 父菜单ID，0表示一级菜单
+     * 父菜单ID�?表示一级菜�?
      */
     @TableField("parent_id")
     private Long parentId;
@@ -45,7 +45,7 @@ public class SysMenu extends BaseEntity {
     private String menuCode;
 
     /**
-     * 菜单类型：1-目录，2-菜单，3-按钮
+     * 菜单类型�?-目录�?-菜单�?-按钮
      */
     @TableField("menu_type")
     private Integer menuType;
@@ -75,13 +75,13 @@ public class SysMenu extends BaseEntity {
     private Integer sortOrder;
 
     /**
-     * 是否可见：1-是，0-否
+     * 是否可见�?-是，0-�?
      */
     @TableField("visible")
     private Integer visible;
 
     /**
-     * 状态：1-启用，0-禁用
+     * 状态：1-启用�?-禁用
      */
     @TableField("status")
     private Integer status;

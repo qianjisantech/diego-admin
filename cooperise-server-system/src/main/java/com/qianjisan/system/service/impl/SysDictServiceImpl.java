@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 字典服务实现类
+ * 字典服务实现�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -105,7 +105,7 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictTypeMapper, SysDictTy
 
     @Override
     public List<SysDictDataVO> getDictDataByCode(String dictCode) {
-        // 先根据编码查询字典类型
+        // 先根据编码查询字典类�?
         LambdaQueryWrapper<SysDictType> typeWrapper = new LambdaQueryWrapper<>();
         typeWrapper.eq(SysDictType::getDictCode, dictCode);
         SysDictType dictType = dictTypeMapper.selectOne(typeWrapper);
@@ -114,7 +114,7 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictTypeMapper, SysDictTy
             return List.of();
         }
 
-        // 再查询字典数据
+        // 再查询字典数�?
         return getDictDataList(dictType.getId());
     }
 }

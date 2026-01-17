@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 /**
- * WorkspaceIssueActivity服务实现类
+ * WorkspaceIssueActivity服务实现�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -45,7 +45,7 @@ public class IssueActivityServiceImpl extends ServiceImpl<IssueActivityMapper, I
         }
         queryWrapper.orderByDesc(IssueActivity::getCreateTime);
         page = this.page(page, queryWrapper);
-        log.info("[分页查询事项活动记录管理] 成功，共 {} 条", page.getTotal());
+        log.info("[分页查询事项活动记录管理] 成功，共 {} �?, page.getTotal());
         return page;
     }
 }

@@ -23,7 +23,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
-        log.debug("开始插入填充...");
+        log.debug("开始插入填�?..");
 
         // 填充创建时间
         this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now());
@@ -31,10 +31,10 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         // 填充更新时间
         this.strictInsertFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
 
-        // 填充加入时间（用于 SpaceMember 表）
+        // 填充加入时间（用�?SpaceMember 表）
         this.strictInsertFill(metaObject, "joinTime", LocalDateTime.class, LocalDateTime.now());
 
-        // 从用户上下文安全获取当前登录用户信息（权限放开模式下可能为 null）
+        // 从用户上下文安全获取当前登录用户信息（权限放开模式下可能为 null�?
         com.qianjisan.core.context.UserContext userContext = UserContextHolder.getUserIfPresent();
         Long userId = userContext != null ? userContext.getUserId() : null;
         String username = userContext != null ? userContext.getUsername() : null;
@@ -45,30 +45,30 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
             this.strictInsertFill(metaObject, "createById", Long.class, userId);
             // 填充创建人用户名
             this.strictInsertFill(metaObject, "createByCode", String.class, username);
-            // 填充创建人昵称
+            // 填充创建人昵�?
             this.strictInsertFill(metaObject, "createByName", String.class, nickname);
 
             // 填充更新人ID
             this.strictInsertFill(metaObject, "updateById", Long.class, userId);
             // 填充更新人用户名
             this.strictInsertFill(metaObject, "updateByCode", String.class, username);
-            // 填充更新人昵称
+            // 填充更新人昵�?
             this.strictInsertFill(metaObject, "updateByName", String.class, nickname);
 
-            log.debug("插入填充完成 - 用户ID: {}, 用户名: {}, 昵称: {}", userId, username, nickname);
+            log.debug("插入填充完成 - 用户ID: {}, 用户�? {}, 昵称: {}", userId, username, nickname);
         } else {
-            log.debug("用户上下文为空，无法填充创建人和更新人信息（可能为登录前操作）");
+            log.debug("用户上下文为空，无法填充创建人和更新人信息（可能为登录前操作�?);
         }
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        log.debug("开始更新填充...");
+        log.debug("开始更新填�?..");
 
         // 填充更新时间
         this.strictUpdateFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
 
-        // 从用户上下文安全获取当前登录用户信息（权限放开模式下可能为 null）
+        // 从用户上下文安全获取当前登录用户信息（权限放开模式下可能为 null�?
         com.qianjisan.core.context.UserContext userContext = UserContextHolder.getUserIfPresent();
         Long userId = userContext != null ? userContext.getUserId() : null;
         String username = userContext != null ? userContext.getUsername() : null;
@@ -79,13 +79,13 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
             this.strictUpdateFill(metaObject, "updateById", Long.class, userId);
             // 填充更新人用户名
             this.strictUpdateFill(metaObject, "updateByCode", String.class, userCode);
-            // 填充更新人昵称
+            // 填充更新人昵�?
             this.strictUpdateFill(metaObject, "updateByName", String.class, username);
 
-            log.debug("更新填充完成 - 用户ID: {}, 用户名: {}, 用户编码: {}", userId, username, userCode);
+            log.debug("更新填充完成 - 用户ID: {}, 用户�? {}, 用户编码: {}", userId, username, userCode);
         } else {
             // 用户上下文为空（可能是登录前操作），记录调试信息但不警告
-            log.debug("用户上下文为空，无法填充更新人信息（可能为登录前操作）");
+            log.debug("用户上下文为空，无法填充更新人信息（可能为登录前操作�?);
         }
     }
 }

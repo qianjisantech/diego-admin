@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * 视图树节点 VO（包含文件夹和视图的树形结构）
+ * 视图树节�?VO（包含文件夹和视图的树形结构�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -30,7 +30,7 @@ public class ViewTreeNodeVO {
     private String type;
 
     /**
-     * 视图类型（仅当 type=view 时有值）：gantt、kanban、table、calendar、resource-gantt
+     * 视图类型（仅�?type=view 时有值）：gantt、kanban、table、calendar、resource-gantt
      */
     private String viewType;
 
@@ -50,7 +50,7 @@ public class ViewTreeNodeVO {
     private Long ownerId;
 
     /**
-     * 是否公共（仅视图有）：0-私有，1-公共
+     * 是否公共（仅视图有）�?-私有�?-公共
      */
     private Integer isPublic;
 
@@ -60,7 +60,7 @@ public class ViewTreeNodeVO {
     private Long parentId;
 
     /**
-     * 所属文件夹ID（视图的 folder_id）
+     * 所属文件夹ID（视图的 folder_id�?
      */
     private Long folderId;
 

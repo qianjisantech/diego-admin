@@ -22,7 +22,7 @@ public class VerificationCodeServiceImpl implements IVerificationCodeService {
     /**
      * 验证码存储Map
      * key: email
-     * value: CodeInfo(验证码, 过期时间)
+     * value: CodeInfo(验证�? 过期时间)
      */
     private final Map<String, CodeInfo> codeStore = new ConcurrentHashMap<>();
 
@@ -32,7 +32,7 @@ public class VerificationCodeServiceImpl implements IVerificationCodeService {
     private static final int CODE_EXPIRE_MINUTES = 5;
 
     /**
-     * 验证码长度
+     * 验证码长�?
      */
     private static final int CODE_LENGTH = 6;
 
@@ -48,10 +48,10 @@ public class VerificationCodeServiceImpl implements IVerificationCodeService {
         String verificationCode = code.toString();
         LocalDateTime expireTime = LocalDateTime.now().plusMinutes(CODE_EXPIRE_MINUTES);
 
-        // 存储验证码
+        // 存储验证�?
         codeStore.put(email, new CodeInfo(verificationCode, expireTime));
 
-        log.info("生成验证码成功，邮箱: {}, 验证码: {}, 过期时间: {}", email, verificationCode, expireTime);
+        log.info("生成验证码成功，邮箱: {}, 验证�? {}, 过期时间: {}", email, verificationCode, expireTime);
 
         return verificationCode;
     }
@@ -61,18 +61,18 @@ public class VerificationCodeServiceImpl implements IVerificationCodeService {
         CodeInfo codeInfo = codeStore.get(email);
 
         if (codeInfo == null) {
-            log.warn("验证码不存在，邮箱: {}", email);
+            log.warn("验证码不存在，邮�? {}", email);
             return false;
         }
 
-        // 检查是否过期
+        // 检查是否过�?
         if (LocalDateTime.now().isAfter(codeInfo.getExpireTime())) {
-            log.warn("验证码已过期，邮箱: {}", email);
+            log.warn("验证码已过期，邮�? {}", email);
             codeStore.remove(email);
             return false;
         }
 
-        // 验证码比较
+        // 验证码比�?
         boolean isValid = codeInfo.getCode().equals(code);
         if (isValid) {
             log.info("验证码验证成功，邮箱: {}", email);

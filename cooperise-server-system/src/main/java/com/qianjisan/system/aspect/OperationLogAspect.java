@@ -48,18 +48,18 @@ public class OperationLogAspect {
     }
 
     /**
-     * 环绕通知：记录操作日志
+     * 环绕通知：记录操作日�?
      */
     @Around("operationLog()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
 
-        log.info("========== AOP拦截到请求 ==========");
+        log.info("========== AOP拦截到请�?==========");
         log.info("目标方法: {}", joinPoint.getSignature());
 
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (attributes == null) {
-            log.warn("无法获取RequestAttributes，跳过日志记录");
+            log.warn("无法获取RequestAttributes，跳过日志记�?);
             return joinPoint.proceed();
         }
 
@@ -69,7 +69,7 @@ public class OperationLogAspect {
 
         // 排除操作日志相关接口，避免记录日志时触发循环
         if (requestUri.contains("operation-log")) {
-            log.debug("跳过操作日志接口的日志记录: {}", requestUri);
+            log.debug("跳过操作日志接口的日志记�? {}", requestUri);
             return joinPoint.proceed();
         }
 
@@ -80,7 +80,7 @@ public class OperationLogAspect {
         sysOperationLog.setIpAddress(getIpAddress(request));
         sysOperationLog.setUserAgent(request.getHeader("User-Agent"));
 
-        // 【权限放开模式】从token或UserContext中获取用户信息
+        // 【权限放开模式】从token或UserContext中获取用户信�?
         String token = getTokenFromRequest(request);
         if (StringUtils.hasText(token)) {
             try {
@@ -93,7 +93,7 @@ public class OperationLogAspect {
                 log.info("从Token获取用户信息: userId={}, username={}", userId, username);
 
                 // 【关键修复】在权限放开模式下，将解析到的用户信息设置到UserContextHolder
-                // 这样后续接口调用时就能获取到用户信息了
+                // 这样后续接口调用时就能获取到用户信息�?
                 UserContextHolder.setUser(userId, username, userCode);
                 log.debug("已将token用户信息设置到UserContextHolder: userId={}, username={}, userCode={}",
                          userId, username, userCode);
@@ -104,7 +104,7 @@ public class OperationLogAspect {
                 setUserInfoFromContext(sysOperationLog);
             }
         } else {
-            // 没有token，从UserContext获取（权限放开模式）
+            // 没有token，从UserContext获取（权限放开模式�?
             setUserInfoFromContext(sysOperationLog);
         }
 
@@ -118,12 +118,12 @@ public class OperationLogAspect {
             log.error("获取请求参数失败", e);
         }
 
-        // 获取请求体(仅针对POST/PUT/PATCH等方法)
+        // 获取请求�?仅针对POST/PUT/PATCH等方�?
         if ("POST".equals(request.getMethod()) || "PUT".equals(request.getMethod()) || "PATCH".equals(request.getMethod())) {
             try {
                 Object[] args = joinPoint.getArgs();
                 if (args != null && args.length > 0) {
-                    // 只记录第一个参数作为请求体(通常是@RequestBody注解的参数)
+                    // 只记录第一个参数作为请求体(通常是@RequestBody注解的参�?
                     for (Object arg : args) {
                         if (arg != null && !isServletType(arg)) {
                             sysOperationLog.setRequestBody(objectMapper.writeValueAsString(arg));
@@ -132,7 +132,7 @@ public class OperationLogAspect {
                     }
                 }
             } catch (Exception e) {
-                log.error("获取请求体失败", e);
+                log.error("获取请求体失�?, e);
             }
         }
 
@@ -142,7 +142,7 @@ public class OperationLogAspect {
             result = joinPoint.proceed();
             sysOperationLog.setStatusCode(200);
 
-            // 记录响应体(限制大小,避免过大)
+            // 记录响应�?限制大小,避免过大)
             try {
                 String responseBody = objectMapper.writeValueAsString(result);
                 if (responseBody.length() > 5000) {
@@ -150,7 +150,7 @@ public class OperationLogAspect {
                 }
                 sysOperationLog.setResponseBody(responseBody);
             } catch (Exception e) {
-                log.error("记录响应体失败", e);
+                log.error("记录响应体失�?, e);
             }
 
         } catch (Throwable throwable) {
@@ -175,7 +175,7 @@ public class OperationLogAspect {
     @Async
     public void saveLogAsync(SysOperationLog sysOperationLog) {
         try {
-            log.info("开始保存操作日志: {} {}", sysOperationLog.getRequestMethod(), sysOperationLog.getRequestUrl());
+            log.info("开始保存操作日�? {} {}", sysOperationLog.getRequestMethod(), sysOperationLog.getRequestUrl());
             operationLogService.saveLog(sysOperationLog);
             log.info("操作日志保存成功");
         } catch (Exception e) {
@@ -187,7 +187,7 @@ public class OperationLogAspect {
      * 从请求中获取Token
      */
     private String getTokenFromRequest(HttpServletRequest request) {
-        // 从Header中获取
+        // 从Header中获�?
         String bearerToken = request.getHeader("Authorization");
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring(7);
@@ -221,7 +221,7 @@ public class OperationLogAspect {
      * 优先从前端传递的自定义请求头获取
      */
     private String getIpAddress(HttpServletRequest request) {
-        // 1. 优先从前端传递的自定义请求头获取（前端通过API或库获取的真实IP）
+        // 1. 优先从前端传递的自定义请求头获取（前端通过API或库获取的真实IP�?
         String ip = request.getHeader("X-Client-IP");
         if (StringUtils.hasText(ip) && !"unknown".equalsIgnoreCase(ip) && !"auto-detect".equalsIgnoreCase(ip)) {
             log.debug("从X-Client-IP获取IP: {}", ip);
@@ -275,7 +275,7 @@ public class OperationLogAspect {
     }
 
     /**
-     * 从UserContext中获取用户信息（权限放开模式）
+     * 从UserContext中获取用户信息（权限放开模式�?
      */
     private void setUserInfoFromContext(SysOperationLog sysOperationLog) {
         try {
@@ -287,14 +287,14 @@ public class OperationLogAspect {
                 sysOperationLog.setUsername(username);
                 log.info("从UserContext获取用户信息: userId={}, username={}", userId, username);
             } else {
-                // 权限放开模式，没有用户信息
+                // 权限放开模式，没有用户信�?
                 sysOperationLog.setUserId(0L);
                 sysOperationLog.setUsername("访客用户");
-                log.info("权限放开模式，使用默认用户信息记录操作日志");
+                log.info("权限放开模式，使用默认用户信息记录操作日�?);
             }
         } catch (Exception e) {
             log.warn("从UserContext获取用户信息失败: {}", e.getMessage());
-            // 设置默认值
+            // 设置默认�?
             sysOperationLog.setUserId(0L);
             sysOperationLog.setUsername("未知用户");
         }

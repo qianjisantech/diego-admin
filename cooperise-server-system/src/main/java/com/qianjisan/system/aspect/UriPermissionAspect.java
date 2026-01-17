@@ -34,7 +34,7 @@ public class UriPermissionAspect {
 
     /**
      * 定义切点：拦截所有Controller方法
-     * 排除认证相关接口（通过路径模式匹配）
+     * 排除认证相关接口（通过路径模式匹配�?
      */
     @Pointcut("execution(* com.qianjisan..controller..*.*(..)) && " +
               "!execution(* com.qianjisan..controller.*AuthController.*(..)) && " +
@@ -55,7 +55,7 @@ public class UriPermissionAspect {
         // 获取当前请求
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (requestAttributes == null) {
-            log.warn("[URI权限校验] 无法获取请求上下文");
+            log.warn("[URI权限校验] 无法获取请求上下�?);
             return;
         }
 
@@ -63,7 +63,7 @@ public class UriPermissionAspect {
         String requestUri = request.getRequestURI();
         String requestMethod = request.getMethod();
 
-        // 排除一些特殊的认证接口（通过路径判断）
+        // 排除一些特殊的认证接口（通过路径判断�?
         if (isExcludedUri(requestUri)) {
             log.debug("[URI权限校验] 跳过权限校验，URI: {} {}", requestMethod, requestUri);
             return;
@@ -80,19 +80,19 @@ public class UriPermissionAspect {
             throw new BusinessException("用户未登录，请先登录");
         }
 
-        // admin用户拥有所有权限
+        // admin用户拥有所有权�?
         if ("admin".equalsIgnoreCase(userCode)) {
             log.debug("[URI权限校验] 用户 {} 是管理员，拥有所有权限，访问URI: {} {}", username, requestMethod, requestUri);
             return;
         }
 
-        // 检查用户是否有该URI的访问权限
+        // 检查用户是否有该URI的访问权�?
         boolean hasPermission = menuService.checkUserUriPermission(userId, requestUri);
 
         if (!hasPermission) {
-            log.warn("[URI权限校验] 用户 {} (ID: {}) 无权限访问URI: {} {}，拒绝访问",
+            log.warn("[URI权限校验] 用户 {} (ID: {}) 无权限访问URI: {} {}，拒绝访�?,
                 username, userId, requestMethod, requestUri);
-            throw new BusinessException("您没有权限访问此接口，如需要请联系管理员");
+            throw new BusinessException("您没有权限访问此接口，如需要请联系管理�?);
         }
 
         log.debug("[URI权限校验] 用户 {} (ID: {}) 权限校验通过，访问URI: {} {}",
@@ -131,19 +131,19 @@ public class UriPermissionAspect {
             return true;
         }
 
-        // 排除健康检查接口
+        // 排除健康检查接�?
         if (requestUri.contains("/health") ||
             requestUri.contains("/actuator")) {
             return true;
         }
 
-        // 排除一些公共接口
+        // 排除一些公共接�?
         if (requestUri.contains("/public") ||
             requestUri.contains("/common")) {
             return true;
         }
 
-        // 排除企业邀请信息接口（无需登录即可查看）
+        // 排除企业邀请信息接口（无需登录即可查看�?
         if (requestUri.contains("/console/self/company/invite/info/")) {
             return true;
         }

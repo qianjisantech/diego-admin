@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 反馈管理控制器
+ * 反馈管理控制�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -139,7 +139,7 @@ public class FeedbackController {
         }
     }
 
-    @Operation(summary = "获取反馈的评论列表")
+    @Operation(summary = "获取反馈的评论列�?)
     @GetMapping("/{id}/comments")
     public Result<List<FeedbackComment>> getComments(@PathVariable Long id) {
         try {

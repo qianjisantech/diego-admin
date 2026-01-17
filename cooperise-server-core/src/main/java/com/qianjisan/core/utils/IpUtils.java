@@ -3,7 +3,7 @@ package com.qianjisan.core.utils;
 import jakarta.servlet.http.HttpServletRequest;
 
 /**
- * IP工具类
+ * IP工具�?
  *
  * @author Diego
  * @since 2024-11-21
@@ -40,7 +40,7 @@ public class IpUtils {
             ip = request.getRemoteAddr();
         }
 
-        // 处理多级反向代理的情况
+        // 处理多级反向代理的情�?
         if (ip != null && ip.contains(",")) {
             ip = ip.split(",")[0].trim();
         }

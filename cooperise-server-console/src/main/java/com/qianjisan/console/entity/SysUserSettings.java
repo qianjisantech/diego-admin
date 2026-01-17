@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 用户设置表
+ * 用户设置�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -47,31 +47,31 @@ public class SysUserSettings extends BaseEntity {
     private String timezone;
 
     /**
-     * 邮件通知：1-开启，0-关闭
+     * 邮件通知�?-开启，0-关闭
      */
     @TableField("notification_email")
     private Integer notificationEmail;
 
     /**
-     * 系统通知：1-开启，0-关闭
+     * 系统通知�?-开启，0-关闭
      */
     @TableField("notification_system")
     private Integer notificationSystem;
 
     /**
-     * 双重认证：1-开启，0-关闭
+     * 双重认证�?-开启，0-关闭
      */
     @TableField("two_factor_enabled")
     private Integer twoFactorEnabled;
 
     /**
-     * 短信通知：1-开启，0-关闭
+     * 短信通知�?-开启，0-关闭
      */
     @TableField("notification_sms")
     private Integer notificationSms;
 
     /**
-     * 应用内通知：1-开启，0-关闭
+     * 应用内通知�?-开启，0-关闭
      */
     @TableField("notification_app")
     private Integer notificationApp;
@@ -83,7 +83,7 @@ public class SysUserSettings extends BaseEntity {
     private String notificationEmailFrequency;
 
     /**
-     * 主题色
+     * 主题�?
      */
     @TableField("primary_color")
     private String primaryColor;

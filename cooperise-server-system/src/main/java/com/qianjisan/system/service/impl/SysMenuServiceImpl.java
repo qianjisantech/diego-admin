@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 菜单服务实现类
+ * 菜单服务实现�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -50,7 +50,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 
     @Override
     public List<SysMenuTreeVO> getMenuTree() {
-        // 查询所有菜单
+        // 查询所有菜�?
         LambdaQueryWrapper<SysMenu> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByAsc(SysMenu::getSortOrder);
         List<SysMenu> allMenus = menuMapper.selectList(wrapper);
@@ -95,7 +95,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     public List<SysMenuTreeVO> getUserMenuTree(Long userId) {
         List<SysMenu> userMenus;
 
-        // 查询用户的菜单（通过角色关联）
+        // 查询用户的菜单（通过角色关联�?
         userMenus = menuMapper.selectMenusByUserId(userId);
 
         if (userMenus == null || userMenus.isEmpty()) {
@@ -117,7 +117,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     public List<String> getUserMenuPermissions(Long userId) {
         List<SysMenu> userMenus;
 
-        // 查询用户的菜单
+        // 查询用户的菜�?
         userMenus = menuMapper.selectMenusByUserId(userId);
 
         if (userMenus == null || userMenus.isEmpty()) {
@@ -133,12 +133,12 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 
     @Override
     public boolean checkUserUriPermission(Long userId, String requestUri) {
-        // admin用户拥有所有权限
+        // admin用户拥有所有权�?
         if ("admin".equalsIgnoreCase(getUserCodeById(userId))) {
             return true;
         }
 
-        // 检查用户是否有该URI的访问权限
+        // 检查用户是否有该URI的访问权�?
         int count = menuMapper.checkUserUriPermission(userId, requestUri);
         return count > 0;
     }
@@ -160,18 +160,18 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     }
 
     /**
-     * 递归构建菜单树
+     * 递归构建菜单�?
      *
-     * @param allMenus 所有菜单
+     * @param allMenus 所有菜�?
      * @param parentId 父菜单ID
-     * @return 菜单树
+     * @return 菜单�?
      */
     private List<SysMenuTreeVO> buildMenuTree(List<SysMenuTreeVO> allMenus, Long parentId) {
         List<SysMenuTreeVO> result = new ArrayList<>();
 
         for (SysMenuTreeVO menu : allMenus) {
             if (menu.getParentId().equals(parentId)) {
-                // 递归查找子菜单
+                // 递归查找子菜�?
                 List<SysMenuTreeVO> children = buildMenuTree(allMenus, menu.getId());
                 if (!children.isEmpty()) {
                     menu.setChildren(children);

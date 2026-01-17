@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 用户-企业关联表 测试控制器
+ * 用户-企业关联�?测试控制�?
  * 注意：生产环境请删除此控制器
  *
  * @author DCP Team
@@ -93,7 +93,7 @@ public class UserCompanyController {
         }
     }
 
-    @Operation(summary = "查询所有用户企业关联")
+    @Operation(summary = "查询所有用户企业关�?)
     @GetMapping("/list")
     public Result<List<UserCompany>> listAll() {
         try {

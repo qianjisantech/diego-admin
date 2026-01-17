@@ -75,7 +75,7 @@ public class SysUserController {
         }
     }
 
-    @Operation(summary = "更新用户状态")
+    @Operation(summary = "更新用户状�?)
     @PostMapping("/{userId}/status")
     public Result<Void> updateStatus(
             @PathVariable Long userId,
@@ -84,7 +84,7 @@ public class SysUserController {
             userService.updateStatus(userId, status);
             return Result.success();
         } catch (Exception e) {
-            return Result.error("更新用户状态失败: " + e.getMessage());
+            return Result.error("更新用户状态失�? " + e.getMessage());
         }
     }
 

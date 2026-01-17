@@ -67,7 +67,7 @@ public class TrackingLogRequest {
     private String sessionId;
 
     /**
-     * 浏览器
+     * 浏览�?
      */
     private String browser;
 

@@ -10,7 +10,7 @@ import com.qianjisan.enterprise.request.CompanyRequest;
 import com.qianjisan.enterprise.vo.CompanyVo;
 
 /**
- * 公司表 Service
+ * 公司�?Service
  */
 public interface ICompanyService extends IService<Company> {
 

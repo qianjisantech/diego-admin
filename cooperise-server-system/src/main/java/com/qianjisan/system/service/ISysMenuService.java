@@ -32,9 +32,9 @@ public interface ISysMenuService extends IService<SysMenu> {
     void updateMenuById(Long id, SysMenuRequest request);
 
     /**
-     * 获取菜单树
+     * 获取菜单�?
      *
-     * @return 菜单树
+     * @return 菜单�?
      */
     List<SysMenuTreeVO> getMenuTree();
 
@@ -54,10 +54,10 @@ public interface ISysMenuService extends IService<SysMenu> {
     SysMenuVO getMenuDetail(Long id);
 
     /**
-     * 根据用户ID获取菜单树
+     * 根据用户ID获取菜单�?
      *
      * @param userId 用户ID
-     * @return 菜单树
+     * @return 菜单�?
      */
     List<SysMenuTreeVO> getUserMenuTree(Long userId);
 
@@ -70,11 +70,11 @@ public interface ISysMenuService extends IService<SysMenu> {
     List<String> getUserMenuPermissions(Long userId);
 
     /**
-     * 检查用户是否有访问指定URI的权限
+     * 检查用户是否有访问指定URI的权�?
      *
      * @param userId 用户ID
      * @param requestUri 请求URI
-     * @return 是否有权限
+     * @return 是否有权�?
      */
     boolean checkUserUriPermission(Long userId, String requestUri);
 }

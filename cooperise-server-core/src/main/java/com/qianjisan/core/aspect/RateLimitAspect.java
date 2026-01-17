@@ -25,7 +25,7 @@ import java.util.List;
 
 /**
  * 限流切面
- * 基于 Redis + Lua 脚本实现分布式限流
+ * 基于 Redis + Lua 脚本实现分布式限�?
  *
  * @author Diego
  * @since 2024-11-21
@@ -42,9 +42,9 @@ public class RateLimitAspect {
 
     @Before("@annotation(rateLimit)")
     public void doBefore(JoinPoint point, RateLimit rateLimit) {
-        // 检查是否启用限流功能
+        // 检查是否启用限流功�?
         if (!rateLimitProperties.getEnabled()) {
-            log.debug("限流功能已禁用");
+            log.debug("限流功能已禁�?);
             return;
         }
 
@@ -60,7 +60,7 @@ public class RateLimitAspect {
             Long number = redisTemplate.execute(limitScript, keys, count, time);
 
             if (number == null || number.intValue() > count) {
-                log.warn("限流触发，key={}, 限制次数={}, 时间窗口={}秒", key, count, time);
+                log.warn("限流触发，key={}, 限制次数={}, 时间窗口={}�?, key, count, time);
                 throw new RateLimitException(message);
             }
 
@@ -69,7 +69,7 @@ public class RateLimitAspect {
             throw e;
         } catch (Exception e) {
             log.error("限流异常，key={}", key, e);
-            throw new RuntimeException("服务器限流异常，请稍候再试");
+            throw new RuntimeException("服务器限流异常，请稍候再�?);
         }
     }
 
@@ -79,7 +79,7 @@ public class RateLimitAspect {
     private String getCombineKey(RateLimit rateLimit, JoinPoint point) {
         StringBuilder key = new StringBuilder(rateLimit.key());
 
-        // 添加方法名
+        // 添加方法�?
         MethodSignature signature = (MethodSignature) point.getSignature();
         Method method = signature.getMethod();
         Class<?> targetClass = method.getDeclaringClass();
@@ -138,7 +138,7 @@ public class RateLimitAspect {
 
     /**
      * 解析限流参数
-     * 优先级：configKey > 注解参数 > 配置文件默认值
+     * 优先级：configKey > 注解参数 > 配置文件默认�?
      */
     private LimitParams parseLimitParams(RateLimit rateLimit) {
         String configKey = rateLimit.configKey();
@@ -161,10 +161,10 @@ public class RateLimitAspect {
             }
         }
 
-        // 根据limitType获取对应的默认配置
+        // 根据limitType获取对应的默认配�?
         CoreRateLimitProperties.LimitConfig defaultConfig = getDefaultConfigByType(limitType);
 
-        // 如果注解中未指定参数（值为-1或空字符串），则使用配置文件中的默认值
+        // 如果注解中未指定参数（值为-1或空字符串），则使用配置文件中的默认�?
         if (time == -1) {
             time = defaultConfig.getTime();
         }
@@ -182,15 +182,20 @@ public class RateLimitAspect {
      * 根据限流类型获取默认配置
      */
     private CoreRateLimitProperties.LimitConfig getDefaultConfigByType(LimitType limitType) {
-        return switch (limitType) {
-            case IP -> rateLimitProperties.getIp();
-            case USER -> rateLimitProperties.getUser();
-            case DEFAULT -> rateLimitProperties.getDefaultConfig();
-        };
+        switch (limitType) {
+            case IP:
+                return rateLimitProperties.getIp();
+            case USER:
+                return rateLimitProperties.getUser();
+            case DEFAULT:
+                return rateLimitProperties.getDefaultConfig();
+            default:
+                return rateLimitProperties.getDefaultConfig();
+        }
     }
 
     /**
-     * 限流参数内部类
+     * 限流参数内部�?
      */
     private static class LimitParams {
         private final int time;

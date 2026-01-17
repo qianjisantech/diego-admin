@@ -10,7 +10,7 @@
     <artifactId>cooperise-server-auth</artifactId>
 
     <description>认证服务模块</description>
-    <name>diego-server-auth</name>
+    <name>cooperise-server-auth</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

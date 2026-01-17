@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 import java.time.LocalDateTime;
 
 /**
- * 反馈表
+ * 反馈�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -37,7 +37,7 @@ public class Feedback extends BaseEntity {
     private String content;
 
     /**
-     * 反馈类型：1-bug, 2-feature, 3-improvement, 4-other
+     * 反馈类型�?-bug, 2-feature, 3-improvement, 4-other
      */
     @TableField("type")
     private Integer type;
@@ -61,13 +61,13 @@ public class Feedback extends BaseEntity {
     private Long submitterId;
 
     /**
-     * 提交者姓名
+     * 提交者姓�?
      */
     @TableField("submitter_name")
     private String submitterName;
 
     /**
-     * 提交者工号
+     * 提交者工�?
      */
     @TableField("submitter_code")
     private String submitterCode;
@@ -79,13 +79,13 @@ public class Feedback extends BaseEntity {
     private Long assigneeId;
 
     /**
-     * 处理人工号
+     * 处理人工�?
      */
     @TableField("assignee_code")
     private String assigneeCode;
 
     /**
-     * 处理人姓名
+     * 处理人姓�?
      */
     @TableField("assignee_name")
     private String assigneeName;
@@ -96,19 +96,19 @@ public class Feedback extends BaseEntity {
     private LocalDateTime closeTime;
 
     /**
-     * 联系方式(邮箱或电话)
+     * 联系方式(邮箱或电�?
      */
     @TableField("contact_info")
     private String contactInfo;
 
     /**
-     * 点赞数
+     * 点赞�?
      */
     @TableField("likes")
     private Integer likes;
 
     /**
-     * 评论数
+     * 评论�?
      */
     @TableField("comments")
     private Integer comments;

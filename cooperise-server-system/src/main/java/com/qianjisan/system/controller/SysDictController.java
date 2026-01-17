@@ -20,7 +20,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 /**
- * 字典管理控制器
+ * 字典管理控制�?
  *
  * @author DCP Team
  * @since 2024-12-20

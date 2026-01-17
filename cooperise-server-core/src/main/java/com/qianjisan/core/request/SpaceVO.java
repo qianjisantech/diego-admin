@@ -23,7 +23,7 @@ public class SpaceVO extends BaseVO {
 
 
     /**
-     * 空间关键词（用于生成事项单号）
+     * 空间关键词（用于生成事项单号�?
      */
     private String keyword;
 
@@ -43,7 +43,7 @@ public class SpaceVO extends BaseVO {
     private Long ownerId;
 
     /**
-     * 负责人名称（扩展字段）
+     * 负责人名称（扩展字段�?
      */
     private String ownerName;
 
@@ -57,5 +57,5 @@ public class SpaceVO extends BaseVO {
      */
     private Integer memberCount;
 
-    // 不包含 isDeleted 字段
+    // 不包�?isDeleted 字段
 }

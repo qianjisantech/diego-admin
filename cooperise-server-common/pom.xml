@@ -12,7 +12,7 @@
     </parent>
 
     <artifactId>cooperise-server-common</artifactId>
-    <name>diego-server-common</name>
+    <name>cooperise-server-common</name>
     <description>公共服务模块</description>
 
     <dependencies>

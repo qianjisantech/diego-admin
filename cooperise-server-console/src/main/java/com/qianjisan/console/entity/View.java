@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 视图表
+ * 视图�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -35,7 +35,7 @@ public class View extends BaseEntity {
     private String description;
 
     /**
-     * 视图类型：gantt-甘特图、kanban-看板、table-表格、calendar-日历、resource-gantt-资源甘特图
+     * 视图类型：gantt-甘特图、kanban-看板、table-表格、calendar-日历、resource-gantt-资源甘特�?
      */
     @TableField("type")
     private String type;
@@ -53,7 +53,7 @@ public class View extends BaseEntity {
     private Long ownerId;
 
     /**
-     * 是否公共：0-私有，1-公共
+     * 是否公共�?-私有�?-公共
      */
     @TableField("is_public")
     private Integer isPublic;
@@ -65,7 +65,7 @@ public class View extends BaseEntity {
     private Long folderId;
 
     /**
-     * 视图配置（JSON格式）
+     * 视图配置（JSON格式�?
      */
     @TableField("config")
     private String config;

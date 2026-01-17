@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 埋点日志实体类
+ * 埋点日志实体�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -31,7 +31,7 @@ public class SysTrackingLog implements Serializable {
     private Long userId;
 
     /**
-     * 用户名
+     * 用户�?
      */
     @TableField("username")
     private String username;
@@ -121,7 +121,7 @@ public class SysTrackingLog implements Serializable {
     private String userAgent;
 
     /**
-     * 浏览器
+     * 浏览�?
      */
     @TableField("browser")
     private String browser;
@@ -163,7 +163,7 @@ public class SysTrackingLog implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 是否删除：0-否，1-是
+     * 是否删除�?-否，1-�?
      */
     @TableLogic
     @TableField("is_deleted")

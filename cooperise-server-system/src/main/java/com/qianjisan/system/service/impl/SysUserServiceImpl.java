@@ -99,7 +99,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public SysUserVO getUserDetail(Long userId) {
         SysUser sysUser = this.getById(userId);
         if (sysUser == null) {
-            throw new RuntimeException("用户不存在");
+            throw new RuntimeException("用户不存�?);
         }
 
         SysUserVO vo = convertToVO(sysUser);
@@ -132,7 +132,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         wrapper.eq(SysUserRole::getUserId, userId);
         sysUserRoleMapper.delete(wrapper);
 
-        // 分配新角色
+        // 分配新角�?
         if (roleIds != null && !roleIds.isEmpty()) {
             for (Long roleId : roleIds) {
                 SysUserRole sysUserRole = new SysUserRole();
@@ -148,10 +148,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public void resetPassword(Long userId) {
         SysUser sysUser = this.getById(userId);
         if (sysUser == null) {
-            throw new RuntimeException("用户不存在");
+            throw new RuntimeException("用户不存�?);
         }
 
-        // 重置密码为 123456
+        // 重置密码�?123456
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         sysUser.setPassword(encoder.encode("123456"));
         this.updateById(sysUser);
@@ -162,7 +162,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public void updateStatus(Long userId, Integer status) {
         SysUser sysUser = this.getById(userId);
         if (sysUser == null) {
-            throw new RuntimeException("用户不存在");
+            throw new RuntimeException("用户不存�?);
         }
 
         sysUser.setStatus(status);
@@ -172,13 +172,13 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateUser(Long userId, SysUserRequest request) {
-        // 检查用户是否存在
+        // 检查用户是否存�?
         SysUser existingSysUser = this.getById(userId);
         if (existingSysUser == null) {
-            throw new RuntimeException("用户不存在");
+            throw new RuntimeException("用户不存�?);
         }
 
-        // 检查用户名是否被其他用户使用
+        // 检查用户名是否被其他用户使�?
         if (!existingSysUser.getName().equals(request.getUserCode())) {
             LambdaQueryWrapper<SysUser> wrapper = new LambdaQueryWrapper<>();
             wrapper.eq(SysUser::getUserCode, request.getUserCode());
@@ -196,7 +196,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
             wrapper.ne(SysUser::getId, userId);
             long count = this.count(wrapper);
             if (count > 0) {
-                throw new RuntimeException("用户编码已存在");
+                throw new RuntimeException("用户编码已存�?);
             }
         }
 
@@ -205,7 +205,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         sysUser.setId(userId);
         BeanUtils.copyProperties(request, sysUser);
 
-        // 如果没有提供状态，保留原状态
+        // 如果没有提供状态，保留原状�?
         if (request.getStatus() == null) {
             sysUser.setStatus(null);
         }
@@ -216,13 +216,13 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteUser(Long userId) {
-        // 检查用户是否存在
+        // 检查用户是否存�?
         SysUser sysUser = this.getById(userId);
         if (sysUser == null) {
-            throw new RuntimeException("用户不存在");
+            throw new RuntimeException("用户不存�?);
         }
 
-        // 删除用户（逻辑删除）
+        // 删除用户（逻辑删除�?
         this.removeById(userId);
 
         // 删除用户角色关联
@@ -258,7 +258,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         LambdaQueryWrapper<SysUser> queryWrapper = new LambdaQueryWrapper<>();
         // 只查询需要的字段：id, username, userCode, email
         queryWrapper.select(SysUser::getId, SysUser::getName, SysUser::getUserCode, SysUser::getEmail);
-        // MyBatis Plus 会自动过滤逻辑删除的数据（因为 BaseEntity 中有 @TableLogic）
+        // MyBatis Plus 会自动过滤逻辑删除的数据（因为 BaseEntity 中有 @TableLogic�?
         queryWrapper.orderByAsc(SysUser::getLastLoginTime);
         return this.list(queryWrapper);
     }

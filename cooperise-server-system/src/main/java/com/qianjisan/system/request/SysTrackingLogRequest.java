@@ -15,7 +15,7 @@ public class SysTrackingLogRequest implements Serializable {
     /** 用户ID */
     private Long userId;
 
-    /** 用户名 */
+    /** 用户�?*/
     private String username;
 
     /** 用户工号 */
@@ -60,7 +60,7 @@ public class SysTrackingLogRequest implements Serializable {
     /** 用户代理 */
     private String userAgent;
 
-    /** 浏览器 */
+    /** 浏览�?*/
     private String browser;
 
     /** 操作系统 */

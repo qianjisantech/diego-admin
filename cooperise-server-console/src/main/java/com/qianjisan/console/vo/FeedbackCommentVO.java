@@ -25,7 +25,7 @@ public class FeedbackCommentVO extends BaseVO {
     private Long userId;
 
     /**
-     * 评论用户名
+     * 评论用户�?
      */
     private String username;
 

@@ -21,7 +21,7 @@ public class SysUserQueryRequest extends PageRequest {
 
 
     /**
-     * 状态：1-正常，0-禁用
+     * 状态：1-正常�?-禁用
      */
     private Integer status;
 }

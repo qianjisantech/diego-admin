@@ -35,17 +35,17 @@ public class SysFieldConfigVO extends BaseVO {
     private String fieldType;
 
     /**
-     * 是否可见：1-是，0-否
+     * 是否可见�?-是，0-�?
      */
     private Integer isVisible;
 
     /**
-     * 是否必填：1-是，0-否
+     * 是否必填�?-是，0-�?
      */
     private Integer isRequired;
 
     /**
-     * 是否可编辑：1-是，0-否
+     * 是否可编辑：1-是，0-�?
      */
     private Integer isEditable;
 
@@ -55,22 +55,22 @@ public class SysFieldConfigVO extends BaseVO {
     private Integer sortOrder;
 
     /**
-     * 默认值
+     * 默认�?
      */
     private String defaultValue;
 
     /**
-     * 验证规则（JSON格式）
+     * 验证规则（JSON格式�?
      */
     private String validationRule;
 
     /**
-     * 选项配置（JSON格式）
+     * 选项配置（JSON格式�?
      */
     private String options;
 
     /**
-     * 占位符
+     * 占位�?
      */
     private String placeholder;
 
@@ -80,7 +80,7 @@ public class SysFieldConfigVO extends BaseVO {
     private String description;
 
     /**
-     * 状态：1-启用，0-禁用
+     * 状态：1-启用�?-禁用
      */
     private Integer status;
 }

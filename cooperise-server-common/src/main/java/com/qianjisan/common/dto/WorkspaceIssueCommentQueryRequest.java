@@ -22,7 +22,7 @@ public class WorkspaceIssueCommentQueryRequest extends PageQuery {
     /** 父评论ID */
     private Long parentId;
 
-    /** 搜索关键词（匹配评论内容） */
+    /** 搜索关键词（匹配评论内容�?*/
     private String keyword;
 }
 

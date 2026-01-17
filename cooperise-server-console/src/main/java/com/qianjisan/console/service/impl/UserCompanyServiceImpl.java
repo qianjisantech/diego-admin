@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * 用户-企业关联表 服务实现类
+ * 用户-企业关联�?服务实现�?
  * @author Auto Generated from SQL
  * @since 2024-12-20
  */
@@ -49,13 +49,13 @@ public class UserCompanyServiceImpl extends ServiceImpl<UserCompanyMapper, UserC
     @Transactional(rollbackFor = Exception.class)
     public boolean setDefaultCompany(Long userId, Long companyId) {
         try {
-            // 1. 先将该用户的所有企业关联的is_default设置为0
+            // 1. 先将该用户的所有企业关联的is_default设置�?
             LambdaUpdateWrapper<UserCompany> clearDefaultWrapper = new LambdaUpdateWrapper<>();
             clearDefaultWrapper.eq(UserCompany::getUserId, userId)
                               .set(UserCompany::getIsDefault, 0);
             this.update(clearDefaultWrapper);
 
-            // 2. 将指定的企业设置为默认
+            // 2. 将指定的企业设置为默�?
             LambdaUpdateWrapper<UserCompany> setDefaultWrapper = new LambdaUpdateWrapper<>();
             setDefaultWrapper.eq(UserCompany::getUserId, userId)
                             .eq(UserCompany::getCompanyId, companyId)
@@ -88,7 +88,7 @@ public class UserCompanyServiceImpl extends ServiceImpl<UserCompanyMapper, UserC
 
 
     /**
-     * 为用户添加企业关联
+     * 为用户添加企业关�?
      *
      * @param userId 用户ID
      * @param companyId 企业ID
@@ -104,11 +104,11 @@ public class UserCompanyServiceImpl extends ServiceImpl<UserCompanyMapper, UserC
 
             UserCompany existing = this.getOne(queryWrapper);
             if (existing != null) {
-                log.info("用户 {} 与企业 {} 的关联已存在", userId, companyId);
+                log.info("用户 {} 与企�?{} 的关联已存在", userId, companyId);
                 return true;
             }
 
-            // 如果要设为默认，先清除其他默认设置
+            // 如果要设为默认，先清除其他默认设�?
             if (isDefault) {
                 LambdaUpdateWrapper<UserCompany> clearDefaultWrapper = new LambdaUpdateWrapper<>();
                 clearDefaultWrapper.eq(UserCompany::getUserId, userId)
@@ -116,7 +116,7 @@ public class UserCompanyServiceImpl extends ServiceImpl<UserCompanyMapper, UserC
                 this.update(clearDefaultWrapper);
             }
 
-            // 创建新关联
+            // 创建新关�?
             UserCompany userCompany = new UserCompany();
             userCompany.setUserId(userId);
             userCompany.setCompanyId(companyId);
@@ -124,7 +124,7 @@ public class UserCompanyServiceImpl extends ServiceImpl<UserCompanyMapper, UserC
 
             boolean result = this.save(userCompany);
             if (result) {
-                log.info("为用户 {} 添加企业 {} 关联成功", userId, companyId);
+                log.info("为用�?{} 添加企业 {} 关联成功", userId, companyId);
             }
             return result;
         } catch (Exception e) {
@@ -134,7 +134,7 @@ public class UserCompanyServiceImpl extends ServiceImpl<UserCompanyMapper, UserC
     }
 
     /**
-     * 移除用户的企业关联
+     * 移除用户的企业关�?
      *
      * @param userId 用户ID
      * @param companyId 企业ID
@@ -148,7 +148,7 @@ public class UserCompanyServiceImpl extends ServiceImpl<UserCompanyMapper, UserC
 
             boolean result = this.remove(queryWrapper);
             if (result) {
-                log.info("移除用户 {} 与企业 {} 的关联成功", userId, companyId);
+                log.info("移除用户 {} 与企�?{} 的关联成�?, userId, companyId);
             }
             return result;
         } catch (Exception e) {

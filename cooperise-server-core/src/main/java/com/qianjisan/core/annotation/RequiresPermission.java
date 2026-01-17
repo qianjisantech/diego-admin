@@ -4,9 +4,9 @@ import java.lang.annotation.*;
 
 /**
  * 权限校验注解
- * 用于Controller方法上，校验用户是否有指定权限
+ * 用于Controller方法上，校验用户是否有指定权�?
  *
- * 使用示例：
+ * 使用示例�?
  * @RequiresPermission("workspace:issue:add")
  * @RequiresPermission(value = {"workspace:issue:add", "workspace:issue:edit"}, logical = Logical.OR)
  *
@@ -25,8 +25,8 @@ public @interface RequiresPermission {
     String[] value();
 
     /**
-     * 逻辑关系：AND（需要全部权限）或 OR（需要其中一个权限）
-     * 默认为 AND
+     * 逻辑关系：AND（需要全部权限）�?OR（需要其中一个权限）
+     * 默认�?AND
      */
     Logical logical() default Logical.AND;
 
@@ -35,11 +35,11 @@ public @interface RequiresPermission {
      */
     enum Logical {
         /**
-         * 必须拥有所有权限
+         * 必须拥有所有权�?
          */
         AND,
         /**
-         * 只需拥有其中一个权限即可
+         * 只需拥有其中一个权限即�?
          */
         OR
     }

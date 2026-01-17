@@ -6,7 +6,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 /**
- * Company 返回体 (VO) - 公共模块
+ * Company 返回�?(VO) - 公共模块
  */
 @Data
 public class CompanyVo implements Serializable {

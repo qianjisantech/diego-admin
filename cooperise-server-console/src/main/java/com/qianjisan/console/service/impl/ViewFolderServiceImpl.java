@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * WorkspaceViewFolder服务实现类
+ * WorkspaceViewFolder服务实现�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -39,17 +39,17 @@ public class ViewFolderServiceImpl extends ServiceImpl<ViewFolderMapper, ViewFol
 
     @Override
     public void createFolder(ViewFolderRequest request, Long userId) {
-        log.info("[创建文件夹] 接收到请求: {}", request);
+        log.info("[创建文件夹] 接收到请�? {}", request);
         // 参数校验
         if (!StringUtils.hasText(request.getName())) {
-            throw new RuntimeException("文件夹名称不能为空");
+            throw new RuntimeException("文件夹名称不能为�?);
         }
-        // 将 Request 转换为 Entity
+        // �?Request 转换�?Entity
         ViewFolder entity = new ViewFolder();
         entity.setName(request.getName());
         entity.setParentId(request.getParentId());
         entity.setSortOrder(request.getSortOrder());
-        // 设置默认值
+        // 设置默认�?
         if (userId != null) {
             entity.setOwnerId(userId);
             log.info("[创建文件夹] 设置创建者ID: {}", userId);
@@ -57,7 +57,7 @@ public class ViewFolderServiceImpl extends ServiceImpl<ViewFolderMapper, ViewFol
         if (entity.getSortOrder() == null) {
             entity.setSortOrder(0);
         }
-        // 保存文件夹
+        // 保存文件�?
         this.save(entity);
         log.info("[创建文件夹] 成功，文件夹ID: {}", entity.getId());
     }
@@ -67,14 +67,14 @@ public class ViewFolderServiceImpl extends ServiceImpl<ViewFolderMapper, ViewFol
         log.info("[更新文件夹] ID: {}, 数据: {}", id, request);
         // 参数校验
         if (!StringUtils.hasText(request.getName())) {
-            throw new RuntimeException("文件夹名称不能为空");
+            throw new RuntimeException("文件夹名称不能为�?);
         }
         // 检查文件夹是否存在
         ViewFolder existFolder = this.getById(id);
         if (existFolder == null) {
             throw new RuntimeException("文件夹不存在");
         }
-        // 将 Request 转换为 Entity
+        // �?Request 转换�?Entity
         ViewFolder entity = new ViewFolder();
         entity.setId(id);
         entity.setName(request.getName());
@@ -97,7 +97,7 @@ public class ViewFolderServiceImpl extends ServiceImpl<ViewFolderMapper, ViewFol
         viewWrapper.eq(View::getFolderId, id);
         long viewCount = workspaceViewService.count(viewWrapper);
         if (viewCount > 0) {
-            throw new RuntimeException("文件夹下还有 " + viewCount + " 个视图，请先删除或移动这些视图");
+            throw new RuntimeException("文件夹下还有 " + viewCount + " 个视图，请先删除或移动这些视�?);
         }
         // 检查是否有子文件夹
         LambdaQueryWrapper<ViewFolder> folderWrapper = new LambdaQueryWrapper<>();
@@ -106,7 +106,7 @@ public class ViewFolderServiceImpl extends ServiceImpl<ViewFolderMapper, ViewFol
         if (subFolderCount > 0) {
             throw new RuntimeException("文件夹下还有 " + subFolderCount + " 个子文件夹，请先删除这些子文件夹");
         }
-        // 删除文件夹
+        // 删除文件�?
         this.removeById(id);
         log.info("[删除文件夹] 成功");
     }
@@ -137,8 +137,8 @@ public class ViewFolderServiceImpl extends ServiceImpl<ViewFolderMapper, ViewFol
         }
         queryWrapper.orderByDesc(ViewFolder::getCreateTime);
         page = this.page(page, queryWrapper);
-        log.info("[分页查询文件夹] 成功，共 {} 条", page.getTotal());
-        // 转换为 ViewFolderPageVO
+        log.info("[分页查询文件夹] 成功，共 {} �?, page.getTotal());
+        // 转换�?ViewFolderPageVO
         Page<ViewFolderPageVO> voPage = new Page<>(page.getCurrent(), page.getSize(), page.getTotal());
         List<ViewFolderPageVO> voList = page.getRecords().stream()
             .map(this::convertToPageVO)
@@ -157,7 +157,7 @@ public class ViewFolderServiceImpl extends ServiceImpl<ViewFolderMapper, ViewFol
     }
 
     /**
-     * 将 ViewFolder 实体转换为 ViewFolderVO
+     * �?ViewFolder 实体转换�?ViewFolderVO
      */
     private ViewFolderVO convertToVO(ViewFolder folder) {
         if (folder == null) {
@@ -175,7 +175,7 @@ public class ViewFolderServiceImpl extends ServiceImpl<ViewFolderMapper, ViewFol
     }
 
     /**
-     * 将 ViewFolder 实体转换为 ViewFolderPageVO
+     * �?ViewFolder 实体转换�?ViewFolderPageVO
      */
     private ViewFolderPageVO convertToPageVO(ViewFolder folder) {
         if (folder == null) {

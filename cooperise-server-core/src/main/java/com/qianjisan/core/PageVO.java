@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * 分页结果VO
- * 统一前后端分页字段
+ * 统一前后端分页字�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -31,27 +31,27 @@ public class PageVO<T> {
     private Long size;
 
     /**
-     * 当前页
+     * 当前�?
      */
     private Long current;
 
     /**
-     * 总页数
+     * 总页�?
      */
     private Long pages;
 
     /**
-     * 是否有上一页
+     * 是否有上一�?
      */
     private Boolean hasPrevious;
 
     /**
-     * 是否有下一页
+     * 是否有下一�?
      */
     private Boolean hasNext;
 
     /**
-     * 从 MyBatis-Plus 的 Page 对象转换
+     * �?MyBatis-Plus �?Page 对象转换
      *
      * @param page MyBatis-Plus 分页对象
      * @param <T>  数据类型

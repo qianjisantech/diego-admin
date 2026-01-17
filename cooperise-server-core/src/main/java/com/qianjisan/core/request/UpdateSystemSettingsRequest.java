@@ -18,7 +18,7 @@ public class UpdateSystemSettingsRequest implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 语言设置：zh-CN, en-US等
+     * 语言设置：zh-CN, en-US�?
      */
     private String language;
 
@@ -28,12 +28,12 @@ public class UpdateSystemSettingsRequest implements Serializable {
     private String theme;
 
     /**
-     * 时区：Asia/Shanghai等
+     * 时区：Asia/Shanghai�?
      */
     private String timezone;
 
     /**
-     * 主题色
+     * 主题�?
      */
     private String primaryColor;
 }

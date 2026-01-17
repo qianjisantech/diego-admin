@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 反馈视图对象(包含额外的统计信息)
+ * 反馈视图对象(包含额外的统计信�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -32,7 +32,7 @@ public class FeedbackVO implements Serializable {
     private String content;
 
     /**
-     * 反馈类型：1-bug, 2-feature, 3-improvement, 4-other
+     * 反馈类型�?-bug, 2-feature, 3-improvement, 4-other
      */
     private Integer type;
 
@@ -62,7 +62,7 @@ public class FeedbackVO implements Serializable {
     private LocalDateTime closeTime;
 
     /**
-     * 联系方式(邮箱或电话)
+     * 联系方式(邮箱或电�?
      */
     private String contactInfo;
 
@@ -77,12 +77,12 @@ public class FeedbackVO implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 创建人
+     * 创建�?
      */
     private String createdBy;
 
     /**
-     * 更新人
+     * 更新�?
      */
     private String updatedBy;
 
@@ -97,7 +97,7 @@ public class FeedbackVO implements Serializable {
     private Integer likes;
 
     /**
-     * 当前用户是否已点赞
+     * 当前用户是否已点�?
      */
     private Boolean liked;
 }

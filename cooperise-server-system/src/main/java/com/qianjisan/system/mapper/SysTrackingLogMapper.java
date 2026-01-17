@@ -17,10 +17,10 @@ import java.util.List;
 public interface SysTrackingLogMapper extends BaseMapper<SysTrackingLog> {
 
     /**
-     * 统计埋点类型数量（按时间维度）
+     * 统计埋点类型数量（按时间维度�?
      *
      * @param timeType 时间类型：day, month, year
-     * @param startTime 开始时间
+     * @param startTime 开始时�?
      * @param endTime 结束时间
      * @return 统计结果
      */
@@ -34,7 +34,7 @@ public interface SysTrackingLogMapper extends BaseMapper<SysTrackingLog> {
      * 统计用户活跃量（按时间维度）
      *
      * @param timeType 时间类型：day, month, year
-     * @param startTime 开始时间
+     * @param startTime 开始时�?
      * @param endTime 结束时间
      * @return 统计结果
      */

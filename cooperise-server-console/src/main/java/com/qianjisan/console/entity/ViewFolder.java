@@ -23,7 +23,7 @@ public class ViewFolder extends BaseEntity {
     private Long id;
 
     /**
-     * 文件夹名称
+     * 文件夹名�?
      */
     @TableField("name")
     private String name;

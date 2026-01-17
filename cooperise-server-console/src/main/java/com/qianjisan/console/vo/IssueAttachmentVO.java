@@ -20,7 +20,7 @@ public class IssueAttachmentVO extends BaseVO {
     private Long issueId;
 
     /**
-     * 文件名
+     * 文件�?
      */
     private String fileName;
 
@@ -50,7 +50,7 @@ public class IssueAttachmentVO extends BaseVO {
     private String uploaderUsername;
 
     /**
-     * 上传者昵称
+     * 上传者昵�?
      */
     private String uploaderNickname;
 }

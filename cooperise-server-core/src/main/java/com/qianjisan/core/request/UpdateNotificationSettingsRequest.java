@@ -18,22 +18,22 @@ public class UpdateNotificationSettingsRequest implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 邮件通知开关
+     * 邮件通知开�?
      */
     private Boolean notificationEmail;
 
     /**
-     * 系统通知开关
+     * 系统通知开�?
      */
     private Boolean notificationSystem;
 
     /**
-     * 短信通知开关
+     * 短信通知开�?
      */
     private Boolean notificationSms;
 
     /**
-     * 应用内通知开关
+     * 应用内通知开�?
      */
     private Boolean notificationApp;
 

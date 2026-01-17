@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Aspect
 @Component
-@Order(1) // 在其他切面之前执行，确保traceid在所有日志中都能获取到
+@Order(1) // 在其他切面之前执行，确保traceid在所有日志中都能获取�?
 public class LogTraceAspect {
 
     private static final String TRACE_ID_KEY = "traceId";
@@ -63,7 +63,7 @@ public class LogTraceAspect {
 
         log.info("[TRACE_END] {} - {}.{}()", traceId, className, methodName);
 
-        // 清理MDC，防止内存泄漏
+        // 清理MDC，防止内存泄�?
         MDC.remove(TRACE_ID_KEY);
     }
 

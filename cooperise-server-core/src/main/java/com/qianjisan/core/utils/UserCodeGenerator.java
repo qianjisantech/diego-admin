@@ -3,7 +3,7 @@ package com.qianjisan.core.utils;
 import java.security.SecureRandom;
 
 /**
- * 用户编码生成器
+ * 用户编码生成�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -13,14 +13,14 @@ public class UserCodeGenerator {
     private static final SecureRandom RANDOM = new SecureRandom();
 
     /**
-     * 生成8位纯数字的用户编码
-     * 格式：当前时间戳后6位 + 2位随机数
-     * 例如：12345678
+     * 生成8位纯数字的用户编�?
+     * 格式：当前时间戳�?�?+ 2位随机数
+     * 例如�?2345678
      *
      * @return 8位数字字符串
      */
     public static String generate() {
-        // 获取当前时间戳的后6位
+        // 获取当前时间戳的�?�?
         long timestamp = System.currentTimeMillis();
         String timestampStr = String.valueOf(timestamp);
         String last6Digits = timestampStr.substring(timestampStr.length() - 6);

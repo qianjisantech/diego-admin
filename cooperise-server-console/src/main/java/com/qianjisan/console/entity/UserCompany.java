@@ -7,9 +7,9 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 用户-企业关联表实体
+ * 用户-企业关联表实�?
  *
- * 根据SQL自动生成：
+ * 根据SQL自动生成�?
  * CREATE TABLE `user_company` (
  *   `id` bigint NOT NULL AUTO_INCREMENT,
  *   `company_id` bigint NOT NULL COMMENT '企业ID',

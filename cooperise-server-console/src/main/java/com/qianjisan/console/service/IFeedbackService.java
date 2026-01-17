@@ -25,7 +25,7 @@ public interface IFeedbackService extends IService<Feedback> {
     void createFeedback(Feedback entity);
 
     /**
-     * 更新反馈（包含状态变更邮件通知逻辑）
+     * 更新反馈（包含状态变更邮件通知逻辑�?
      *
      * @param id     反馈ID
      * @param entity 反馈实体
@@ -82,7 +82,7 @@ public interface IFeedbackService extends IService<Feedback> {
     void unlikeFeedback(Long id, Long userId);
 
     /**
-     * 获取反馈的评论列表
+     * 获取反馈的评论列�?
      *
      * @param id 反馈ID
      * @return 评论列表

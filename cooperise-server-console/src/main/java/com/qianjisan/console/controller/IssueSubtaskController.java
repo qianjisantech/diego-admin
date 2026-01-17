@@ -19,7 +19,7 @@ import java.util.List;
  * @author DCP Team
  * @since 2024-12-20
  */
-@Tag(name = "子任务管理", description = "WorkspaceSubtask相关接口")
+@Tag(name = "子任务管�?, description = "WorkspaceSubtask相关接口")
 @RestController
 @RequestMapping("/workspace/subtask")
 @RequiredArgsConstructor
@@ -27,7 +27,7 @@ public class IssueSubtaskController {
 
     private final IIssueSubtaskService iIssueSubtaskService;
 
-    @Operation(summary = "创建子任务管理")
+    @Operation(summary = "创建子任务管�?)
     @PostMapping
     public Result<IssueSubtask> create(@RequestBody IssueSubtaskRequest request) {
         IssueSubtask entity = new IssueSubtask();
@@ -39,7 +39,7 @@ public class IssueSubtaskController {
         return Result.success(entity);
     }
 
-    @Operation(summary = "更新子任务管理")
+    @Operation(summary = "更新子任务管�?)
     @PutMapping("/{id}")
     public Result<IssueSubtask> update(@PathVariable Long id, @RequestBody IssueSubtaskRequest request) {
         IssueSubtask entity = new IssueSubtask();
@@ -52,28 +52,28 @@ public class IssueSubtaskController {
         return Result.success(entity);
     }
 
-    @Operation(summary = "删除子任务管理")
+    @Operation(summary = "删除子任务管�?)
     @DeleteMapping("/{id}")
     public Result<Void> delete(@PathVariable Long id) {
         iIssueSubtaskService.removeById(id);
         return Result.success();
     }
 
-    @Operation(summary = "根据ID查询子任务管理")
+    @Operation(summary = "根据ID查询子任务管�?)
     @GetMapping("/{id}")
     public Result<IssueSubtask> getById(@PathVariable Long id) {
         IssueSubtask entity = iIssueSubtaskService.getById(id);
         return Result.success(entity);
     }
 
-    @Operation(summary = "查询子任务管理列表")
+    @Operation(summary = "查询子任务管理列�?)
     @GetMapping("/list")
     public Result<List<IssueSubtask>> list() {
         List<IssueSubtask> list = iIssueSubtaskService.list();
         return Result.success(list);
     }
 
-    @Operation(summary = "分页查询子任务管理")
+    @Operation(summary = "分页查询子任务管�?)
     @PostMapping("/page")
     public Result<Page<IssueSubtask>> page(@RequestBody WorkspaceSubtaskQueryRequest request) {
         try {

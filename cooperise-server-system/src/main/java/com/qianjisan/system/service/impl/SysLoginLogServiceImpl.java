@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 /**
- * LoginLog服务实现类
+ * LoginLog服务实现�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -48,7 +48,7 @@ public class SysLoginLogServiceImpl extends ServiceImpl<SysLoginLogMapper, SysLo
         }
         queryWrapper.orderByDesc(SysLoginLog::getLoginTime);
         page = this.page(page, queryWrapper);
-        log.info("[分页查询登录日志管理] 成功，共 {} 条", page.getTotal());
+        log.info("[分页查询登录日志管理] 成功，共 {} �?, page.getTotal());
         return page;
     }
 }

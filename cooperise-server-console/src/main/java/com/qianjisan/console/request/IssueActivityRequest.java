@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 事项活动记录请求类
+ * 事项活动记录请求�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -16,7 +16,7 @@ public class IssueActivityRequest implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 活动ID（更新时使用）
+     * 活动ID（更新时使用�?
      */
     private Long id;
 
@@ -41,12 +41,12 @@ public class IssueActivityRequest implements Serializable {
     private String field;
 
     /**
-     * 旧值
+     * 旧�?
      */
     private String oldValue;
 
     /**
-     * 新值
+     * 新�?
      */
     private String newValue;
 }

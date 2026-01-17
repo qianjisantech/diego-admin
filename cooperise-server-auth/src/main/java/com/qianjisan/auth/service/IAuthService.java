@@ -32,7 +32,7 @@ public interface IAuthService {
      * 用户注册
      *
      * @param email    邮箱
-     * @param code     验证码
+     * @param code     验证�?
      * @param password 密码
      */
     void register(String email, String code, String password);

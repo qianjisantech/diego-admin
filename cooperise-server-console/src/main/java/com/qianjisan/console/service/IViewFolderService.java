@@ -20,32 +20,32 @@ import java.util.List;
 public interface IViewFolderService extends IService<ViewFolder> {
 
     /**
-     * 创建视图文件夹
+     * 创建视图文件�?
      *
-     * @param request 文件夹请求
+     * @param request 文件夹请�?
      * @param userId 用户ID
      * @return 创建的文件夹VO
      */
     void createFolder(ViewFolderRequest request, Long userId);
 
     /**
-     * 更新视图文件夹
+     * 更新视图文件�?
      *
      * @param id     文件夹ID
-     * @param request 文件夹请求
+     * @param request 文件夹请�?
      * @return 更新后的文件夹VO
      */
     void updateFolder(Long id, ViewFolderRequest request);
 
     /**
-     * 删除视图文件夹
+     * 删除视图文件�?
      *
      * @param id 文件夹ID
      */
     void deleteFolder(Long id);
 
     /**
-     * 根据ID查询视图文件夹
+     * 根据ID查询视图文件�?
      *
      * @param id 文件夹ID
      * @return 文件夹VO
@@ -53,14 +53,14 @@ public interface IViewFolderService extends IService<ViewFolder> {
     ViewFolderVO getFolderById(Long id);
 
     /**
-     * 查询视图文件夹列表
+     * 查询视图文件夹列�?
      *
      * @return 文件夹VO列表
      */
     List<ViewFolderVO> listFolders();
 
     /**
-     * 分页查询视图文件夹
+     * 分页查询视图文件�?
      *
      * @param request 查询条件
      * @return 分页结果

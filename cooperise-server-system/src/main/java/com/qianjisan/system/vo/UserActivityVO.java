@@ -17,7 +17,7 @@ public class UserActivityVO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 时间维度（年-月-日 或 年-月 或 年）
+     * 时间维度（年-�?�?�?�?�?�?年）
      */
     private String timeDimension;
 
@@ -27,7 +27,7 @@ public class UserActivityVO implements Serializable {
     private Long activeUserCount;
 
     /**
-     * 总访问次数
+     * 总访问次�?
      */
     private Long totalCount;
 }

@@ -9,7 +9,7 @@ import com.qianjisan.enterprise.entity.Company;
 import java.util.List;
 
 /**
- * 用户-企业关联表 服务类
+ * 用户-企业关联�?服务�?
  *
 
  * @author Auto Generated from SQL
@@ -35,7 +35,7 @@ public interface IUserCompanyService extends IService<UserCompany> {
     Long getDefaultCompanyIdByUserId(Long userId);
 
     /**
-     * 设置用户的默认企业
+     * 设置用户的默认企�?
      *
      * @param userId 用户ID
      * @param companyId 企业ID
@@ -44,7 +44,7 @@ public interface IUserCompanyService extends IService<UserCompany> {
     boolean setDefaultCompany(Long userId, Long companyId);
 
     /**
-     * 查询用户的默认企业列表
+     * 查询用户的默认企业列�?
      *
      * @param userId 用户ID
      * @return 企业列表

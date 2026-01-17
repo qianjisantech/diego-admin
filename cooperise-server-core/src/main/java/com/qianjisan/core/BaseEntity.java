@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 基础实体类
+ * 基础实体�?
  * 包含审计字段
  *
  * @author DCP Team
@@ -39,7 +39,7 @@ public abstract class BaseEntity implements Serializable {
     private String createByCode;
 
     /**
-     * 创建人昵称
+     * 创建人昵�?
      */
     @TableField(value = "create_by_name", fill = FieldFill.INSERT)
     private String createByName;
@@ -63,13 +63,13 @@ public abstract class BaseEntity implements Serializable {
     private String updateByCode;
 
     /**
-     * 更新人昵称
+     * 更新人昵�?
      */
     @TableField(value = "update_by_name", fill = FieldFill.INSERT_UPDATE)
     private String updateByName;
 
     /**
-     * 是否删除：0-否，1-是
+     * 是否删除�?-否，1-�?
      */
     @TableLogic
     @TableField("is_deleted")

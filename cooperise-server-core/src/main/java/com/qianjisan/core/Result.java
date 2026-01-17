@@ -31,7 +31,7 @@ public class Result<T> implements Serializable {
     private Boolean success;
 
     /**
-     * 时间戳
+     * 时间�?
      */
     private Long timestamp;
 
@@ -54,21 +54,21 @@ public class Result<T> implements Serializable {
     }
 
     /**
-     * 成功返回（无数据）
+     * 成功返回（无数据�?
      */
     public static <T> Result<T> success() {
         return new Result<T>("操作成功", null, true);
     }
 
     /**
-     * 成功返回（有数据）
+     * 成功返回（有数据�?
      */
     public static <T> Result<T> success(T data) {
         return new Result<>("操作成功", data, true);
     }
 
     /**
-     * 成功返回（自定义消息）
+     * 成功返回（自定义消息�?
      */
     public static <T> Result<T> success(String message, T data) {
         return new Result<>(message, data, true);
@@ -82,14 +82,14 @@ public class Result<T> implements Serializable {
     }
 
     /**
-     * 失败返回（自定义消息）
+     * 失败返回（自定义消息�?
      */
     public static <T> Result<T> error(String message) {
         return new Result<>(message, null, false);
     }
 
     /**
-     * 自定义返回
+     * 自定义返�?
      */
     public static <T> Result<T> build(String message, T data, Boolean success) {
         return new Result<>(message, data, success);

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 企业部门控制器（使用 Request/Vo DTO）
+ * 企业部门控制器（使用 Request/Vo DTO�?
  */
 @Tag(name = "企业部门", description = "Company Department 相关接口")
 @RestController
@@ -87,14 +87,14 @@ public class DepartmentController {
         }
     }
 
-    @Operation(summary = "根据父部门ID获取子部门列表")
+    @Operation(summary = "根据父部门ID获取子部门列�?)
     @GetMapping("/children/{parentId}")
     public Result<List<DepartmentVo>> getChildren(@PathVariable Long parentId) {
         try {
             List<DepartmentVo> vos = departmentService.getChildrenDepartments(parentId);
             return Result.success(vos);
         } catch (Exception e) {
-            log.error("获取子部门失败", e);
+            log.error("获取子部门失�?, e);
             return Result.error(e.getMessage());
         }
     }

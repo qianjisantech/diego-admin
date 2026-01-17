@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 用户档案VO（包含权限和空间信息）
+ * 用户档案VO（包含权限和空间信息�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -30,7 +30,7 @@ public class UserProfileVO implements Serializable {
     private String[] menuPermissions;
 
     /**
-     * 菜单树结构（用于前端渲染菜单）
+     * 菜单树结构（用于前端渲染菜单�?
      */
     private List<UserMenuVo> menus;
 
@@ -41,7 +41,7 @@ public class UserProfileVO implements Serializable {
 
 
     /**
-     * 当前用户所属企业列表
+     * 当前用户所属企业列�?
      */
     private List<UserCompanyVo> companies;
 
@@ -104,7 +104,7 @@ public class UserProfileVO implements Serializable {
         private String menuCode;
 
         /**
-         * 菜单类型：1-目录，2-菜单，3-按钮
+         * 菜单类型�?-目录�?-菜单�?-按钮
          */
         private Integer menuType;
 
@@ -129,12 +129,12 @@ public class UserProfileVO implements Serializable {
         private Integer sortOrder;
 
         /**
-         * 是否可见：1-是，0-否
+         * 是否可见�?-是，0-�?
          */
         private Integer visible;
 
         /**
-         * 状态：1-启用，0-禁用
+         * 状态：1-启用�?-禁用
          */
         private Integer status;
 
@@ -144,7 +144,7 @@ public class UserProfileVO implements Serializable {
         private String permission;
 
         /**
-         * 子菜单列表
+         * 子菜单列�?
          */
         private List<SysMenuTreeVO> children;
     }

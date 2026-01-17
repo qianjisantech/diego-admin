@@ -5,7 +5,7 @@ import com.qianjisan.enterprise.entity.Company;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 公司表 Mapper
+ * 公司�?Mapper
  */
 @Mapper
 public interface CompanyMapper extends BaseMapper<Company> {

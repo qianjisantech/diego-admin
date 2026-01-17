@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 角色服务实现类
+ * 角色服务实现�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -103,23 +103,23 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Transactional(rollbackFor = Exception.class)
     public void assignPermissions(Long roleId, AssignPermissionRequest request) {
         long startTime = System.currentTimeMillis();
-        log.info("[分配权限] 开始为角色 {} 分配 {} 个权限", roleId, request.getMenuIds().size());
+        log.info("[分配权限] 开始为角色 {} 分配 {} 个权�?, roleId, request.getMenuIds().size());
 
-        // 步骤 1: 删除该角色的所有权限
+        // 步骤 1: 删除该角色的所有权�?
         LambdaQueryWrapper<SysRoleMenu> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(SysRoleMenu::getRoleId, roleId);
         int deletedCount = sysRoleMenuMapper.delete(wrapper);
 
-        // 根据删除数量输出不同的日志
+        // 根据删除数量输出不同的日�?
         if (deletedCount > 0) {
-            log.info("[分配权限] 删除了 {} 条旧权限记录", deletedCount);
+            log.info("[分配权限] 删除�?{} 条旧权限记录", deletedCount);
         } else {
             log.info("[分配权限] 该角色暂无权限，无需删除");
         }
 
-        // 步骤 2: 批量插入新权限
+        // 步骤 2: 批量插入新权�?
         if (!request.getMenuIds().isEmpty()) {
-            // 构建批量插入的数据
+            // 构建批量插入的数�?
             List<SysRoleMenu> sysRoleMenuList = request.getMenuIds().stream()
                 .map(menuId -> {
                     SysRoleMenu sysRoleMenu = new SysRoleMenu();
@@ -130,16 +130,16 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
                 .collect(Collectors.toList());
 
             // 使用真正的批量插入（性能提升 10-50 倍）
-            // 如果数据量超过 500 条，分批插入避免 SQL 过长
+            // 如果数据量超�?500 条，分批插入避免 SQL 过长
             int batchSize = 500;
             int totalSize = sysRoleMenuList.size();
             int totalInserted = 0;
 
             if (totalSize <= batchSize) {
-                // 小于 500 条，一次性插入
+                // 小于 500 条，一次性插�?
                 int inserted = sysRoleMenuMapper.batchInsert(sysRoleMenuList);
                 totalInserted += inserted;
-                log.info("[分配权限] 批量插入 {} 条记录", inserted);
+                log.info("[分配权限] 批量插入 {} 条记�?, inserted);
             } else {
                 // 大于 500 条，分批插入
                 int batchCount = (totalSize + batchSize - 1) / batchSize;
@@ -151,18 +151,18 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
                     totalInserted += inserted;
 
                     int currentBatch = (i / batchSize) + 1;
-                    log.info("[分配权限] 批次 {}/{} 完成，本批插入 {} 条，累计 {}/{}",
+                    log.info("[分配权限] 批次 {}/{} 完成，本批插�?{} 条，累计 {}/{}",
                         currentBatch, batchCount, inserted, totalInserted, totalSize);
                 }
             }
 
             if (totalInserted != totalSize) {
                 throw new RuntimeException(
-                    String.format("批量插入权限失败：预期插入 %d 条，实际插入 %d 条", totalSize, totalInserted));
+                    String.format("批量插入权限失败：预期插�?%d 条，实际插入 %d �?, totalSize, totalInserted));
             }
 
             long endTime = System.currentTimeMillis();
-            log.info("[分配权限] 成功为角色 {} 分配 {} 个权限，耗时: {} ms",
+            log.info("[分配权限] 成功为角�?{} 分配 {} 个权限，耗时: {} ms",
                 roleId, request.getMenuIds().size(), (endTime - startTime));
         } else {
             // 更清晰的日志描述
@@ -172,7 +172,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
                     roleId, (endTime - startTime));
             } else {
                 long endTime = System.currentTimeMillis();
-                log.info("[分配权限] 菜单列表为空，角色 {} 保持无权限状态，耗时: {} ms",
+                log.info("[分配权限] 菜单列表为空，角�?{} 保持无权限状态，耗时: {} ms",
                     roleId, (endTime - startTime));
             }
         }

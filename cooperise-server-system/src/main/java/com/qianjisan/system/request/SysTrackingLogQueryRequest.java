@@ -16,7 +16,7 @@ public class SysTrackingLogQueryRequest extends PageQuery {
     /** 用户ID */
     private Long userId;
 
-    /** 用户名 */
+    /** 用户�?*/
     private String username;
 
     /** 事件类型 */
@@ -28,15 +28,15 @@ public class SysTrackingLogQueryRequest extends PageQuery {
     /** 页面URL */
     private String pageUrl;
 
-    /** 开始时间 */
+    /** 开始时�?*/
     private String startTime;
 
     /** 结束时间 */
     private String endTime;
 
-    /** 时间类型（day/month/year） */
+    /** 时间类型（day/month/year�?*/
     private String timeType;
 
-    /** 搜索关键词 */
+    /** 搜索关键�?*/
     private String keyword;
 }

@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 事项附件表
+ * 事项附件�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -29,7 +29,7 @@ public class IssueAttachment extends BaseEntity {
     private Long issueId;
 
     /**
-     * 文件名
+     * 文件�?
      */
     @TableField("file_name")
     private String fileName;

@@ -7,7 +7,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * 分页工具类
+ * 分页工具�?
  * 提供分页数据转换等通用方法
  *
  * @author DCP Team
@@ -16,12 +16,12 @@ import java.util.stream.Collectors;
 public class PageUtils {
 
     /**
-     * 将 Page<T> 转换为 Page<R>
-     * 用于实体对象到 VO 对象的分页转换
+     * �?Page<T> 转换�?Page<R>
+     * 用于实体对象�?VO 对象的分页转�?
      *
-     * @param sourcePage 源分页对象
+     * @param sourcePage 源分页对�?
      * @param converter  转换函数
-     * @param <T>        源类型
+     * @param <T>        源类�?
      * @param <R>        目标类型
      * @return 转换后的分页对象
      */
@@ -30,7 +30,7 @@ public class PageUtils {
             return new Page<>();
         }
 
-        // 创建目标分页对象，保留分页信息
+        // 创建目标分页对象，保留分页信�?
         Page<R> targetPage = new Page<>(
             sourcePage.getCurrent(),
             sourcePage.getSize(),
@@ -49,10 +49,10 @@ public class PageUtils {
     /**
      * 创建空的分页对象
      *
-     * @param current 当前页
+     * @param current 当前�?
      * @param size    每页大小
      * @param <T>     数据类型
-     * @return 空分页对象
+     * @return 空分页对�?
      */
     public static <T> Page<T> emptyPage(long current, long size) {
         return new Page<>(current, size, 0);

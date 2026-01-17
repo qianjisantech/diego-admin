@@ -27,12 +27,12 @@ public class OperationLogVO implements Serializable {
     private Long userId;
 
     /**
-     * 操作用户名
+     * 操作用户�?
      */
     private String username;
 
     /**
-     * 请求方法(GET/POST/PUT/DELETE等)
+     * 请求方法(GET/POST/PUT/DELETE�?
      */
     private String requestMethod;
 
@@ -47,12 +47,12 @@ public class OperationLogVO implements Serializable {
     private String requestParams;
 
     /**
-     * 请求体
+     * 请求�?
      */
     private String requestBody;
 
     /**
-     * 响应体
+     * 响应�?
      */
     private String responseBody;
 

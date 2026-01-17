@@ -5,7 +5,7 @@ import com.qianjisan.console.entity.IssueSubtask;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 子任务 Mapper接口
+ * 子任�?Mapper接口
  *
  * @author DCP Team
  * @since 2024-12-20

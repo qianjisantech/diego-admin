@@ -19,7 +19,7 @@ public class FeedbackCommentQueryRequest extends PageQuery {
     /** 用户ID */
     private Long userId;
 
-    /** 搜索关键词（匹配评论内容） */
+    /** 搜索关键词（匹配评论内容�?*/
     private String keyword;
 }
 

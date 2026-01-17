@@ -24,7 +24,7 @@ public class ViewFolderPageVO implements Serializable {
     private Long id;
 
     /**
-     * 文件夹名称
+     * 文件夹名�?
      */
     private String name;
 

@@ -23,7 +23,7 @@ import java.util.TimeZone;
 
 /**
  * Jackson 配置
- * 统一日期时间格式、时区、命名策略。
+ * 统一日期时间格式、时区、命名策略�?
  */
 @Configuration
 public class CoreJacksonConfig {

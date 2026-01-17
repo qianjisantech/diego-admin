@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
 public class SysConfigQueryRequest extends PageRequest {
 
     /**
-     * 配置键（模糊查询）
+     * 配置键（模糊查询�?
      */
     private String configKey;
 
@@ -30,7 +30,7 @@ public class SysConfigQueryRequest extends PageRequest {
     private String configGroup;
 
     /**
-     * 状态：1-启用，0-禁用
+     * 状态：1-启用�?-禁用
      */
     private Integer status;
 }

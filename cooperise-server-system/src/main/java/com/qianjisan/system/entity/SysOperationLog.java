@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 操作日志实体类
+ * 操作日志实体�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -43,7 +43,7 @@ public class SysOperationLog implements Serializable {
     private String username;
 
     /**
-     * 请求方法(GET/POST/PUT/DELETE等)
+     * 请求方法(GET/POST/PUT/DELETE�?
      */
     @TableField("request_method")
     private String requestMethod;
@@ -61,13 +61,13 @@ public class SysOperationLog implements Serializable {
     private String requestParams;
 
     /**
-     * 请求体
+     * 请求�?
      */
     @TableField("request_body")
     private String requestBody;
 
     /**
-     * 响应体
+     * 响应�?
      */
     @TableField("response_body")
     private String responseBody;
@@ -115,7 +115,7 @@ public class SysOperationLog implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 是否删除：0-否，1-是
+     * 是否删除�?-否，1-�?
      */
     @TableLogic
     @TableField("is_deleted")

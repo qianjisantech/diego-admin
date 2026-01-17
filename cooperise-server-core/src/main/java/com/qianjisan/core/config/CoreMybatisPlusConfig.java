@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * MyBatis-Plus 配置
- * 仅保留核心分页拦截器定义，避免 Bean 名称冲突。
+ * 仅保留核心分页拦截器定义，避�?Bean 名称冲突�?
  */
 @Configuration
 public class CoreMybatisPlusConfig {

@@ -13,13 +13,13 @@ public class FeedbackQueryRequest extends PageQuery {
 
     private static final long serialVersionUID = 1L;
 
-    /** 反馈类型：1-bug, 2-feature, 3-improvement, 4-other */
+    /** 反馈类型�?-bug, 2-feature, 3-improvement, 4-other */
     private Integer type;
 
-    /** 状态：1-待处理, 2-处理中, 3-已解决, 4-已关闭 */
+    /** 状态：1-待处�? 2-处理�? 3-已解�? 4-已关�?*/
     private Integer status;
 
-    /** 优先级：1-高, 2-中, 3-低 */
+    /** 优先级：1-�? 2-�? 3-�?*/
     private Integer priority;
 
     /** 提交人ID */

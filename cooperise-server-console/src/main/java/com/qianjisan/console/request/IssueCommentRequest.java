@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 事项评论请求类
+ * 事项评论请求�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -16,7 +16,7 @@ public class IssueCommentRequest implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 评论ID（更新时使用）
+     * 评论ID（更新时使用�?
      */
     private Long id;
 

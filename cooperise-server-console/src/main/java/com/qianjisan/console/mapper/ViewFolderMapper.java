@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 
 /**
- * 视图文件夹 Mapper接口
+ * 视图文件�?Mapper接口
  *
  * @author DCP Team
  * @since 2024-12-20

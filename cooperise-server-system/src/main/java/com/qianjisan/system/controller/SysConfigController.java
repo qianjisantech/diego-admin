@@ -20,7 +20,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 /**
- * 配置管理控制器
+ * 配置管理控制�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -91,7 +91,7 @@ public class SysConfigController {
         }
     }
 
-    @Operation(summary = "根据配置组查询配置")
+    @Operation(summary = "根据配置组查询配�?)
     @GetMapping("/group/{group}")
     public Result<List<SysConfigVO>> getByGroup(@PathVariable String group) {
         try {

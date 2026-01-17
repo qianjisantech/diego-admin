@@ -35,5 +35,5 @@ public class BaseVO implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateTime;
 
-    // 注意：不包含 isDeleted 等内部字段
+    // 注意：不包含 isDeleted 等内部字�?
 }

@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
- * 事项实体类
+ * 事项实体�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -38,19 +38,19 @@ public class Issue extends BaseEntity {
     private Long companyId;
 
     /**
-     * 企业名称（冗余字段，便于查询）
+     * 企业名称（冗余字段，便于查询�?
      */
     @TableField("company_name")
     private String companyName;
 
     /**
-     * 企业编码（冗余字段，便于查询）
+     * 企业编码（冗余字段，便于查询�?
      */
     @TableField("company_code")
     private String companyCode;
 
     /**
-     * 事项类型：1-任务、2-bug、3-需求、4-线上问题
+     * 事项类型�?-任务�?-bug�?-需求�?-线上问题
      */
     @TableField("issue_type")
     private Integer issueType;
@@ -68,13 +68,13 @@ public class Issue extends BaseEntity {
     private String description;
 
     /**
-     * 状态：1-待处理、2-进行中、3-已完成、0-已关闭
+     * 状态：1-待处理�?-进行中�?-已完成�?-已关�?
      */
     @TableField("status")
     private Integer status;
 
     /**
-     * 优先级：1-高、2-中、3-低
+     * 优先级：1-高�?-中�?-�?
      */
     @TableField("priority")
     private Integer priority;
@@ -86,13 +86,13 @@ public class Issue extends BaseEntity {
     private Long assigneeId;
 
     /**
-     * 经办人工号
+     * 经办人工�?
      */
     @TableField("assignee_code")
     private String assigneeCode;
 
     /**
-     * 经办人姓名
+     * 经办人姓�?
      */
     @TableField("assignee_name")
     private String assigneeName;
@@ -104,19 +104,19 @@ public class Issue extends BaseEntity {
     private Long reporterId;
 
     /**
-     * 报告人工号
+     * 报告人工�?
      */
     @TableField("reporter_code")
     private String reporterCode;
 
     /**
-     * 报告人姓名
+     * 报告人姓�?
      */
     @TableField("reporter_name")
     private String reporterName;
 
     /**
-     * 开始日期
+     * 开始日�?
      */
     @TableField("start_date")
     private LocalDate startDate;
@@ -146,19 +146,19 @@ public class Issue extends BaseEntity {
     private Integer progress;
 
     /**
-     * 父事项ID（用于子任务）
+     * 父事项ID（用于子任务�?
      */
     @TableField("parent_id")
     private Long parentId;
 
     /**
-     * 标签（JSON数组）
+     * 标签（JSON数组�?
      */
     @TableField("tags")
     private String tags;
 
     /**
-     * 排期信息（JSON格式）
+     * 排期信息（JSON格式�?
      * 存储格式：[{"role":"product","roleName":"产品","assigneeId":1,"estimatedHours":8,"dateRange":["2024-01-01","2024-01-05"]}]
      */
     @TableField("schedule")

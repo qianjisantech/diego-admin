@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * JWT工具类
+ * JWT工具�?
  * 用于生成和解析JWT token
  *
  * @author DCP Team
@@ -24,12 +24,12 @@ public class JwtUtil {
     private static final Logger log = LoggerFactory.getLogger(JwtUtil.class);
 
     /**
-     * JWT密钥（生产环境应该从配置文件读取，并保证足够长度）
+     * JWT密钥（生产环境应该从配置文件读取，并保证足够长度�?
      */
     private static final String SECRET_KEY = "dcp-admin-secret-key-for-jwt-token-generation-must-be-long-enough";
 
     /**
-     * token过期时间（7天，单位：毫秒）
+     * token过期时间�?天，单位：毫秒）
      */
     private static final long EXPIRATION_TIME = 7 * 24 * 60 * 60 * 1000;
 
@@ -39,7 +39,7 @@ public class JwtUtil {
     private static final String CLAIM_USER_ID = "userId";
 
     /**
-     * 用户名 claim key
+     * 用户�?claim key
      */
     private static final String CLAIM_USERNAME = "username";
 
@@ -59,7 +59,7 @@ public class JwtUtil {
      * 生成JWT token
      *
      * @param userId   用户ID
-     * @param username 用户名
+     * @param username 用户�?
      * @param nickname 昵称
      * @return JWT token
      */
@@ -122,7 +122,7 @@ public class JwtUtil {
      * 从token中获取用户名
      *
      * @param token JWT token
-     * @return 用户名
+     * @return 用户�?
      */
     public static String getUsername(String token) {
         Claims claims = parseToken(token);
@@ -130,7 +130,7 @@ public class JwtUtil {
     }
 
     /**
-     * 从token中获取昵称
+     * 从token中获取昵�?
      *
      * @param token JWT token
      * @return 昵称
@@ -144,7 +144,7 @@ public class JwtUtil {
      * 验证token是否过期
      *
      * @param token JWT token
-     * @return true-未过期，false-已过期
+     * @return true-未过期，false-已过�?
      */
     public static boolean isTokenValid(String token) {
         try {

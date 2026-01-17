@@ -17,7 +17,7 @@ public class LoginRequest {
      * 邮箱
      */
     @NotBlank(message = "邮箱不能为空")
-    @Email(message = "邮箱格式不正确")
+    @Email(message = "邮箱格式不正�?)
     private String email;
 
     /**
@@ -27,7 +27,7 @@ public class LoginRequest {
     private String password;
 
     /**
-     * 记住我
+     * 记住�?
      */
     private Boolean remember;
 

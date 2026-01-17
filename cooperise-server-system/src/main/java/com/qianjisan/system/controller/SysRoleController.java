@@ -18,7 +18,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 /**
- * 角色管理控制器
+ * 角色管理控制�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -98,7 +98,7 @@ public class SysRoleController {
         }
     }
 
-    @Operation(summary = "获取所有角色列表")
+    @Operation(summary = "获取所有角色列�?)
     @GetMapping("/list")
     public Result<List<SysRoleVO>> list() {
         try {

@@ -17,7 +17,7 @@ public interface IFeedbackLikeService extends IService<FeedbackLike> {
      *
      * @param feedbackId 反馈ID
      * @param userId 用户ID
-     * @return 是否已点赞
+     * @return 是否已点�?
      */
     boolean isLiked(Long feedbackId, Long userId);
 

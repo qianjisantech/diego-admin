@@ -6,7 +6,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * Department 请求体
+ * Department 请求�?
  */
 @Data
 public class DepartmentRequest implements Serializable {

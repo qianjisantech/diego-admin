@@ -28,17 +28,17 @@ public class SysBatchUpdateFieldConfigRequest {
         private Long id;
 
         /**
-         * 是否可见：1-是，0-否
+         * 是否可见�?-是，0-�?
          */
         private Integer isVisible;
 
         /**
-         * 是否必填：1-是，0-否
+         * 是否必填�?-是，0-�?
          */
         private Integer isRequired;
 
         /**
-         * 是否可编辑：1-是，0-否
+         * 是否可编辑：1-是，0-�?
          */
         private Integer isEditable;
     }

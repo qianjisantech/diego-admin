@@ -6,7 +6,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * Company 请求体
+ * Company 请求�?
  */
 @Data
 public class CompanyRequest implements Serializable {

@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public class UserVO extends BaseVO {
 
     /**
-     * 用户名
+     * 用户�?
      */
     private String username;
 
@@ -34,7 +34,7 @@ public class UserVO extends BaseVO {
     private String email;
 
     /**
-     * 手机号
+     * 手机�?
      */
     private String phone;
 
@@ -44,12 +44,12 @@ public class UserVO extends BaseVO {
     private String avatar;
 
     /**
-     * 状态：1-正常，0-禁用
+     * 状态：1-正常�?-禁用
      */
     private Integer status;
 
     /**
-     * 最后登录时间
+     * 最后登录时�?
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime lastLoginTime;

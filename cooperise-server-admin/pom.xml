@@ -11,24 +11,16 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>cooperise-server</artifactId>
-    <name>diego-server-admin</name>
+    <artifactId>cooperise-server-admin</artifactId>
+    <name>cooperise-server-admin</name>
     <description>系统管理员服务</description>
 
     <dependencies>
-        <!-- 依赖 core 模块 -->
-
-
-        <!-- 依赖 console 模块 -->
         <dependency>
             <groupId>com.qianjisan</groupId>
             <artifactId>cooperise-server-console</artifactId>
         </dependency>
-        <!-- 添加Spring Boot启动器 -->
 
-        <!-- Druid 数据源 -->
-
-        <!-- 依赖 enterprise 模块 -->
         <dependency>
             <groupId>com.qianjisan</groupId>
             <artifactId>cooperise-server-enterprise</artifactId>
@@ -37,15 +29,12 @@
             <groupId>com.qianjisan</groupId>
             <artifactId>cooperise-server-auth</artifactId>
         </dependency>
-        <!-- FastJSON2 -->
+
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>
             <artifactId>fastjson2</artifactId>
         </dependency>
 
-
-
-        <!-- Jackson Java 8 日期时间支持 -->
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
@@ -54,9 +43,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-
-        <!-- Knife4j API文档 -->
-
     </dependencies>
 
     <build>

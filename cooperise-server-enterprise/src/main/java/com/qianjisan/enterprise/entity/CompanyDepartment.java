@@ -9,7 +9,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 公司与部门关联实体
+ * 公司与部门关联实�?
  *
  * 对应表：company_department
  */

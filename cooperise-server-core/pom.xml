@@ -12,7 +12,7 @@
     </parent>
 
     <artifactId>cooperise-server-core</artifactId>
-    <name>diego-server-core</name>
+    <name>cooperise-server-core</name>
     <description>核心中间组件模块</description>
 
     <dependencies>
@@ -22,7 +22,8 @@
         </dependency>
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <version>3.0.3</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -61,7 +62,7 @@
         <!-- MyBatis Plus -->
         <dependency>
             <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>io.swagger.core.v3</groupId>

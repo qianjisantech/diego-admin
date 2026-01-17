@@ -8,8 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 用户上下文持有者
- * 使用ThreadLocal存储当前请求的用户信息
+ * 用户上下文持有�?
+ * 使用ThreadLocal存储当前请求的用户信�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -23,7 +23,7 @@ public class UserContextHolder {
     /**
      * 设置当前用户信息
      *
-     * @param userContext 用户上下文
+     * @param userContext 用户上下�?
      */
     public static void setUser(UserContext userContext) {
         CONTEXT_HOLDER.set(userContext);
@@ -33,7 +33,7 @@ public class UserContextHolder {
      * 设置当前用户信息
      *
      * @param userId   用户ID
-     * @param username 用户名
+     * @param username 用户�?
      * @param userCode
      */
     public static void setUser(Long userId, String username, String userCode) {
@@ -44,20 +44,20 @@ public class UserContextHolder {
     /**
      * 获取当前用户信息
      *
-     * @return 用户上下文
+     * @return 用户上下�?
      */
     public static UserContext getUser() {
         UserContext userContext = CONTEXT_HOLDER.get();
         System.out.println("获取当前用户信息:"+ userContext);
         if (userContext==null) {
-            throw new BusinessException("未登录或登录已过期");
+            throw new BusinessException("未登录或登录已过�?);
         }
         return userContext;
     }
 
     /**
-     * 获取当前用户信息（可能为 null）
-     * 不会抛出异常，供在权限放开或登录前的场景安全调用
+     * 获取当前用户信息（可能为 null�?
+     * 不会抛出异常，供在权限放开或登录前的场景安全调�?
      *
      * @return 用户上下文或 null
      */
@@ -73,21 +73,21 @@ public class UserContextHolder {
     public static Long getUserId() {
         UserContext userContext = getUser();
         if (userContext.getUserId()==null){
-            throw new BusinessException("未登录或登录已过期");
+            throw new BusinessException("未登录或登录已过�?);
         }
         return  userContext.getUserId();
     }
 
     /**
-     * 获取当前用户名
+     * 获取当前用户�?
      *
-     * @return 用户名
+     * @return 用户�?
      */
     public static String getUsername() {
         UserContext userContext = CONTEXT_HOLDER.get();
 
         if (StringUtils.isBlank(userContext.getUsername())){
-            throw new BusinessException("未登录或登录已过期");
+            throw new BusinessException("未登录或登录已过�?);
         }
         return userContext.getUsername();
     }
@@ -101,7 +101,7 @@ public class UserContextHolder {
         UserContext userContext = CONTEXT_HOLDER.get();
 
         if (StringUtils.isBlank(userContext.getUserCode())){
-            throw new BusinessException("未登录或登录已过期");
+            throw new BusinessException("未登录或登录已过�?);
         }
         return userContext.getUserCode() ;
     }

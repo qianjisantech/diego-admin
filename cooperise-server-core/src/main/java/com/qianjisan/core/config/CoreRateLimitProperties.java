@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 限流配置属性
+ * 限流配置属�?
  */
 @Data
 @Component
@@ -32,7 +32,7 @@ public class CoreRateLimitProperties {
 
     /**
      * 获取接口或自定义限流配置
-     * 如果不存在，则返回默认配置
+     * 如果不存在，则返回默认配�?
      */
     public LimitConfig getSpecialConfig(String key) {
         return api.getOrDefault(key, defaultConfig);
@@ -43,7 +43,7 @@ public class CoreRateLimitProperties {
      */
     @Data
     public static class LimitConfig {
-        /** 时间窗口（秒） */
+        /** 时间窗口（秒�?*/
         private Integer time;
         /** 窗口内最大请求数 */
         private Integer count;

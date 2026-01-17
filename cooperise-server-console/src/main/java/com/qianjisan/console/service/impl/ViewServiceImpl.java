@@ -27,7 +27,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * WorkspaceView服务实现类
+ * WorkspaceView服务实现�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -41,7 +41,7 @@ public class ViewServiceImpl extends ServiceImpl<ViewMapper, View> implements IV
 
     @Override
     public ViewVO createView(ViewRequest request, Long userId) {
-        log.info("[创建视图] 接收到请求: {}", request);
+        log.info("[创建视图] 接收到请�? {}", request);
         // 参数校验
         if (!StringUtils.hasText(request.getName())) {
             throw new RuntimeException("视图名称不能为空");
@@ -49,7 +49,7 @@ public class ViewServiceImpl extends ServiceImpl<ViewMapper, View> implements IV
         if (!StringUtils.hasText(request.getType())) {
             throw new RuntimeException("视图类型不能为空");
         }
-        // 将 Request 转换为 Entity
+        // �?Request 转换�?Entity
         View entity = new View();
         entity.setName(request.getName());
         entity.setDescription(request.getDescription());
@@ -59,7 +59,7 @@ public class ViewServiceImpl extends ServiceImpl<ViewMapper, View> implements IV
         entity.setFolderId(request.getFolderId());
         entity.setConfig(request.getConfig());
         entity.setSortOrder(request.getSortOrder());
-        // 设置默认值
+        // 设置默认�?
         if (userId != null) {
             entity.setOwnerId(userId);
             log.info("[创建视图] 设置创建者ID: {}", userId);
@@ -70,7 +70,7 @@ public class ViewServiceImpl extends ServiceImpl<ViewMapper, View> implements IV
         if (entity.getSortOrder() == null) {
             entity.setSortOrder(0);
         }
-        // config 字段如果为 null，设置为空 JSON 字符串
+        // config 字段如果�?null，设置为�?JSON 字符�?
         if (entity.getConfig() == null) {
             entity.setConfig("{}");
         }
@@ -90,12 +90,12 @@ public class ViewServiceImpl extends ServiceImpl<ViewMapper, View> implements IV
         if (!StringUtils.hasText(request.getType())) {
             throw new RuntimeException("视图类型不能为空");
         }
-        // 检查视图是否存在
+        // 检查视图是否存�?
         View existView = this.getById(id);
         if (existView == null) {
-            throw new RuntimeException("视图不存在");
+            throw new RuntimeException("视图不存�?);
         }
-        // 将 Request 转换为 Entity
+        // �?Request 转换�?Entity
         View entity = new View();
         entity.setId(id);
         entity.setName(request.getName());
@@ -114,10 +114,10 @@ public class ViewServiceImpl extends ServiceImpl<ViewMapper, View> implements IV
     @Override
     public void deleteView(Long id) {
         log.info("[删除视图] ID: {}", id);
-        // 检查视图是否存在
+        // 检查视图是否存�?
         View view = this.getById(id);
         if (view == null) {
-            throw new RuntimeException("视图不存在");
+            throw new RuntimeException("视图不存�?);
         }
         this.removeById(id);
         log.info("[删除视图] 成功");
@@ -128,7 +128,7 @@ public class ViewServiceImpl extends ServiceImpl<ViewMapper, View> implements IV
         log.info("[查询视图] ID: {}", id);
         View entity = this.getById(id);
         if (entity == null) {
-            throw new RuntimeException("视图不存在");
+            throw new RuntimeException("视图不存�?);
         }
         return convertToVO(entity);
     }
@@ -136,7 +136,7 @@ public class ViewServiceImpl extends ServiceImpl<ViewMapper, View> implements IV
     @Override
     public List<ViewTreeNodeVO> getViewTreeList(Long userId) {
         log.info("[查询视图树形列表] 开始，当前用户ID: {}", userId);
-        // 1. 查询所有文件夹（按排序顺序）
+        // 1. 查询所有文件夹（按排序顺序�?
         LambdaQueryWrapper<ViewFolder> folderWrapper = new LambdaQueryWrapper<>();
         if (userId != null) {
             folderWrapper.eq(ViewFolder::getOwnerId, userId);
@@ -144,7 +144,7 @@ public class ViewServiceImpl extends ServiceImpl<ViewMapper, View> implements IV
         folderWrapper.orderByAsc(ViewFolder::getSortOrder)
                     .orderByDesc(ViewFolder::getCreateTime);
         List<ViewFolder> folders = workspaceViewFolderService.list(folderWrapper);
-        log.info("[查询视图树形列表] 查询到 {} 个文件夹", folders.size());
+        log.info("[查询视图树形列表] 查询�?{} 个文件夹", folders.size());
         // 2. 查询所有视图（按排序顺序）
         LambdaQueryWrapper<View> viewWrapper = new LambdaQueryWrapper<>();
         if (userId != null) {
@@ -157,7 +157,7 @@ public class ViewServiceImpl extends ServiceImpl<ViewMapper, View> implements IV
         viewWrapper.orderByAsc(View::getSortOrder)
                    .orderByDesc(View::getCreateTime);
         List<View> views = this.list(viewWrapper);
-        log.info("[查询视图树形列表] 查询到 {} 个视图", views.size());
+        log.info("[查询视图树形列表] 查询�?{} 个视�?, views.size());
         // 3. 构建树形结构
         List<ViewTreeNodeVO> treeList = buildViewTree(folders, views);
         log.info("[查询视图树形列表] 成功，共 {} 个根节点", treeList.size());
@@ -193,8 +193,8 @@ public class ViewServiceImpl extends ServiceImpl<ViewMapper, View> implements IV
         }
         queryWrapper.orderByDesc(View::getCreateTime);
         page = this.page(page, queryWrapper);
-        log.info("[分页查询视图] 成功，共 {} 条", page.getTotal());
-        // 转换为 ViewPageVO
+        log.info("[分页查询视图] 成功，共 {} �?, page.getTotal());
+        // 转换�?ViewPageVO
         Page<ViewPageVO> voPage = new Page<>(page.getCurrent(), page.getSize(), page.getTotal());
         List<ViewPageVO> voList = page.getRecords().stream()
             .map(this::convertToPageVO)
@@ -221,17 +221,17 @@ public class ViewServiceImpl extends ServiceImpl<ViewMapper, View> implements IV
         List<ViewTreeNodeVO> folderNodes = folders.stream()
             .map(this::convertFolderToNode)
             .collect(Collectors.toList());
-        // 2. 将所有视图转换为树节点
+        // 2. 将所有视图转换为树节�?
         List<ViewTreeNodeVO> viewNodes = views.stream()
             .map(this::convertViewToNode)
             .collect(Collectors.toList());
-        // 3. 按 folderId 分组视图
+        // 3. �?folderId 分组视图
         Map<Long, List<ViewTreeNodeVO>> viewsByFolder = viewNodes.stream()
             .filter(node -> node.getFolderId() != null)
             .collect(Collectors.groupingBy(ViewTreeNodeVO::getFolderId));
-        // 4. 构建文件夹树结构并添加视图
+        // 4. 构建文件夹树结构并添加视�?
         for (ViewTreeNodeVO folderNode : folderNodes) {
-            // 4.1 如果是根文件夹（parentId 为 null），添加到结果
+            // 4.1 如果是根文件夹（parentId �?null），添加到结�?
             if (folderNode.getParentId() == null) {
                 result.add(folderNode);
             }
@@ -244,7 +244,7 @@ public class ViewServiceImpl extends ServiceImpl<ViewMapper, View> implements IV
                 folderNode.getChildren().addAll(folderViews);
             }
         }
-        // 5. 处理子文件夹（如果支持嵌套文件夹）
+        // 5. 处理子文件夹（如果支持嵌套文件夹�?
         Map<Long, List<ViewTreeNodeVO>> foldersByParent = folderNodes.stream()
             .filter(node -> node.getParentId() != null)
             .collect(Collectors.groupingBy(ViewTreeNodeVO::getParentId));
@@ -257,7 +257,7 @@ public class ViewServiceImpl extends ServiceImpl<ViewMapper, View> implements IV
                 folderNode.getChildren().addAll(0, childFolders);
             }
         }
-        // 6. 添加根级视图（folderId 为 null 的视图）
+        // 6. 添加根级视图（folderId �?null 的视图）
         List<ViewTreeNodeVO> rootViews = viewNodes.stream()
             .filter(node -> node.getFolderId() == null)
             .collect(Collectors.toList());
@@ -283,7 +283,7 @@ public class ViewServiceImpl extends ServiceImpl<ViewMapper, View> implements IV
     }
 
     /**
-     * 将视图实体转换为树节点
+     * 将视图实体转换为树节�?
      */
     private ViewTreeNodeVO convertViewToNode(View view) {
         ViewTreeNodeVO node = new ViewTreeNodeVO();
@@ -304,7 +304,7 @@ public class ViewServiceImpl extends ServiceImpl<ViewMapper, View> implements IV
     }
 
     /**
-     * 将 View 实体转换为 ViewVO
+     * �?View 实体转换�?ViewVO
      */
     private ViewVO convertToVO(View view) {
         if (view == null) {
@@ -327,7 +327,7 @@ public class ViewServiceImpl extends ServiceImpl<ViewMapper, View> implements IV
     }
 
     /**
-     * 将 View 实体转换为 ViewPageVO
+     * �?View 实体转换�?ViewPageVO
      */
     private ViewPageVO convertToPageVO(View view) {
         if (view == null) {

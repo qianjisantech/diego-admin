@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 /**
- * UserSettings服务实现类
+ * UserSettings服务实现�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -37,7 +37,7 @@ public class UserSettingsServiceImpl extends ServiceImpl<UserSettingsMapper, Sys
         }
         queryWrapper.orderByDesc(SysUserSettings::getUpdateTime);
         page = this.page(page, queryWrapper);
-        log.info("[分页查询用户设置] 成功，共 {} 条", page.getTotal());
+        log.info("[分页查询用户设置] 成功，共 {} �?, page.getTotal());
         return page;
     }
 }

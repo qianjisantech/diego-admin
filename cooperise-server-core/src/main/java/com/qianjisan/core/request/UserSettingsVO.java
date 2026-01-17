@@ -35,17 +35,17 @@ public class UserSettingsVO extends BaseVO {
     private String timezone;
 
     /**
-     * 邮件通知：1-开启，0-关闭
+     * 邮件通知�?-开启，0-关闭
      */
     private Integer notificationEmail;
 
     /**
-     * 系统通知：1-开启，0-关闭
+     * 系统通知�?-开启，0-关闭
      */
     private Integer notificationSystem;
 
     /**
-     * 双重认证：1-开启，0-关闭
+     * 双重认证�?-开启，0-关闭
      */
     private Integer twoFactorEnabled;
 }

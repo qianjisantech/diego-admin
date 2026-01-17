@@ -12,7 +12,7 @@
     </parent>
 
     <artifactId>cooperise-server-console</artifactId>
-    <name>diego-server-console</name>
+    <name>cooperise-server-console</name>
     <description>应用启动服务-管理各种模块</description>
 
     <dependencies>

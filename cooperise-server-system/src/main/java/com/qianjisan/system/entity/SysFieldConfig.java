@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 字段配置实体类（用于控制表单字段的显示和必填）
+ * 字段配置实体类（用于控制表单字段的显示和必填�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -32,7 +32,7 @@ public class SysFieldConfig extends BaseEntity {
     private String moduleCode;
 
     /**
-     * 字段编码，如：summary-概要，priority-优先级
+     * 字段编码，如：summary-概要，priority-优先�?
      */
     @TableField("field_code")
     private String fieldCode;
@@ -44,25 +44,25 @@ public class SysFieldConfig extends BaseEntity {
     private String fieldName;
 
     /**
-     * 字段类型：input-输入框，select-下拉框，textarea-文本域，date-日期等
+     * 字段类型：input-输入框，select-下拉框，textarea-文本域，date-日期�?
      */
     @TableField("field_type")
     private String fieldType;
 
     /**
-     * 是否可见：1-是，0-否
+     * 是否可见�?-是，0-�?
      */
     @TableField("is_visible")
     private Integer isVisible;
 
     /**
-     * 是否必填：1-是，0-否
+     * 是否必填�?-是，0-�?
      */
     @TableField("is_required")
     private Integer isRequired;
 
     /**
-     * 是否可编辑：1-是，0-否
+     * 是否可编辑：1-是，0-�?
      */
     @TableField("is_editable")
     private Integer isEditable;
@@ -74,13 +74,13 @@ public class SysFieldConfig extends BaseEntity {
     private Integer sortOrder;
 
     /**
-     * 默认值
+     * 默认�?
      */
     @TableField("default_value")
     private String defaultValue;
 
     /**
-     * 验证规则（JSON格式）
+     * 验证规则（JSON格式�?
      */
     @TableField("validation_rule")
     private String validationRule;
@@ -92,7 +92,7 @@ public class SysFieldConfig extends BaseEntity {
     private String options;
 
     /**
-     * 占位符
+     * 占位�?
      */
     @TableField("placeholder")
     private String placeholder;
@@ -104,7 +104,7 @@ public class SysFieldConfig extends BaseEntity {
     private String description;
 
     /**
-     * 状态：1-启用，0-禁用
+     * 状态：1-启用�?-禁用
      */
     @TableField("status")
     private Integer status;

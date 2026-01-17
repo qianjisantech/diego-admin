@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 系统配置实体类
+ * 系统配置实体�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -26,13 +26,13 @@ public class SysConfig extends BaseEntity {
     private Long id;
 
     /**
-     * 配置键
+     * 配置�?
      */
     @TableField("config_key")
     private String configKey;
 
     /**
-     * 配置值
+     * 配置�?
      */
     @TableField("config_value")
     private String configValue;
@@ -62,13 +62,13 @@ public class SysConfig extends BaseEntity {
     private String description;
 
     /**
-     * 是否系统内置：1-是，0-否
+     * 是否系统内置�?-是，0-�?
      */
     @TableField("is_system")
     private Integer isSystem;
 
     /**
-     * 状态：1-启用，0-禁用
+     * 状态：1-启用�?-禁用
      */
     @TableField("status")
     private Integer status;

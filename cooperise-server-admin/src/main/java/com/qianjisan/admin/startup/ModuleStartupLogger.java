@@ -12,7 +12,7 @@ import java.util.Map;
 
 
 /**
- * 在应用启动完成后打印各模块加载情况（检测每个模块是否有加载的 Bean）
+ * 在应用启动完成后打印各模块加载情况（检测每个模块是否有加载�?Bean�?
  */
 @Slf4j
 @Component
@@ -25,7 +25,7 @@ public class ModuleStartupLogger implements ApplicationListener<ApplicationReady
 
     private static Map<String, String> createModuleMap() {
         Map<String, String> map = new LinkedHashMap<>();
-        // 这里列出工程中主要模块对应的包名前缀，用于检测是否加载
+        // 这里列出工程中主要模块对应的包名前缀，用于检测是否加�?
         map.put("admin", "com.qianjisan.admin");
         map.put("core", "com.qianjisan.core");
         map.put("common", "com.qianjisan.common");
@@ -68,11 +68,11 @@ public class ModuleStartupLogger implements ApplicationListener<ApplicationReady
 
         for (Map.Entry<String, Integer> entry : moduleCounts.entrySet()) {
             if (entry.getValue() > 0) {
-                String msg = String.format("模块 [%s] 加载成功，Bean 数: %d", entry.getKey(), entry.getValue());
+                String msg = String.format("模块 [%s] 加载成功，Bean �? %d", entry.getKey(), entry.getValue());
                 sb.append(msg).append("\n");
                 log.info(msg);
             } else {
-                String msg = String.format("模块 [%s] 未检测到加载的 Bean", entry.getKey());
+                String msg = String.format("模块 [%s] 未检测到加载�?Bean", entry.getKey());
                 sb.append(msg).append("\n");
                 log.warn(msg);
             }

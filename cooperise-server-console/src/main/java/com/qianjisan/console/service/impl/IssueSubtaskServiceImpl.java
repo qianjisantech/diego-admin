@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 /**
- * WorkspaceSubtask服务实现类
+ * WorkspaceSubtask服务实现�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -37,7 +37,7 @@ public class IssueSubtaskServiceImpl extends ServiceImpl<IssueSubtaskMapper, Iss
         }
         queryWrapper.orderByDesc(IssueSubtask::getCreateTime);
         page = this.page(page, queryWrapper);
-        log.info("[分页查询子任务管理] 成功，共 {} 条", page.getTotal());
+        log.info("[分页查询子任务管理] 成功，共 {} �?, page.getTotal());
         return page;
     }
 }

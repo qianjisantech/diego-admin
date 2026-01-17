@@ -23,7 +23,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 /**
- * Feedback服务实现类
+ * Feedback服务实现�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -57,17 +57,17 @@ public class FeedbackServiceImpl extends ServiceImpl<FeedbackMapper, Feedback> i
     public Feedback updateFeedback(Long id, Feedback entity) {
         log.info("[更新反馈] ID: {}, 请求参数: {}", id, entity);
 
-        // 检查反馈是否存在
+        // 检查反馈是否存�?
         Feedback existFeedback = this.getById(id);
         if (existFeedback == null) {
-            throw new RuntimeException("反馈不存在");
+            throw new RuntimeException("反馈不存�?);
         }
 
         // 检查状态是否从1变成2
         // TODO: 需要实现邮件服务和用户服务
         // Integer oldStatus = existFeedback.getStatus();
         // Integer newStatus = entity.getStatus();
-        // 只有当status从1（待处理）变成2（已关闭）时才发送邮件通知
+        // 只有当status�?（待处理）变�?（已关闭）时才发送邮件通知
         // boolean statusChangedFrom1To2 = (oldStatus != null && oldStatus == 1
         //         && newStatus != null && newStatus == 2);
 
@@ -79,7 +79,7 @@ public class FeedbackServiceImpl extends ServiceImpl<FeedbackMapper, Feedback> i
         // TODO: 需要实现邮件服务和用户服务
         // if (statusChangedFrom1To2 && existFeedback.getSubmitterId() != null) {
         //     try {
-        //         // 获取创建人信息
+        //         // 获取创建人信�?
         //         SysUser submitter = sysUserService.getById(existFeedback.getSubmitterId());
         //         if (submitter != null && StringUtils.hasText(submitter.getEmail())) {
         //             // 异步发送邮件通知
@@ -95,7 +95,7 @@ public class FeedbackServiceImpl extends ServiceImpl<FeedbackMapper, Feedback> i
         //             log.warn("[更新反馈] 创建人邮箱为空，无法发送邮件通知，创建人ID: {}", existFeedback.getSubmitterId());
         //         }
         //     } catch (Exception e) {
-        //         // 邮件发送失败不影响主流程，只记录日志
+        //         // 邮件发送失败不影响主流程，只记录日�?
         //         log.error("[更新反馈] 发送状态变更邮件通知失败，反馈ID: {}, 错误: {}", id, e.getMessage(), e);
         //     }
         // }
@@ -106,10 +106,10 @@ public class FeedbackServiceImpl extends ServiceImpl<FeedbackMapper, Feedback> i
     @Override
     public void deleteFeedback(Long id) {
         log.info("[删除反馈] ID: {}", id);
-        // 检查反馈是否存在
+        // 检查反馈是否存�?
         Feedback feedback = this.getById(id);
         if (feedback == null) {
-            throw new RuntimeException("反馈不存在");
+            throw new RuntimeException("反馈不存�?);
         }
         this.removeById(id);
         log.info("[删除反馈] 成功");
@@ -120,7 +120,7 @@ public class FeedbackServiceImpl extends ServiceImpl<FeedbackMapper, Feedback> i
         log.info("[查询反馈] ID: {}", id);
         Feedback entity = this.getById(id);
         if (entity == null) {
-            throw new RuntimeException("反馈不存在");
+            throw new RuntimeException("反馈不存�?);
         }
         return entity;
     }
@@ -129,7 +129,7 @@ public class FeedbackServiceImpl extends ServiceImpl<FeedbackMapper, Feedback> i
     public List<FeedbackVO> listFeedbackWithDetails(Long currentUserId) {
         log.info("[查询反馈列表]");
         List<Feedback> list = this.list();
-        // 转换为 VO 并添加评论数、点赞数和点赞状态
+        // 转换�?VO 并添加评论数、点赞数和点赞状�?
         return list.stream()
                 .map(feedback -> convertToVO(feedback, currentUserId))
                 .collect(Collectors.toList());
@@ -169,14 +169,14 @@ public class FeedbackServiceImpl extends ServiceImpl<FeedbackMapper, Feedback> i
 
         page = this.page(page, queryWrapper);
 
-        // 转换为 VO Page 并添加评论数、点赞数和点赞状态
+        // 转换�?VO Page 并添加评论数、点赞数和点赞状�?
         FeedbackPageVo<FeedbackVO> voPage = new FeedbackPageVo<>(page.getCurrent(), page.getSize(), page.getTotal());
         List<FeedbackVO> voList = page.getRecords().stream()
                 .map(feedback -> convertToVO(feedback, currentUserId))
                 .collect(Collectors.toList());
         voPage.setRecords(voList);
 
-        // 计算统计信息：基于相同的查询条件（排除status条件）
+        // 计算统计信息：基于相同的查询条件（排除status条件�?
         // 构建基础查询条件的Supplier（用于统计）
         Supplier<LambdaQueryWrapper<Feedback>> buildBaseWrapper = () -> {
             LambdaQueryWrapper<Feedback> wrapper = new LambdaQueryWrapper<>();
@@ -207,19 +207,19 @@ public class FeedbackServiceImpl extends ServiceImpl<FeedbackMapper, Feedback> i
         long all = this.count(allWrapper);
         voPage.setAll(all);
 
-        // 统计已关闭数量（status=2）
+        // 统计已关闭数量（status=2�?
         LambdaQueryWrapper<Feedback> closedWrapper = buildBaseWrapper.get();
         closedWrapper.eq(Feedback::getStatus, 2);
         long closed = this.count(closedWrapper);
         voPage.setClosed(closed);
 
-        // 统计打开数量（status=1）
+        // 统计打开数量（status=1�?
         LambdaQueryWrapper<Feedback> openedWrapper = buildBaseWrapper.get();
         openedWrapper.eq(Feedback::getStatus, 1);
         long opened = this.count(openedWrapper);
         voPage.setOpened(opened);
        voPage.setPages(page.getPages());
-        log.info("[分页查询反馈] 成功，共 {} 条，全部: {}, 已关闭: {}, 打开: {}", 
+        log.info("[分页查询反馈] 成功，共 {} 条，全部: {}, 已关�? {}, 打开: {}", 
                 voPage.getTotal(), all, closed, opened);
         return voPage;
     }
@@ -227,10 +227,10 @@ public class FeedbackServiceImpl extends ServiceImpl<FeedbackMapper, Feedback> i
     @Override
     public void likeFeedback(Long id, Long userId) {
         log.info("[点赞反馈] 反馈ID: {}", id);
-        // 检查反馈是否存在
+        // 检查反馈是否存�?
         Feedback feedback = this.getById(id);
         if (feedback == null) {
-            throw new RuntimeException("反馈不存在");
+            throw new RuntimeException("反馈不存�?);
         }
         boolean success = feedbackLikeService.likeFeedback(id, userId);
         if (!success) {
@@ -242,10 +242,10 @@ public class FeedbackServiceImpl extends ServiceImpl<FeedbackMapper, Feedback> i
     @Override
     public void unlikeFeedback(Long id, Long userId) {
         log.info("[取消点赞反馈] 反馈ID: {}", id);
-        // 检查反馈是否存在
+        // 检查反馈是否存�?
         Feedback feedback = this.getById(id);
         if (feedback == null) {
-            throw new RuntimeException("反馈不存在");
+            throw new RuntimeException("反馈不存�?);
         }
         boolean success = feedbackLikeService.unlikeFeedback(id, userId);
         if (!success) {
@@ -257,27 +257,27 @@ public class FeedbackServiceImpl extends ServiceImpl<FeedbackMapper, Feedback> i
     @Override
     public List<FeedbackComment> getFeedbackComments(Long id) {
         log.info("[获取反馈评论列表] 反馈ID: {}", id);
-        // 检查反馈是否存在
+        // 检查反馈是否存�?
         Feedback feedback = this.getById(id);
         if (feedback == null) {
-            throw new RuntimeException("反馈不存在");
+            throw new RuntimeException("反馈不存�?);
         }
         List<FeedbackComment> comments = feedbackCommentService.list(
                 new LambdaQueryWrapper<FeedbackComment>()
                         .eq(FeedbackComment::getFeedbackId, id)
                         .orderByDesc(FeedbackComment::getCreateTime)
         );
-        log.info("[获取反馈评论列表] 成功，共 {} 条", comments.size());
+        log.info("[获取反馈评论列表] 成功，共 {} �?, comments.size());
         return comments;
     }
 
     @Override
     public FeedbackComment addFeedbackComment(Long feedbackId, FeedbackComment comment, Long userId) {
         log.info("[添加反馈评论] 反馈ID: {}, 评论内容: {}", feedbackId, comment.getContent());
-        // 检查反馈是否存在
+        // 检查反馈是否存�?
         Feedback feedback = this.getById(feedbackId);
         if (feedback == null) {
-            throw new RuntimeException("反馈不存在");
+            throw new RuntimeException("反馈不存�?);
         }
         // 参数校验
         if (!StringUtils.hasText(comment.getContent())) {
@@ -293,10 +293,10 @@ public class FeedbackServiceImpl extends ServiceImpl<FeedbackMapper, Feedback> i
     @Override
     public void deleteFeedbackComment(Long feedbackId, Long commentId) {
         log.info("[删除反馈评论] 反馈ID: {}, 评论ID: {}", feedbackId, commentId);
-        // 检查评论是否存在
+        // 检查评论是否存�?
         FeedbackComment comment = feedbackCommentService.getById(commentId);
         if (comment == null) {
-            throw new RuntimeException("评论不存在");
+            throw new RuntimeException("评论不存�?);
         }
         // 检查评论是否属于该反馈
         if (!comment.getFeedbackId().equals(feedbackId)) {
@@ -307,12 +307,12 @@ public class FeedbackServiceImpl extends ServiceImpl<FeedbackMapper, Feedback> i
     }
 
     /**
-     * 转换为VO并添加评论数、点赞数和点赞状态
+     * 转换为VO并添加评论数、点赞数和点赞状�?
      */
     private FeedbackVO convertToVO(Feedback feedback, Long currentUserId) {
         FeedbackVO vo = new FeedbackVO();
         BeanUtils.copyProperties(feedback, vo);
-        // 统计评论数
+        // 统计评论�?
         Integer commentCount = Math.toIntExact(feedbackCommentService.count(
                 new LambdaQueryWrapper<FeedbackComment>()
                         .eq(FeedbackComment::getFeedbackId, feedback.getId())
@@ -320,9 +320,9 @@ public class FeedbackServiceImpl extends ServiceImpl<FeedbackMapper, Feedback> i
         vo.setComments(commentCount);
         vo.setCreatedBy(feedback.getCreateByName());
         vo.setUpdatedBy(feedback.getUpdateByName());
-        // 设置点赞数
+        // 设置点赞�?
         vo.setLikes(feedback.getLikes() != null ? feedback.getLikes() : 0);
-        // 设置当前用户是否已点赞
+        // 设置当前用户是否已点�?
         vo.setLiked(feedbackLikeService.isLiked(feedback.getId(), currentUserId));
         return vo;
     }

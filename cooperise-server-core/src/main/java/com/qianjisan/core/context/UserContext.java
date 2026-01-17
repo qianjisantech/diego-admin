@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 用户上下文信息
+ * 用户上下文信�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -21,7 +21,7 @@ public class UserContext {
     private Long userId;
 
     /**
-     * 用户名
+     * 用户�?
      */
     private String username;
 

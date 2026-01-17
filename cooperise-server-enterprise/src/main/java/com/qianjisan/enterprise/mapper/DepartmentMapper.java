@@ -5,7 +5,7 @@ import com.qianjisan.enterprise.entity.Department;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 部门表 Mapper
+ * 部门�?Mapper
  */
 @Mapper
 public interface DepartmentMapper extends BaseMapper<Department> {

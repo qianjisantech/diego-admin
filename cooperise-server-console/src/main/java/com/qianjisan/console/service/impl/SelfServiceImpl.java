@@ -70,7 +70,7 @@ public class SelfServiceImpl implements ISelfService {
     public void selfCreateCompany(SelfCompanyRequest request) {
         Company company = new Company();
 
-        // 使用雪花ID生成器生成企业代码，确保唯一性
+        // 使用雪花ID生成器生成企业代码，确保唯一�?
         String companyCode = String.valueOf(SnowflakeIdGenerator.generateId());
         company.setCompanyCode(companyCode);
         company.setCompanyName(request.getCompanyName());
@@ -86,11 +86,11 @@ public class SelfServiceImpl implements ISelfService {
             throw new BusinessException("用户未登录，无法创建企业");
         }
 
-        // 由于数据库外键约束错误地指向了department表，这里我们通过代码验证用户存在性
-        // 正常情况下应该直接通过外键约束保证数据完整性
+        // 由于数据库外键约束错误地指向了department表，这里我们通过代码验证用户存在�?
+        // 正常情况下应该直接通过外键约束保证数据完整�?
         try {
             // 这里可以添加用户存在性验证逻辑
-            // 暂时注释掉，因为在权限放开模式下可能会有问题
+            // 暂时注释掉，因为在权限放开模式下可能会有问�?
             // SysUser user = userService.getById(currentUserId);
             // if (user == null) {
             //     throw new BusinessException("用户不存在，无法创建企业");
@@ -104,23 +104,23 @@ public class SelfServiceImpl implements ISelfService {
         UserCompany userCompany = new UserCompany();
         userCompany.setCompanyId(company.getId());
         userCompany.setUserId(currentUserId);
-        userCompany.setIsDefault(1); // 设置为默认企业
+        userCompany.setIsDefault(1); // 设置为默认企�?
 
         try {
             userCompanyMapper.insert(userCompany);   //新增用户和公司的关联关系
             log.info("成功创建用户企业关联: userId={}, companyId={}", currentUserId, company.getId());
 
-            this.setCompanyActive(userCompany.getCompanyId());   //用户创建企业成功后 需要把当前的新的企业设置为当前选择的企业
+            this.setCompanyActive(userCompany.getCompanyId());   //用户创建企业成功�?需要把当前的新的企业设置为当前选择的企�?
 
         } catch (Exception e) {
             log.error("创建用户企业关联失败: userId={}, companyId={}, error={}", currentUserId, company.getId(), e.getMessage());
-            // 如果是外键约束问题，在权限放开模式下可以选择忽略或重新抛出异常
+            // 如果是外键约束问题，在权限放开模式下可以选择忽略或重新抛出异�?
             if (e.getMessage() != null && e.getMessage().contains("foreign key constraint")) {
-                log.warn("检测到外键约束问题，但继续执行（权限放开模式）");
+                log.warn("检测到外键约束问题，但继续执行（权限放开模式�?);
                 // 可以选择不抛出异常，继续执行
-                // throw new BusinessException("数据库外键约束错误，请联系管理员修复数据库结构");
+                // throw new BusinessException("数据库外键约束错误，请联系管理员修复数据库结�?);
             } else {
-                throw e; // 重新抛出其他类型的异常
+                throw e; // 重新抛出其他类型的异�?
             }
         }
 

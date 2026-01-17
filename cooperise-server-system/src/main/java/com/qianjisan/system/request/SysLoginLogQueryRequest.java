@@ -25,12 +25,12 @@ public class SysLoginLogQueryRequest extends PageRequest {
     private String loginIp;
 
     /**
-     * 状态：1-成功，0-失败
+     * 状态：1-成功�?-失败
      */
     private Integer status;
 
     /**
-     * 搜索关键词（匹配登录IP、操作系统、浏览器）
+     * 搜索关键词（匹配登录IP、操作系统、浏览器�?
      */
     private String keyword;
 }

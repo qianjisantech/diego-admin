@@ -42,7 +42,7 @@ public interface ISysRoleService extends IService<SysRole> {
     Page<SysRoleVO> queryPage(SysRoleQueryRequest request);
 
     /**
-     * 获取所有角色列表
+     * 获取所有角色列�?
      *
      * @return 角色列表
      */

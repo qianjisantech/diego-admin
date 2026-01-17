@@ -12,8 +12,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 /**
- * JWT拦截器
- * 用于解析请求头中的JWT token，并设置用户上下文信息
+ * JWT拦截�?
+ * 用于解析请求头中的JWT token，并设置用户上下文信�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -38,21 +38,21 @@ public class JwtInterceptor implements HandlerInterceptor {
         String authHeader = request.getHeader(AUTHORIZATION_HEADER);
 
         if (StringUtils.hasText(authHeader) && authHeader.startsWith(BEARER_PREFIX)) {
-            // 提取token（去掉"Bearer "前缀）
+            // 提取token（去�?Bearer "前缀�?
             String token = authHeader.substring(BEARER_PREFIX.length());
 
             try {
                 // 验证token是否有效
                 if (JwtUtil.isTokenValid(token)) {
-                    // 解析token，获取用户信息
+                    // 解析token，获取用户信�?
                     Long userId = JwtUtil.getUserId(token);
                     String username = JwtUtil.getUsername(token);
                     String nickname = JwtUtil.getNickname(token);
 
-                    // 设置用户上下文
+                    // 设置用户上下�?
                     UserContextHolder.setUser(userId, username, nickname);
 
-                    log.debug("JWT token解析成功，用户ID: {}, 用户名: {}, 昵称: {}", userId, username, nickname);
+                    log.debug("JWT token解析成功，用户ID: {}, 用户�? {}, 昵称: {}", userId, username, nickname);
                 } else {
                     log.warn("JWT token已过期或无效");
                 }
@@ -67,7 +67,7 @@ public class JwtInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-        // 请求完成后清除用户上下文，防止内存泄漏
+        // 请求完成后清除用户上下文，防止内存泄�?
         UserContextHolder.clear();
     }
 }

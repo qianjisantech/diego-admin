@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
 public class ViewFolderVO extends BaseVO {
 
     /**
-     * 文件夹名称
+     * 文件夹名�?
      */
     private String name;
 
@@ -25,12 +25,12 @@ public class ViewFolderVO extends BaseVO {
     private Long ownerId;
 
     /**
-     * 创建者工号
+     * 创建者工�?
      */
     private String ownerCode;
 
     /**
-     * 创建者姓名
+     * 创建者姓�?
      */
     private String ownerName;
 

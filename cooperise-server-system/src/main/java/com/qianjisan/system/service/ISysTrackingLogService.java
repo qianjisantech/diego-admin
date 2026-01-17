@@ -49,7 +49,7 @@ public interface ISysTrackingLogService extends IService<SysTrackingLog> {
     List<EventTypeStatisticsVO> statisticsByEventType(TrackingReportQueryRequest request);
 
     /**
-     * 统计用户活跃量
+     * 统计用户活跃�?
      *
      * @param request 查询条件
      * @return 统计结果

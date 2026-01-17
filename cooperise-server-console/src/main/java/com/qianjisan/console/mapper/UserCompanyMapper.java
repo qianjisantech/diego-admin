@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 /**
- * 用户-企业关联表 Mapper 接口
+ * 用户-企业关联�?Mapper 接口
  *
  * 根据SQL表结构自动生成：
  * CREATE TABLE `user_company` (

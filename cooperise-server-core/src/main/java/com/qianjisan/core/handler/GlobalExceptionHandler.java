@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.stream.Collectors;
 
 /**
- * 全局异常处理器
+ * 全局异常处理�?
  * 统一处理系统中的各类异常，并返回标准化的响应格式
  *
  * @author DCP Team
@@ -129,7 +129,7 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     * 处理空指针异常
+     * 处理空指针异�?
      */
     @ExceptionHandler(NullPointerException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -139,11 +139,11 @@ public class GlobalExceptionHandler {
 
         log.error("[空指针异常] {} {} - {}", method, requestUri, e.getMessage(), e);
 
-        return Result.error("系统内部错误，请联系管理员");
+        return Result.error("系统内部错误，请联系管理�?);
     }
 
     /**
-     * 处理所有未捕获的异常
+     * 处理所有未捕获的异�?
      * 这是兜底异常处理，确保所有异常都能被捕获并返回统一格式
      */
     @ExceptionHandler(Exception.class)
@@ -171,7 +171,7 @@ public class GlobalExceptionHandler {
         if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getRemoteAddr();
         }
-        // 处理多级反向代理的情况
+        // 处理多级反向代理的情�?
         if (ip != null && ip.contains(",")) {
             ip = ip.split(",")[0].trim();
         }

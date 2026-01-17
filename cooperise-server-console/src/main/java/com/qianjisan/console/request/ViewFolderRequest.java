@@ -8,7 +8,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 /**
- * 视图文件夹创建/更新请求
+ * 视图文件夹创�?更新请求
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -20,10 +20,10 @@ public class ViewFolderRequest implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 文件夹名称
+     * 文件夹名�?
      */
-    @NotBlank(message = "文件夹名称不能为空")
-    @Size(max = 200, message = "文件夹名称长度不能超过200个字符")
+    @NotBlank(message = "文件夹名称不能为�?)
+    @Size(max = 200, message = "文件夹名称长度不能超�?00个字�?)
     private String name;
 
     /**

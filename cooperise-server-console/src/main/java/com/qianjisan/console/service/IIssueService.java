@@ -21,11 +21,11 @@ import java.util.Map;
 public interface IIssueService extends IService<Issue> {
 
     /**
-     * 创建事项（包含业务逻辑）
+     * 创建事项（包含业务逻辑�?
      * - 自动生成事项单号
-     * - 设置默认报告人
-     * - 设置默认经办人
-     * - 设置默认状态
+     * - 设置默认报告�?
+     * - 设置默认经办�?
+     * - 设置默认状�?
      *
      * @param request 事项信息
      * @return 创建后的事项
@@ -33,10 +33,10 @@ public interface IIssueService extends IService<Issue> {
     void createIssue(WorkSpaceIssueRequest request);
 
     /**
-     * 更新事项（包含业务逻辑）
+     * 更新事项（包含业务逻辑�?
      *
      * @param id    事项ID
-     * @param request 更新的事项信息
+     * @param request 更新的事项信�?
      * @return 更新后的事项
      */
     void updateIssue(Long id, WorkSpaceIssueRequest request);
@@ -60,7 +60,7 @@ public interface IIssueService extends IService<Issue> {
     PageVO<IssuePageVO> pageQuery(IssueQueryRequest request);
 
     /**
-     * 删除事项（包含业务逻辑）
+     * 删除事项（包含业务逻辑�?
      *
      * @param id 事项ID
      * @return 是否删除成功
@@ -68,11 +68,11 @@ public interface IIssueService extends IService<Issue> {
     boolean deleteIssue(Long id);
 
     /**
-     * 搜索事项（支持事项单号和标题搜索）
+     * 搜索事项（支持事项单号和标题搜索�?
      * 用于顶部搜索框的自动提示
      *
-     * @param keyword 搜索关键词
-     * @return 搜索结果列表（包含id, issueNo, summary）
+     * @param keyword 搜索关键�?
+     * @return 搜索结果列表（包含id, issueNo, summary�?
      */
     List<Map<String, Object>> searchIssues(String keyword);
 }

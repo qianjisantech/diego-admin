@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
 /**
- * 反馈点赞表
+ * 反馈点赞�?
  *
  * @author DCP Team
  * @since 2024-12-20

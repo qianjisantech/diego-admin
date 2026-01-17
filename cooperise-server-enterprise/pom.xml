@@ -4,13 +4,13 @@
     <parent>
         <groupId>com.qianjisan</groupId>
         <artifactId>cooperise-server</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>cooperise-server-enterprise</artifactId>
     <packaging>jar</packaging>
 
-    <name>diego-server-enterprise</name>
+    <name>cooperise-server-enterprise</name>
     <description>企业后台管理模块</description>
 
     <properties>

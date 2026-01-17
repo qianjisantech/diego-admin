@@ -22,12 +22,12 @@ public class SecurityConfig {
 
     /**
      * 配置安全过滤器链
-     * 暂时关闭所有认证，方便开发调试
+     * 暂时关闭所有认证，方便开发调�?
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                // 禁用CSRF（因为使用JWT，不需要CSRF保护）
+                // 禁用CSRF（因为使用JWT，不需要CSRF保护�?
                 .csrf(AbstractHttpConfigurer::disable)
                 // 禁用表单登录
                 .formLogin(AbstractHttpConfigurer::disable)
@@ -35,11 +35,11 @@ public class SecurityConfig {
                 .httpBasic(AbstractHttpConfigurer::disable)
                 // 禁用默认的logout
                 .logout(AbstractHttpConfigurer::disable)
-                // 设置session管理为无状态（使用JWT）
+                // 设置session管理为无状态（使用JWT�?
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
-                // 配置URL访问权限 - 暂时允许所有请求
+                // 配置URL访问权限 - 暂时允许所有请�?
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().permitAll()
                 );
@@ -48,7 +48,7 @@ public class SecurityConfig {
     }
 
     /**
-     * 密码编码器
+     * 密码编码�?
      * 使用BCrypt加密算法
      */
     @Bean

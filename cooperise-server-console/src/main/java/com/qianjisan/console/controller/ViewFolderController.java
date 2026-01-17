@@ -24,7 +24,7 @@ import java.util.List;
  * @author DCP Team
  * @since 2024-12-20
  */
-@Tag(name = "视图文件夹管理", description = "WorkspaceViewFolder相关接口")
+@Tag(name = "视图文件夹管�?, description = "WorkspaceViewFolder相关接口")
 @RestController
 @RequestMapping("/workspace/view-folder")
 @RequiredArgsConstructor
@@ -33,7 +33,7 @@ public class ViewFolderController {
 
     private final IViewFolderService viewFolderService;
 
-    @Operation(summary = "创建视图文件夹")
+    @Operation(summary = "创建视图文件�?)
     @PostMapping
     public Result<Void> create(@RequestBody ViewFolderRequest request) {
         try {
@@ -46,7 +46,7 @@ public class ViewFolderController {
         }
     }
 
-    @Operation(summary = "更新视图文件夹")
+    @Operation(summary = "更新视图文件�?)
     @PutMapping("/{id}")
     public Result<Void> update(@PathVariable Long id, @RequestBody ViewFolderRequest request) {
         try {
@@ -58,7 +58,7 @@ public class ViewFolderController {
         }
     }
 
-    @Operation(summary = "删除视图文件夹")
+    @Operation(summary = "删除视图文件�?)
     @DeleteMapping("/{id}")
     public Result<Void> delete(@PathVariable Long id) {
         try {
@@ -70,7 +70,7 @@ public class ViewFolderController {
         }
     }
 
-    @Operation(summary = "根据ID查询视图文件夹管理")
+    @Operation(summary = "根据ID查询视图文件夹管�?)
     @GetMapping("/{id}")
     public Result<ViewFolderVO> getById(@PathVariable Long id) {
         try {
@@ -82,7 +82,7 @@ public class ViewFolderController {
         }
     }
 
-    @Operation(summary = "查询视图文件夹管理列表")
+    @Operation(summary = "查询视图文件夹管理列�?)
     @GetMapping("/list")
     public Result<List<ViewFolderVO>> list() {
         try {
@@ -95,7 +95,7 @@ public class ViewFolderController {
         }
     }
 
-    @Operation(summary = "分页查询视图文件夹管理")
+    @Operation(summary = "分页查询视图文件夹管�?)
     @PostMapping("/page")
     public Result<Page<ViewFolderPageVO>> page(@RequestBody ViewFolderQueryRequest request) {
         try {

@@ -42,14 +42,14 @@ public interface ISysUserService extends IService<SysUser> {
     void updateUser(Long userId, SysUserRequest request);
 
     /**
-     * 删除用户（逻辑删除）
+     * 删除用户（逻辑删除�?
      *
      * @param userId 用户ID
      */
     void deleteUser(Long userId);
 
     /**
-     * 分配角色给用户
+     * 分配角色给用�?
      *
      * @param userId  用户ID
      * @param roleIds 角色ID列表
@@ -64,15 +64,15 @@ public interface ISysUserService extends IService<SysUser> {
     void resetPassword(Long userId);
 
     /**
-     * 更新用户状态
+     * 更新用户状�?
      *
      * @param userId 用户ID
-     * @param status 状态：1-正常，0-禁用
+     * @param status 状态：1-正常�?-禁用
      */
     void updateStatus(Long userId, Integer status);
 
     /**
-     * 更新最后登录时间
+     * 更新最后登录时�?
      *
      * @param userId 用户ID
      */
@@ -96,8 +96,8 @@ public interface ISysUserService extends IService<SysUser> {
     SysUser getUserByUserCode(String userCode);
 
     /**
-     * 获取简单用户列表（仅包含 id, username, userCode, email）
-     * 只查询未被逻辑删除的用户
+     * 获取简单用户列表（仅包�?id, username, userCode, email�?
+     * 只查询未被逻辑删除的用�?
      *
      * @return 用户列表
      */

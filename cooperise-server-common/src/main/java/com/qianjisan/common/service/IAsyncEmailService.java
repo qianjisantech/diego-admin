@@ -12,18 +12,18 @@ public interface IAsyncEmailService {
      * 异步发送验证码邮件
      *
      * @param email 邮箱地址
-     * @param code  验证码
+     * @param code  验证�?
      */
     void sendVerificationCodeAsync(String email, String code);
 
     /**
      * 异步发送反馈状态变更通知邮件
      *
-     * @param email      收件人邮箱
+     * @param email      收件人邮�?
      * @param feedbackId 反馈ID
      * @param title      反馈标题
-     * @param oldStatus  旧状态
-     * @param newStatus  新状态
+     * @param oldStatus  旧状�?
+     * @param newStatus  新状�?
      */
     void sendFeedbackStatusChangeNotificationAsync(String email, Long feedbackId, String title, Integer oldStatus, Integer newStatus);
 }

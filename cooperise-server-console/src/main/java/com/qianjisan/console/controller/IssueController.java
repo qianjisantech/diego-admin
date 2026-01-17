@@ -21,13 +21,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 事项管理控制器
+ * 事项管理控制�?
  *
  * Controller层职责：
  * 1. 接收HTTP请求
- * 2. 参数验证（基础验证）
+ * 2. 参数验证（基础验证�?
  * 3. 调用Service层处理业务逻辑
- * 4. 返回统一的响应结果
+ * 4. 返回统一的响应结�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -106,7 +106,7 @@ public class IssueController {
             log.info("[查询事项] ID: {}", id);
             IssueDetailVO issueDetail = workspaceIssueService.getIssueDetailById(id);
             if (issueDetail == null) {
-                return Result.error("事项不存在");
+                return Result.error("事项不存�?);
             }
             return Result.success(issueDetail);
         } catch (Exception e) {
@@ -125,7 +125,7 @@ public class IssueController {
         log.info("[分页查询事项] 查询参数: {}", request);
         try {
             PageVO<IssuePageVO> page = workspaceIssueService.pageQuery(request);
-            log.info("[分页查询事项] 成功，共 {} 条", page.getTotal());
+            log.info("[分页查询事项] 成功，共 {} �?, page.getTotal());
             return Result.success(page);
         } catch (Exception e) {
             log.error("[分页查询事项] 失败，失败原因：{}", e.getMessage(), e);
@@ -134,20 +134,20 @@ public class IssueController {
     }
 
     /**
-     * 搜索事项（支持事项单号和标题搜索）
+     * 搜索事项（支持事项单号和标题搜索�?
      * 用于顶部搜索框的自动提示
      */
     @Operation(summary = "搜索事项")
     @RequiresPermission("workspace:issue:view")
     @GetMapping("/search")
     public Result<List<Map<String, Object>>> search(@RequestParam String keyword) {
-        log.info("[搜索事项] 关键词: {}", keyword);
+        log.info("[搜索事项] 关键�? {}", keyword);
         try {
             if (keyword == null || keyword.trim().isEmpty()) {
                 return Result.success(List.of());
             }
             List<Map<String, Object>> results = workspaceIssueService.searchIssues(keyword.trim());
-            log.info("[搜索事项] 成功，找到 {} 条结果", results.size());
+            log.info("[搜索事项] 成功，找�?{} 条结�?, results.size());
             return Result.success(results);
         } catch (Exception e) {
             log.error("[搜索事项] 失败，失败原因：{}", e.getMessage(), e);

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 设置控制器
+ * 设置控制�?
  * 处理用户设置相关的HTTP请求
  *
  * @author DCP Team
@@ -35,9 +35,9 @@ public class SelfController {
 
     private final ICompanyService companyService;
     /**
-     * 获取当前用户的完整设置信息（分组格式）
+     * 获取当前用户的完整设置信息（分组格式�?
      */
-    @Operation(summary = "获取用户拥有的企业列表")
+    @Operation(summary = "获取用户拥有的企业列�?)
     @GetMapping("/companies")
     public Result<List<SelfCompanyVo>> getSelfCompanies() {
         try {
@@ -74,25 +74,25 @@ public class SelfController {
         }
     }
 
-    @Operation(summary = "用户邀请加入企业相关信息")
+    @Operation(summary = "用户邀请加入企业相关信�?)
     @GetMapping(value = "/company/invite/info/{companyId}")
     public Result<SelfCompanyInviteInfoVo> selfCompanyInviteInfo(@Valid @PathVariable Long companyId) {
         try {
             SelfCompanyInviteInfoVo selfCompanyInviteInfoVo=  selfService.selfCompanyInviteInfo(companyId);
             return Result.success(selfCompanyInviteInfoVo);
         } catch (Exception e) {
-            log.error("用户邀请加入企业相关信息", e);
+            log.error("用户邀请加入企业相关信�?, e);
             return Result.error(e.getMessage());
         }
     }
-    @Operation(summary = "用户邀请加入企业相关信息")
+    @Operation(summary = "用户邀请加入企业相关信�?)
     @GetMapping(value = "/user/select/options/{companyId}")
     public Result<List<UserQuerySelectOptionVo>> userQuerySelect(@Valid @PathVariable Long companyId) {
         try {
             List<UserQuerySelectOptionVo> userQuerySelect=  selfService.userQuerySelect(companyId);
             return Result.success(userQuerySelect);
         } catch (Exception e) {
-            log.error("用户邀请加入企业相关信息", e);
+            log.error("用户邀请加入企业相关信�?, e);
             return Result.error(e.getMessage());
         }
     }

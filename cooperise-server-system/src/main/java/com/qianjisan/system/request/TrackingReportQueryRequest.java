@@ -12,10 +12,10 @@ public class TrackingReportQueryRequest implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    /** 时间类型（day/month/year） */
+    /** 时间类型（day/month/year�?*/
     private String timeType;
 
-    /** 开始时间 */
+    /** 开始时�?*/
     private String startTime;
 
     /** 结束时间 */

@@ -15,7 +15,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 /**
- * 菜单管理控制器
+ * 菜单管理控制�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -77,7 +77,7 @@ public class SysMenuController {
         }
     }
 
-    @Operation(summary = "获取菜单树")
+    @Operation(summary = "获取菜单�?)
     @GetMapping("/tree")
     public Result<List<SysMenuTreeVO>> getTree() {
         try {

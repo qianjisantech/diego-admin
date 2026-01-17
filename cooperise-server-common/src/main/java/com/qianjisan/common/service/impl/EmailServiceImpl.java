@@ -13,7 +13,7 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 
 /**
- * 邮件服务实现类
+ * 邮件服务实现�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -38,10 +38,10 @@ public class EmailServiceImpl implements IEmailService {
             message.setText(content);
 
             mailSender.send(message);
-            log.info("简单邮件发送成功，收件人: {}, 主题: {}", to, subject);
+            log.info("简单邮件发送成功，收件�? {}, 主题: {}", to, subject);
         } catch (Exception e) {
-            log.error("简单邮件发送失败，收件人: {}, 主题: {}, 错误信息: {}", to, subject, e.getMessage(), e);
-            throw new RuntimeException("邮件发送失败: " + e.getMessage());
+            log.error("简单邮件发送失败，收件�? {}, 主题: {}, 错误信息: {}", to, subject, e.getMessage(), e);
+            throw new RuntimeException("邮件发送失�? " + e.getMessage());
         }
     }
 
@@ -57,10 +57,10 @@ public class EmailServiceImpl implements IEmailService {
             helper.setText(content, true);
 
             mailSender.send(mimeMessage);
-            log.info("HTML邮件发送成功，收件人: {}, 主题: {}", to, subject);
+            log.info("HTML邮件发送成功，收件�? {}, 主题: {}", to, subject);
         } catch (MessagingException e) {
-            log.error("HTML邮件发送失败，收件人: {}, 主题: {}, 错误信息: {}", to, subject, e.getMessage(), e);
-            throw new RuntimeException("邮件发送失败: " + e.getMessage());
+            log.error("HTML邮件发送失败，收件�? {}, 主题: {}, 错误信息: {}", to, subject, e.getMessage(), e);
+            throw new RuntimeException("邮件发送失�? " + e.getMessage());
         }
     }
 
@@ -80,21 +80,21 @@ public class EmailServiceImpl implements IEmailService {
                 "<head>" +
                 "    <meta charset='UTF-8'>" +
                 "    <meta name='viewport' content='width=device-width, initial-scale=1.0'>" +
-                "    <title>验证码</title>" +
+                "    <title>验证�?/title>" +
                 "</head>" +
                 "<body style='margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5;'>" +
                 "    <div style='max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);'>" +
                 "        <!-- Header -->" +
                 "        <div style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; text-align: center;'>" +
-                "            <h1 style='color: #ffffff; margin: 0; font-size: 24px; font-weight: 600;'>DCP 需求管理平台</h1>" +
+                "            <h1 style='color: #ffffff; margin: 0; font-size: 24px; font-weight: 600;'>DCP 需求管理平�?/h1>" +
                 "            <p style='color: rgba(255,255,255,0.9); margin: 8px 0 0 0; font-size: 14px;'>Demand Control Platform</p>" +
                 "        </div>" +
                 "        " +
                 "        <!-- Content -->" +
                 "        <div style='padding: 40px 30px;'>" +
-                "            <h2 style='color: #333333; font-size: 20px; margin: 0 0 20px 0;'>您的验证码</h2>" +
+                "            <h2 style='color: #333333; font-size: 20px; margin: 0 0 20px 0;'>您的验证�?/h2>" +
                 "            <p style='color: #666666; font-size: 14px; line-height: 1.6; margin: 0 0 30px 0;'>" +
-                "                您正在注册 DCP 需求管理平台账号，验证码如下：" +
+                "                您正在注�?DCP 需求管理平台账号，验证码如下：" +
                 "            </p>" +
                 "            " +
                 "            <!-- Verification Code Box -->" +
@@ -106,10 +106,10 @@ public class EmailServiceImpl implements IEmailService {
                 "            " +
                 "            <div style='background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 30px 0; border-radius: 4px;'>" +
                 "                <p style='color: #856404; font-size: 13px; margin: 0; line-height: 1.6;'>" +
-                "                    <strong>安全提示：</strong><br>" +
-                "                    • 验证码有效期为 <strong>5分钟</strong><br>" +
-                "                    • 请勿将验证码透露给他人<br>" +
-                "                    • 如非本人操作，请忽略此邮件" +
+                "                    <strong>安全提示�?/strong><br>" +
+                "                    �?验证码有效期�?<strong>5分钟</strong><br>" +
+                "                    �?请勿将验证码透露给他�?br>" +
+                "                    �?如非本人操作，请忽略此邮�? +
                 "                </p>" +
                 "            </div>" +
                 "        </div>" +

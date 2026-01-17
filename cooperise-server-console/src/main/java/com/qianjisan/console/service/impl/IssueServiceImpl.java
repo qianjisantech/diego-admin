@@ -28,7 +28,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * 事项服务实现类
+ * 事项服务实现�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -80,12 +80,12 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
         workspaceIssue.setStatus(request.getStatus());
         workspaceIssue.setPriority(request.getPriority());
 
-        // 3. 处理经办人信息（必填）
+        // 3. 处理经办人信息（必填�?
         workspaceIssue.setAssigneeId(request.getAssignee().getAssigneeId());
         workspaceIssue.setAssigneeName(request.getAssignee().getAssigneeName());
         workspaceIssue.setAssigneeCode(request.getAssignee().getAssigneeCode());
 
-        // 4. 处理报告人信息
+        // 4. 处理报告人信�?
         if (request.getReporter() == null || request.getReporter().getReporterId() == null) {
             // 从拦截器获取当前用户的信息存入报告人
             UserContext userContext = UserContextHolder.getUser();
@@ -95,7 +95,7 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
                 workspaceIssue.setReporterCode(userContext.getUsername());
             }
         } else {
-            // 使用请求中传入的报告人信息
+            // 使用请求中传入的报告人信�?
             workspaceIssue.setReporterId(request.getReporter().getReporterId());
             workspaceIssue.setReporterName(request.getReporter().getReporterName());
             workspaceIssue.setReporterCode(request.getReporter().getReporterCode());
@@ -105,7 +105,7 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
         workspaceIssue.setStartDate(request.getStartDate());
         workspaceIssue.setDueDate(request.getDueDate());
 
-        // 6. 工时和进度
+        // 6. 工时和进�?
         workspaceIssue.setEstimatedHours(request.getEstimatedHours());
         workspaceIssue.setActualHours(request.getActualHours());
         workspaceIssue.setProgress(request.getProgress());
@@ -155,14 +155,14 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
         workspaceIssue.setStatus(request.getStatus());
         workspaceIssue.setPriority(request.getPriority());
 
-        // 3. 处理经办人信息（必填）
+        // 3. 处理经办人信息（必填�?
         workspaceIssue.setAssigneeId(request.getAssignee().getAssigneeId());
         workspaceIssue.setAssigneeName(request.getAssignee().getAssigneeName());
         workspaceIssue.setAssigneeCode(request.getAssignee().getAssigneeCode());
 
-        // 4. 处理报告人信息
+        // 4. 处理报告人信�?
         if (request.getReporter() != null && request.getReporter().getReporterId() != null) {
-            // 使用请求中传入的报告人信息
+            // 使用请求中传入的报告人信�?
             workspaceIssue.setReporterId(request.getReporter().getReporterId());
             workspaceIssue.setReporterName(request.getReporter().getReporterName());
             workspaceIssue.setReporterCode(request.getReporter().getReporterCode());
@@ -172,7 +172,7 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
         workspaceIssue.setStartDate(request.getStartDate());
         workspaceIssue.setDueDate(request.getDueDate());
 
-        // 6. 工时和进度
+        // 6. 工时和进�?
         workspaceIssue.setEstimatedHours(request.getEstimatedHours());
         workspaceIssue.setActualHours(request.getActualHours());
         workspaceIssue.setProgress(request.getProgress());
@@ -195,7 +195,7 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
         }
 
         // 2. 数据权限校验: 检查用户是否有权访问该事项所在的空间
-        // TODO: 需要实现空间权限校验
+        // TODO: 需要实现空间权限校�?
         // UserContext userContext = UserContextHolder.getUser();
         // if (userContext != null && userContext.getUserId() != null && issue.getSpaceId() != null) {
         //     spaceMemberService.checkSpacePermission(issue.getSpaceId(), userContext.getUserId());
@@ -217,7 +217,7 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
         // }
 
         // 6. 这里可以添加子任务、评论、附件、活动记录等扩展信息
-        // TODO: 如果需要返回子任务、评论等信息，可以在这里查询并设置
+        // TODO: 如果需要返回子任务、评论等信息，可以在这里查询并设�?
         // detailVO.setSubtasks(subtaskService.listByIssueId(id));
         // detailVO.setComments(commentService.listByIssueId(id));
         // detailVO.setAttachments(attachmentService.listByIssueId(id));
@@ -237,7 +237,7 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
         // 3. 执行分页查询
         Page<Issue> entityPage = page(page, queryWrapper);
 
-        // 4. 转换 Entity 到 VO
+        // 4. 转换 Entity �?VO
         List<IssuePageVO> voList = entityPage.getRecords().stream()
                 .map(this::convertToVO)
                 .collect(Collectors.toList());
@@ -281,13 +281,13 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
      * 构建查询条件
      *
      * @param request 查询DTO
-     * @return 查询条件包装器
+     * @return 查询条件包装�?
      */
     private LambdaQueryWrapper<Issue> buildQueryWrapper(IssueQueryRequest request) {
         LambdaQueryWrapper<Issue> queryWrapper = new LambdaQueryWrapper<>();
 
-        // 数据权限过滤: 只查询用户有权访问的空间的事项
-        // TODO: 需要实现空间权限过滤
+        // 数据权限过滤: 只查询用户有权访问的空间的事�?
+        // TODO: 需要实现空间权限过�?
         // UserContext userContext = UserContextHolder.getUser();
         // if (userContext != null && userContext.getUserId() != null) {
         //     // 获取用户所在的所有空间ID
@@ -297,7 +297,7 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
         //         // 只查询用户所在空间的事项
         //         queryWrapper.in(Issue::getSpaceId, userSpaceIds);
         //     } else {
-        //         // 用户不在任何空间中,返回空结果
+        //         // 用户不在任何空间�?返回空结�?
         //         queryWrapper.eq(Issue::getId, -1L);
         //     }
         // }
@@ -319,7 +319,7 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
     }
 
     /**
-     * 将 Entity 转换为 PageVO
+     * �?Entity 转换�?PageVO
      *
      * @param entity 实体对象
      * @return PageVO对象
@@ -331,18 +331,18 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
     }
 
     /**
-     * 搜索事项（支持事项单号和标题搜索）
+     * 搜索事项（支持事项单号和标题搜索�?
      * 用于顶部搜索框的自动提示
      *
-     * @param keyword 搜索关键词
-     * @return 搜索结果列表（包含id, issueNo, summary）
+     * @param keyword 搜索关键�?
+     * @return 搜索结果列表（包含id, issueNo, summary�?
      */
     @Override
     public List<Map<String, Object>> searchIssues(String keyword) {
         LambdaQueryWrapper<Issue> wrapper = new LambdaQueryWrapper<>();
 
-        // 数据权限过滤: 只搜索用户有权访问的空间的事项
-        // TODO: 需要实现空间权限过滤
+        // 数据权限过滤: 只搜索用户有权访问的空间的事�?
+        // TODO: 需要实现空间权限过�?
         // UserContext userContext = UserContextHolder.getUser();
         // if (userContext != null && userContext.getUserId() != null) {
         //     // 获取用户所在的所有空间ID
@@ -352,7 +352,7 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
         //         // 只搜索用户所在空间的事项
         //         wrapper.in(Issue::getSpaceId, userSpaceIds);
         //     } else {
-        //         // 用户不在任何空间中,返回空结果
+        //         // 用户不在任何空间�?返回空结�?
         //         return List.of();
         //     }
         // }
@@ -362,13 +362,13 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
                           .or()
                           .like(Issue::getSummary, keyword));
 
-        // 只返回未删除的
+        // 只返回未删除�?
         wrapper.eq(Issue::getIsDeleted, 0);
 
         // 按创建时间倒序
         wrapper.orderByDesc(Issue::getCreateTime);
 
-        // 限制返回10条
+        // 限制返回10�?
         wrapper.last("LIMIT 10");
 
         List<Issue> issues = baseMapper.selectList(wrapper);

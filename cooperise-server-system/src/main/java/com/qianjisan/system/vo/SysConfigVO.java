@@ -15,12 +15,12 @@ import lombok.EqualsAndHashCode;
 public class SysConfigVO extends BaseVO {
 
     /**
-     * 配置键
+     * 配置�?
      */
     private String configKey;
 
     /**
-     * 配置值
+     * 配置�?
      */
     private String configValue;
 
@@ -45,12 +45,12 @@ public class SysConfigVO extends BaseVO {
     private String description;
 
     /**
-     * 是否系统内置：1-是，0-否
+     * 是否系统内置�?-是，0-�?
      */
     private Integer isSystem;
 
     /**
-     * 状态：1-启用，0-禁用
+     * 状态：1-启用�?-禁用
      */
     private Integer status;
 }

@@ -20,7 +20,7 @@ public class SysMenuRequest {
     private Long id;
 
     /**
-     * 父菜单ID，0表示一级菜单
+     * 父菜单ID�?表示一级菜�?
      */
     @NotNull(message = "父菜单ID不能为空")
     private Long parentId;
@@ -37,7 +37,7 @@ public class SysMenuRequest {
     private String menuCode;
 
     /**
-     * 菜单类型：1-目录，2-菜单，3-按钮
+     * 菜单类型�?-目录�?-菜单�?-按钮
      */
     @NotNull(message = "菜单类型不能为空")
     private Integer menuType;
@@ -63,12 +63,12 @@ public class SysMenuRequest {
     private Integer sortOrder;
 
     /**
-     * 是否可见：1-是，0-否
+     * 是否可见�?-是，0-�?
      */
     private Integer visible;
 
     /**
-     * 状态：1-启用，0-禁用
+     * 状态：1-启用�?-禁用
      */
     private Integer status;
 

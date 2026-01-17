@@ -23,17 +23,17 @@ public class ViewRequest implements Serializable {
      * 视图名称
      */
     @NotBlank(message = "视图名称不能为空")
-    @Size(max = 200, message = "视图名称长度不能超过200个字符")
+    @Size(max = 200, message = "视图名称长度不能超过200个字�?)
     private String name;
 
     /**
      * 视图描述
      */
-    @Size(max = 1000, message = "视图描述长度不能超过1000个字符")
+    @Size(max = 1000, message = "视图描述长度不能超过1000个字�?)
     private String description;
 
     /**
-     * 视图类型：gantt-甘特图、kanban-看板、table-表格、calendar-日历、resource-gantt-资源甘特图
+     * 视图类型：gantt-甘特图、kanban-看板、table-表格、calendar-日历、resource-gantt-资源甘特�?
      */
     @NotBlank(message = "视图类型不能为空")
     private String type;
@@ -44,7 +44,7 @@ public class ViewRequest implements Serializable {
     private Long spaceId;
 
     /**
-     * 是否公共：0-私有，1-公共
+     * 是否公共�?-私有�?-公共
      */
     private Integer isPublic;
 
@@ -54,7 +54,7 @@ public class ViewRequest implements Serializable {
     private Long folderId;
 
     /**
-     * 视图配置（JSON格式）
+     * 视图配置（JSON格式�?
      */
     private String config;
 

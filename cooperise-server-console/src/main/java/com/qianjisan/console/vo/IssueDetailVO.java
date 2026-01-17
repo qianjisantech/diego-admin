@@ -20,7 +20,7 @@ import java.util.Map;
 public class IssueDetailVO  {
 
     /**
-     * 子任务列表
+     * 子任务列�?
      */
     private List<IssueSubtaskVO> subtasks;
 
@@ -50,7 +50,7 @@ public class IssueDetailVO  {
     private Integer relatedIssueCount;
 
     /**
-     * 观察者列表
+     * 观察者列�?
      */
     private List<UserVO> watchers;
 }

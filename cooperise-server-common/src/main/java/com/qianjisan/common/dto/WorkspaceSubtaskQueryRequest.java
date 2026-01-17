@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 子任务查询请求参数
+ * 子任务查询请求参�?
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -16,7 +16,7 @@ public class WorkspaceSubtaskQueryRequest extends PageQuery {
     /** 事项ID */
     private Long issueId;
 
-    /** 是否完成：0-未完成，1-已完成 */
+    /** 是否完成�?-未完成，1-已完�?*/
     private Integer completed;
 
     /** 搜索关键词（匹配子任务标题） */

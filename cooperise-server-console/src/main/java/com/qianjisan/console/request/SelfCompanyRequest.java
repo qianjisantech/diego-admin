@@ -7,7 +7,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 /**
- * Company 请求体
+ * Company 请求�?
  */
 @Data
 public class SelfCompanyRequest implements Serializable {

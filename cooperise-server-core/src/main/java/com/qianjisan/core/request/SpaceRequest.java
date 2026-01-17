@@ -17,7 +17,7 @@ public class SpaceRequest {
     private String name;
 
     /**
-     * 空间关键词（用于生成事项单号）
+     * 空间关键词（用于生成事项单号�?
      */
     private String keyword;
 
@@ -37,12 +37,12 @@ public class SpaceRequest {
     private Long ownerId;
 
     /**
-     * 所有者工号
+     * 所有者工�?
      */
     private String ownerCode;
 
     /**
-     * 所有者姓名
+     * 所有者姓�?
      */
     private String ownerName;
 }

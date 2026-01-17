@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 日志追踪功能使用示例
- * 演示如何在代码中使用带traceid的日志
+ * 演示如何在代码中使用带traceid的日�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -19,15 +19,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class LogTraceExample {
 
     /**
-     * 普通日志使用示例
+     * 普通日志使用示�?
      * 使用 @Slf4j 注解，所有日志都会自动添加traceid
      */
     @GetMapping("/normal-log")
     public Result<String> normalLogExample() {
         log.info("这是一个普通的INFO日志，会自动添加traceid");
-        log.debug("这是一个DEBUG日志，包含更多详细信息");
-        log.warn("这是一个WARN日志，提示潜在问题");
-        log.error("这是一个ERROR日志，记录错误信息");
+        log.debug("这是一个DEBUG日志，包含更多详细信�?);
+        log.warn("这是一个WARN日志，提示潜在问�?);
+        log.error("这是一个ERROR日志，记录错误信�?);
 
         // 模拟业务处理
         try {
@@ -37,16 +37,16 @@ public class LogTraceExample {
             log.error("业务处理失败", e);
         }
 
-        return Result.success("查看控制台日志，观察traceid的显示效果");
+        return Result.success("查看控制台日志，观察traceid的显示效�?);
     }
 
     /**
      * 高级日志使用示例
-     * 使用 TraceLogger 工具类进行更灵活的日志控制
+     * 使用 TraceLogger 工具类进行更灵活的日志控�?
      */
     @GetMapping("/advanced-log")
     public Result<String> advancedLogExample() {
-        // 使用TraceLogger包装器
+        // 使用TraceLogger包装�?
         TraceLogger.TraceLoggerWrapper traceLogger = TraceLogger.wrap(log);
 
         String currentTraceId = TraceLogger.getTraceId();
@@ -70,17 +70,17 @@ public class LogTraceExample {
     }
 
     /**
-     * 子方法调用示例
+     * 子方法调用示�?
      */
     private void callSubMethod() {
-        log.info("进入子方法处理");
+        log.info("进入子方法处�?);
         // 模拟一些处理逻辑
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-        log.info("子方法处理完成");
+        log.info("子方法处理完�?);
     }
 
     /**

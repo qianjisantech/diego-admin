@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 视图管理控制器
+ * 视图管理控制�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -84,7 +84,7 @@ public class ViewController {
         }
     }
 
-    @Operation(summary = "查询视图管理列表（不含文件夹结构）")
+    @Operation(summary = "查询视图管理列表（不含文件夹结构�?)
     @GetMapping("/list")
     public Result<List<ViewVO>> list() {
         try {
@@ -97,7 +97,7 @@ public class ViewController {
         }
     }
 
-    @Operation(summary = "查询视图树形列表（包含文件夹和视图的树形结构）")
+    @Operation(summary = "查询视图树形列表（包含文件夹和视图的树形结构�?)
     @GetMapping("/tree-list")
     public Result<List<ViewTreeNodeVO>> getTreeList() {
         try {

@@ -17,13 +17,13 @@ import com.qianjisan.auth.vo.LoginResponseVO;
 import java.util.ArrayList;
 
 /**
- * 认证控制器
+ * 认证控制�?
  *
  * Controller层职责：
  * 1. 接收HTTP请求
- * 2. 参数验证（基础验证）
+ * 2. 参数验证（基础验证�?
  * 3. 调用Service层处理业务逻辑
- * 4. 返回统一的响应结果
+ * 4. 返回统一的响应结�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -44,13 +44,13 @@ public class AuthController {
             String email = request.getEmail();
             Boolean remember = request.getRemember();
             String password = request.getPassword();
-            log.info("[用户登录] 邮箱: {}, 记住我: {}", email,remember);
+            log.info("[用户登录] 邮箱: {}, 记住�? {}", email,remember);
             LoginResponseVO response = authService.login(email, password);
             log.info("[用户登录] 成功");
             return Result.success("登录成功",response);
         } catch (Exception e) {
             log.error("[用户登录] 失败，失败原因：{}", e.getMessage(), e);
-            return Result.error("登录失败，失败原因为："+e.getMessage());
+            return Result.error("登录失败，失败原因为�?+e.getMessage());
         }
     }
 
@@ -70,7 +70,7 @@ public class AuthController {
 
             // 如果没有用户信息（权限放开模式），返回默认的profile信息
             if (userId == null) {
-                log.info("[获取用户权限信息] 权限放开模式，返回默认用户信息");
+                log.info("[获取用户权限信息] 权限放开模式，返回默认用户信�?);
                 UserProfileVO defaultProfile = new UserProfileVO();
 
                 // 设置默认用户信息（访客模式）
@@ -80,12 +80,12 @@ public class AuthController {
                 defaultUserInfo.setEmail("guest@example.com");
                 defaultProfile.setUserInfo(defaultUserInfo);
 
-                // 设置默认权限（空权限）
+                // 设置默认权限（空权限�?
                 defaultProfile.setMenus(new ArrayList<>());
                 defaultProfile.setMenuPermissions(new String[]{});
                 defaultProfile.setRoles(new String[]{"guest"});
 
-                return Result.success("权限放开模式，访客访问", defaultProfile);
+                return Result.success("权限放开模式，访客访�?, defaultProfile);
             }
 
             log.info("[获取用户权限信息] 用户ID: {}", userId);

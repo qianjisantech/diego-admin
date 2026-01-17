@@ -16,7 +16,7 @@ public class IssueSubtaskRequest implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 子任务ID（更新时使用）
+     * 子任务ID（更新时使用�?
      */
     private Long id;
 
@@ -26,12 +26,12 @@ public class IssueSubtaskRequest implements Serializable {
     private Long issueId;
 
     /**
-     * 子任务标题
+     * 子任务标�?
      */
     private String title;
 
     /**
-     * 是否完成：0-未完成，1-已完成
+     * 是否完成�?-未完成，1-已完�?
      */
     private Integer completed;
 

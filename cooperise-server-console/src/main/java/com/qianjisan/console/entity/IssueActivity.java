@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 事项活动记录表
+ * 事项活动记录�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -47,13 +47,13 @@ public class IssueActivity extends BaseEntity {
     private String field;
 
     /**
-     * 旧值
+     * 旧�?
      */
     @TableField("old_value")
     private String oldValue;
 
     /**
-     * 新值
+     * 新�?
      */
     @TableField("new_value")
     private String newValue;

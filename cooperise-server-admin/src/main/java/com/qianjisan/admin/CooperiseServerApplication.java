@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * DCP项目管理系统 - 后端服务启动类
+ * DCP项目管理系统 - 后端服务启动�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -47,14 +47,14 @@ public class CooperiseServerApplication implements CommandLineRunner {
         String reset = "\033[0m";      // 重置
         String bold = "\033[1m";       // 粗体
         String cyan = "\033[36m";       // 青色（边框）
-        String brightBlue = "\033[94m"; // 亮蓝色（标题）
-        // 使用彩色日志输出不同级别的信息
+        String brightBlue = "\033[94m"; // 亮蓝色（标题�?
+        // 使用彩色日志输出不同级别的信�?
         System.out.println();
-        System.out.println(bold + cyan + "╔═══════════════════════════════════════════════════════════╗" + reset);
-        System.out.println(bold + cyan + "║" + reset + "                                                           " + bold + cyan + "║" + reset);
-        System.out.println(bold + cyan + "║" + reset + "          " + bold + brightBlue + "   管理员后台管理系统    " + reset + "          " + bold + cyan + "║" + reset);
-        System.out.println(bold + cyan + "║" + reset + "                                                           " + bold + cyan + "║" + reset);
-        System.out.println(bold + cyan + "╚═══════════════════════════════════════════════════════════╝" + reset);
+        System.out.println(bold + cyan + "╔═══════════════════════════════════════════════════════════�? + reset);
+        System.out.println(bold + cyan + "�? + reset + "                                                           " + bold + cyan + "�? + reset);
+        System.out.println(bold + cyan + "�? + reset + "          " + bold + brightBlue + "   管理员后台管理系�?   " + reset + "          " + bold + cyan + "�? + reset);
+        System.out.println(bold + cyan + "�? + reset + "                                                           " + bold + cyan + "�? + reset);
+        System.out.println(bold + cyan + "╚═══════════════════════════════════════════════════════════�? + reset);
         System.out.println();
         log.info("========================================");
         log.info("Cooperise Server Application Started Successfully!");
@@ -71,7 +71,7 @@ public class CooperiseServerApplication implements CommandLineRunner {
     private void printAllApiEndpoints() {
         System.out.println();
         System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
-        System.out.println("║                                        API 接口列表                                                    ║");
+        System.out.println("�?                                       API 接口列表                                                    �?);
         System.out.println("╠══════════════════════════════════════════════════════════════════════════════════════════════════════════════╣");
 
         // 获取所有Controller
@@ -87,7 +87,7 @@ public class CooperiseServerApplication implements CommandLineRunner {
             // 获取类级别的RequestMapping
             String basePath = getBasePath(controllerClass);
 
-            // 获取所有方法
+            // 获取所有方�?
             Method[] methods = controllerClass.getDeclaredMethods();
             for (Method method : methods) {
                 if (method.isAnnotationPresent(RequestMapping.class) ||
@@ -105,12 +105,12 @@ public class CooperiseServerApplication implements CommandLineRunner {
             }
         }
 
-        // 按路径排序
+        // 按路径排�?
         endpoints.sort((a, b) -> a.path.compareTo(b.path));
 
         // 打印接口信息
         for (ApiEndpoint endpoint : endpoints) {
-            System.out.printf("║ %-6s │ %-60s │ %-25s ║%n",
+            System.out.printf("�?%-6s �?%-60s �?%-25s �?n",
                 endpoint.method, endpoint.path, endpoint.description);
         }
 
@@ -120,7 +120,7 @@ public class CooperiseServerApplication implements CommandLineRunner {
     }
 
     /**
-     * 获取控制器名称
+     * 获取控制器名�?
      */
     private String getControllerName(Class<?> controllerClass) {
         String simpleName = controllerClass.getSimpleName();
@@ -156,7 +156,7 @@ public class CooperiseServerApplication implements CommandLineRunner {
         String httpMethod = "UNKNOWN";
         String description = method.getName();
 
-        // 获取方法级别的映射
+        // 获取方法级别的映�?
         if (method.isAnnotationPresent(GetMapping.class)) {
             GetMapping mapping = method.getAnnotation(GetMapping.class);
             path = combinePath(basePath, getFirstPath(mapping.value(), mapping.path()));
@@ -210,7 +210,7 @@ public class CooperiseServerApplication implements CommandLineRunner {
     }
 
     /**
-     * 获取第一个路径
+     * 获取第一个路�?
      */
     private String getFirstPath(String[] value, String[] path) {
         if (value != null && value.length > 0) {
@@ -231,7 +231,7 @@ public class CooperiseServerApplication implements CommandLineRunner {
     }
 
     /**
-     * API端点信息类
+     * API端点信息�?
      */
     static class ApiEndpoint {
         String method;

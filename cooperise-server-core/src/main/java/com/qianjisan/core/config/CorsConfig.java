@@ -24,13 +24,13 @@ public class CorsConfig {
         // 允许的请求头
         config.addAllowedHeader("*");
 
-        // 允许的请求方法
+        // 允许的请求方�?
         config.addAllowedMethod("*");
 
         // 允许携带认证信息
         config.setAllowCredentials(true);
 
-        // 预检请求的有效期（秒）
+        // 预检请求的有效期（秒�?
         config.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

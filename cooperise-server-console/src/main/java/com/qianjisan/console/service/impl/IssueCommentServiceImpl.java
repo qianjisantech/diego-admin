@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 /**
- * WorkspaceIssueComment服务实现类
+ * WorkspaceIssueComment服务实现�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -40,7 +40,7 @@ public class IssueCommentServiceImpl extends ServiceImpl<IssueCommentMapper, Iss
         }
         queryWrapper.orderByDesc(IssueComment::getCreateTime);
         page = this.page(page, queryWrapper);
-        log.info("[分页查询事项评论管理] 成功，共 {} 条", page.getTotal());
+        log.info("[分页查询事项评论管理] 成功，共 {} �?, page.getTotal());
         return page;
     }
 }

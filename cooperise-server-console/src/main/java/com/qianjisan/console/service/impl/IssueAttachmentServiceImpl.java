@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 /**
- * WorkspaceIssueAttachment服务实现类
+ * WorkspaceIssueAttachment服务实现�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -40,7 +40,7 @@ public class IssueAttachmentServiceImpl extends ServiceImpl<IssueAttachmentMappe
         }
         queryWrapper.orderByDesc(IssueAttachment::getCreateTime);
         page = this.page(page, queryWrapper);
-        log.info("[分页查询事项附件管理] 成功，共 {} 条", page.getTotal());
+        log.info("[分页查询事项附件管理] 成功，共 {} �?, page.getTotal());
         return page;
     }
 }

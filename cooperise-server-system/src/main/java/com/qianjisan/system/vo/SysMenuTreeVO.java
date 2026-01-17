@@ -37,7 +37,7 @@ public class SysMenuTreeVO {
     private String menuCode;
 
     /**
-     * 菜单类型：1-目录，2-菜单，3-按钮
+     * 菜单类型�?-目录�?-菜单�?-按钮
      */
     private Integer menuType;
 
@@ -62,7 +62,7 @@ public class SysMenuTreeVO {
     private Integer sortOrder;
 
     /**
-     * 是否可见：1-是，0-否
+     * 是否可见�?-是，0-�?
      */
     private Integer visible;
 
@@ -74,7 +74,7 @@ public class SysMenuTreeVO {
     private String permission;
 
     /**
-     * 子菜单列表
+     * 子菜单列�?
      */
     private List<SysMenuTreeVO> children;
 }

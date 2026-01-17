@@ -31,7 +31,7 @@ public class DepartmentRequest {
     private String deptName;
 
     /**
-     * 父部门ID，0表示顶级部门
+     * 父部门ID�?表示顶级部门
      */
     private Long parentId;
 
@@ -46,7 +46,7 @@ public class DepartmentRequest {
     private Integer sortOrder;
 
     /**
-     * 状态：1-启用，0-禁用
+     * 状态：1-启用�?-禁用
      */
     private Integer status;
 
@@ -56,12 +56,12 @@ public class DepartmentRequest {
     private Long leaderId;
 
     /**
-     * 负责人姓名
+     * 负责人姓�?
      */
     private String leaderName;
 
     /**
-     * 负责人工号
+     * 负责人工�?
      */
     private String leaderCode;
 }

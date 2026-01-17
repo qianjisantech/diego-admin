@@ -38,12 +38,12 @@ public class IssuePageVO implements Serializable {
     private String spaceName;
 
     /**
-     * 空间关键词
+     * 空间关键�?
      */
     private String spaceKeyword;
 
     /**
-     * 事项类型：1-任务、2-bug、3-需求、4-线上问题
+     * 事项类型�?-任务�?-bug�?-需求�?-线上问题
      */
     private Integer issueType;
 
@@ -58,12 +58,12 @@ public class IssuePageVO implements Serializable {
     private String description;
 
     /**
-     * 状态：1-待处理、2-进行中、3-已完成、0-已关闭
+     * 状态：1-待处理�?-进行中�?-已完成�?-已关�?
      */
     private Integer status;
 
     /**
-     * 优先级：1-高、2-中、3-低
+     * 优先级：1-高�?-中�?-�?
      */
     private Integer priority;
 
@@ -73,12 +73,12 @@ public class IssuePageVO implements Serializable {
     private Long assigneeId;
 
     /**
-     * 经办人工号
+     * 经办人工�?
      */
     private String assigneeCode;
 
     /**
-     * 经办人姓名
+     * 经办人姓�?
      */
     private String assigneeName;
 
@@ -88,17 +88,17 @@ public class IssuePageVO implements Serializable {
     private Long reporterId;
 
     /**
-     * 报告人工号
+     * 报告人工�?
      */
     private String reporterCode;
 
     /**
-     * 报告人姓名
+     * 报告人姓�?
      */
     private String reporterName;
 
     /**
-     * 开始日期
+     * 开始日�?
      */
     private LocalDate startDate;
 
@@ -133,7 +133,7 @@ public class IssuePageVO implements Serializable {
     private String tags;
 
     /**
-     * 排期信息（JSON格式）
+     * 排期信息（JSON格式�?
      */
     private String schedule;
 }

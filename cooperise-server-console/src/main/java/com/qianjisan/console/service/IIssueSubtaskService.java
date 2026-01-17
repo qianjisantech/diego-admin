@@ -15,7 +15,7 @@ import com.qianjisan.console.entity.IssueSubtask;
 public interface IIssueSubtaskService extends IService<IssueSubtask> {
 
     /**
-     * 分页查询子任务管理
+     * 分页查询子任务管�?
      *
      * @param request 查询条件
      * @return 分页结果

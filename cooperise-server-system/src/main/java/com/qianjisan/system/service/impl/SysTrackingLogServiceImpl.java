@@ -34,7 +34,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
- * 埋点日志服务实现类
+ * 埋点日志服务实现�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -57,7 +57,7 @@ public class SysTrackingLogServiceImpl extends ServiceImpl<SysTrackingLogMapper,
             wrapper.eq(SysTrackingLog::getUserId, request.getUserId());
         }
 
-        // 用户名
+        // 用户�?
         if (StringUtils.hasText(request.getUsername())) {
             wrapper.like(SysTrackingLog::getUsername, request.getUsername());
         }
@@ -87,7 +87,7 @@ public class SysTrackingLogServiceImpl extends ServiceImpl<SysTrackingLogMapper,
             wrapper.le(SysTrackingLog::getCreateTime, endTime);
         }
 
-        // 关键词搜索
+        // 关键词搜�?
         if (StringUtils.hasText(request.getKeyword())) {
             wrapper.and(w -> w
                 .like(SysTrackingLog::getEventName, request.getKeyword())
@@ -141,7 +141,7 @@ public class SysTrackingLogServiceImpl extends ServiceImpl<SysTrackingLogMapper,
     public SysTrackingLogVO getTrackingLogById(Long id) {
         SysTrackingLog trackingLog = getById(id);
         if (trackingLog == null) {
-            throw new BusinessException("埋点日志不存在");
+            throw new BusinessException("埋点日志不存�?);
         }
         return BeanConverter.convert(trackingLog, SysTrackingLogVO::new);
     }
@@ -153,7 +153,7 @@ public class SysTrackingLogServiceImpl extends ServiceImpl<SysTrackingLogMapper,
         // 设置默认时间类型
         String timeType = StringUtils.hasText(request.getTimeType()) ? request.getTimeType() : "day";
         
-        // 处理时间格式，如果没有指定时间，默认查询最近30天
+        // 处理时间格式，如果没有指定时间，默认查询最�?0�?
         String startTime = request.getStartTime();
         String endTime = request.getEndTime();
         
@@ -166,7 +166,7 @@ public class SysTrackingLogServiceImpl extends ServiceImpl<SysTrackingLogMapper,
                 startTime = now.minusDays(30).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             }
         } else {
-            // 如果只提供了日期，补充时间部分
+            // 如果只提供了日期，补充时间部�?
             if (startTime.length() == 10) {
                 startTime = startTime + " 00:00:00";
             }
@@ -180,7 +180,7 @@ public class SysTrackingLogServiceImpl extends ServiceImpl<SysTrackingLogMapper,
         result.forEach(item -> {
             item.setEventType(convertEventTypeToChinese(item.getEventType()));
         });
-        log.info("[统计埋点类型数量] 成功，共 {} 条记录", result.size());
+        log.info("[统计埋点类型数量] 成功，共 {} 条记�?, result.size());
         return result;
     }
 
@@ -191,7 +191,7 @@ public class SysTrackingLogServiceImpl extends ServiceImpl<SysTrackingLogMapper,
         // 设置默认时间类型
         String timeType = StringUtils.hasText(request.getTimeType()) ? request.getTimeType() : "day";
         
-        // 处理时间格式，如果没有指定时间，默认查询最近30天
+        // 处理时间格式，如果没有指定时间，默认查询最�?0�?
         String startTime = request.getStartTime();
         String endTime = request.getEndTime();
         
@@ -204,7 +204,7 @@ public class SysTrackingLogServiceImpl extends ServiceImpl<SysTrackingLogMapper,
                 startTime = now.minusDays(30).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             }
         } else {
-            // 如果只提供了日期，补充时间部分
+            // 如果只提供了日期，补充时间部�?
             if (startTime.length() == 10) {
                 startTime = startTime + " 00:00:00";
             }
@@ -214,7 +214,7 @@ public class SysTrackingLogServiceImpl extends ServiceImpl<SysTrackingLogMapper,
         }
         
         List<UserActivityVO> result = baseMapper.statisticsUserActivity(timeType, startTime, endTime);
-        log.info("[统计用户活跃量] 成功，共 {} 条记录", result.size());
+        log.info("[统计用户活跃量] 成功，共 {} 条记�?, result.size());
         return result;
     }
 
@@ -242,7 +242,7 @@ public class SysTrackingLogServiceImpl extends ServiceImpl<SysTrackingLogMapper,
             case "file_upload":
                 return "文件上传";
             case "custom":
-                return "自定义";
+                return "自定�?;
             default:
                 return eventType;
         }

@@ -7,7 +7,7 @@ import java.security.SecureRandom;
 import java.util.Base64;
 
 /**
- * 密码加密工具类
+ * 密码加密工具�?
  * 使用 SHA-256 加盐哈希算法
  *
  * @author DCP Team
@@ -22,14 +22,14 @@ public class PasswordUtil {
      * 加密密码
      *
      * @param rawPassword 原始密码
-     * @return 加密后的密码（格式：salt$hash）
+     * @return 加密后的密码（格式：salt$hash�?
      */
     public static String encode(String rawPassword) {
         try {
-            // 生成随机盐值
+            // 生成随机盐�?
             byte[] salt = generateSalt();
 
-            // 计算哈希值
+            // 计算哈希�?
             String hash = hash(rawPassword, salt);
 
             // 返回格式：salt$hash
@@ -48,7 +48,7 @@ public class PasswordUtil {
      */
     public static boolean matches(String rawPassword, String encodedPassword) {
         try {
-            // 分离盐值和哈希值
+            // 分离盐值和哈希�?
             String[] parts = encodedPassword.split("\\$");
             if (parts.length != 2) {
                 return false;
@@ -57,10 +57,10 @@ public class PasswordUtil {
             byte[] salt = Base64.getDecoder().decode(parts[0]);
             String expectedHash = parts[1];
 
-            // 计算原始密码的哈希值
+            // 计算原始密码的哈希�?
             String actualHash = hash(rawPassword, salt);
 
-            // 比较哈希值
+            // 比较哈希�?
             return expectedHash.equals(actualHash);
         } catch (Exception e) {
             return false;
@@ -68,7 +68,7 @@ public class PasswordUtil {
     }
 
     /**
-     * 生成随机盐值
+     * 生成随机盐�?
      */
     private static byte[] generateSalt() {
         SecureRandom random = new SecureRandom();
@@ -78,7 +78,7 @@ public class PasswordUtil {
     }
 
     /**
-     * 计算哈希值
+     * 计算哈希�?
      */
     private static String hash(String password, byte[] salt) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance(ALGORITHM);

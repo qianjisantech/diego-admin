@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 import java.time.LocalDateTime;
 
 /**
- * 登录日志表
+ * 登录日志�?
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -49,7 +49,7 @@ public class SysLoginLog extends BaseEntity {
     private String device;
 
     /**
-     * 浏览器
+     * 浏览�?
      */
     @TableField("browser")
     private String browser;
@@ -61,7 +61,7 @@ public class SysLoginLog extends BaseEntity {
     private String os;
 
     /**
-     * 状态：1-成功，0-失败
+     * 状态：1-成功�?-失败
      */
     @TableField("status")
     private Integer status;

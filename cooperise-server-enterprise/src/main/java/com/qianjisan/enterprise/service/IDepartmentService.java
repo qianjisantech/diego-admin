@@ -12,7 +12,7 @@ import com.qianjisan.enterprise.vo.DepartmentVo;
 import java.util.List;
 
 /**
- * 部门表 Service
+ * 部门�?Service
  */
 public interface IDepartmentService extends IService<Department> {
 
@@ -42,7 +42,7 @@ public interface IDepartmentService extends IService<Department> {
     PageVO<DepartmentVo> getDepartmentPage(DepartmentQueryRequest request);
 
     /**
-     * 根据父部门ID获取子部门列表
+     * 根据父部门ID获取子部门列�?
      */
     List<DepartmentVo> getChildrenDepartments(Long parentId);
 

@@ -22,7 +22,7 @@ public class PageRequest extends PageQuery {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 当前页码（别名，与 current 相同）
+     * 当前页码（别名，�?current 相同�?
      */
     public Integer getCurrent() {
         return super.getCurrent();
@@ -33,7 +33,7 @@ public class PageRequest extends PageQuery {
     }
 
     /**
-     * 每页大小（别名，与 size 相同）
+     * 每页大小（别名，�?size 相同�?
      */
     public Integer getPageSize() {
         return super.getSize();

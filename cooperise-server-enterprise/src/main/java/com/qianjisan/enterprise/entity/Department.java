@@ -30,7 +30,7 @@ public class Department extends BaseEntity {
     @TableField("dept_name")
     private String deptName;
 
-    /** 父部门ID，0表示顶级部门 */
+    /** 父部门ID�?表示顶级部门 */
     @TableField("parent_id")
     private Long parentId;
 
@@ -42,7 +42,7 @@ public class Department extends BaseEntity {
     @TableField("sort_order")
     private Integer sortOrder;
 
-    /** 状态：1-启用，0-禁用 */
+    /** 状态：1-启用�?-禁用 */
     @TableField("status")
     private Integer status;
 
@@ -50,11 +50,11 @@ public class Department extends BaseEntity {
     @TableField("leader_id")
     private Long leaderId;
 
-    /** 负责人姓名 */
+    /** 负责人姓�?*/
     @TableField("leader_name")
     private String leaderName;
 
-    /** 负责人工号 */
+    /** 负责人工�?*/
     @TableField("leader_code")
     private String leaderCode;
 }
