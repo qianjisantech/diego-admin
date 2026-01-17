@@ -7,11 +7,11 @@
 
     <parent>
         <groupId>com.qianjisan</groupId>
-        <artifactId>diego-server</artifactId>
+        <artifactId>cooperise-server</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>diego-server-admin</artifactId>
+    <artifactId>cooperise-server</artifactId>
     <name>diego-server-admin</name>
     <description>系统管理员服务</description>
 
@@ -22,7 +22,7 @@
         <!-- 依赖 console 模块 -->
         <dependency>
             <groupId>com.qianjisan</groupId>
-            <artifactId>diego-server-console</artifactId>
+            <artifactId>cooperise-server-console</artifactId>
         </dependency>
         <!-- 添加Spring Boot启动器 -->
 
@@ -31,11 +31,11 @@
         <!-- 依赖 enterprise 模块 -->
         <dependency>
             <groupId>com.qianjisan</groupId>
-            <artifactId>diego-server-enterprise</artifactId>
+            <artifactId>cooperise-server-enterprise</artifactId>
         </dependency>
         <dependency>
             <groupId>com.qianjisan</groupId>
-            <artifactId>diego-server-auth</artifactId>
+            <artifactId>cooperise-server-auth</artifactId>
         </dependency>
         <!-- FastJSON2 -->
         <dependency>

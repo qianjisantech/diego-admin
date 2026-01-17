@@ -7,11 +7,11 @@
 
     <parent>
         <groupId>com.qianjisan</groupId>
-        <artifactId>diego-server</artifactId>
+        <artifactId>cooperise-server</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>diego-server-core</artifactId>
+    <artifactId>cooperise-server-core</artifactId>
     <name>diego-server-core</name>
     <description>核心中间组件模块</description>
 

@@ -13,20 +13,20 @@
     </parent>
 
     <groupId>com.qianjisan</groupId>
-    <artifactId>diego-server</artifactId>
+    <artifactId>cooperise-server</artifactId>
     <version>${revision}</version>
     <name>diego-server</name>
     <description>需求管理系统后端服务</description>
     <packaging>pom</packaging>
 
     <modules>
-        <module>diego-server-core</module>
-        <module>diego-server-common</module>
-        <module>diego-server-system</module>
-        <module>diego-server-enterprise</module>
-        <module>diego-server-auth</module>
-        <module>diego-server-console</module>
-        <module>diego-server-admin</module>
+        <module>cooperise-server-core</module>
+        <module>cooperise-server-common</module>
+        <module>cooperise-server-system</module>
+        <module>cooperise-server-enterprise</module>
+        <module>cooperise-server-auth</module>
+        <module>cooperise-server-console</module>
+        <module>cooperise-server-admin</module>
     </modules>
 
     <properties>

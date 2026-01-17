@@ -7,11 +7,11 @@
 
     <parent>
         <groupId>com.qianjisan</groupId>
-        <artifactId>diego-server</artifactId>
+        <artifactId>cooperise-server</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>diego-server-system</artifactId>
+    <artifactId>cooperise-server-system</artifactId>
     <name>diego-server-system</name>
     <description>系统管理服务</description>
 
@@ -20,12 +20,12 @@
 
         <dependency>
             <groupId>com.qianjisan</groupId>
-            <artifactId>diego-server-core</artifactId>
+            <artifactId>cooperise-server-core</artifactId>
         </dependency>
         <!-- 依赖 enterprise 模块（企业/部门数据结构） -->
         <dependency>
             <groupId>com.qianjisan</groupId>
-            <artifactId>diego-server-enterprise</artifactId>
+            <artifactId>cooperise-server-enterprise</artifactId>
         </dependency>
 
         <!-- MyBatis Plus -->

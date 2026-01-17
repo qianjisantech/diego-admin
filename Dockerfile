@@ -23,13 +23,13 @@ ENV PATH="${JAVA_HOME}/bin:${PATH}"
 COPY pom.xml /app/
 
 # 将各模块的 pom.xml 拷贝到工作目录（按照主pom.xml中的modules顺序）
-COPY diego-server-core/pom.xml         /app/diego-server-core/
-COPY diego-server-common/pom.xml       /app/diego-server-common/
-COPY diego-server-system/pom.xml       /app/diego-server-system/
-COPY diego-server-enterprise/pom.xml   /app/diego-server-enterprise/
-COPY diego-server-auth/pom.xml         /app/diego-server-auth/
-COPY diego-server-console/pom.xml      /app/diego-server-console/
-COPY diego-server-admin/pom.xml        /app/diego-server-admin/
+COPY cooperise-server-core/pom.xml         /app/cooperise-server-core/
+COPY cooperise-server-common/pom.xml       /app/cooperise-server-common/
+COPY cooperise-server-system/pom.xml       /app/cooperise-server-system/
+COPY cooperise-server-enterprise/pom.xml   /app/cooperise-server-enterprise/
+COPY cooperise-server-auth/pom.xml         /app/cooperise-server-auth/
+COPY cooperise-server-console/pom.xml      /app/cooperise-server-console/
+COPY cooperise-server-admin/pom.xml        /app/cooperise-server-admin/
 # 下载依赖（利用 Docker 缓存层，只有 pom.xml 变化时才重新下载）
 # 使用 Maven 中央仓库下载依赖
 # 定义revision属性以解决版本变量解析问题
@@ -37,13 +37,13 @@ COPY diego-server-admin/pom.xml        /app/diego-server-admin/
 RUN mvn -f /app/pom.xml dependency:go-offline -B -Drevision=1.0.0-SNAPSHOT || true
 
 # 将 src 目录下所有文件，拷贝到工作目录中（.dockerignore 中文件除外）
-COPY diego-server-core/src        /app/diego-server-core/src
-COPY diego-server-common/src      /app/diego-server-common/src
-COPY diego-server-system/src      /app/diego-server-system/src
-COPY diego-server-enterprise/src  /app/diego-server-enterprise/src
-COPY diego-server-auth/src        /app/diego-server-auth/src
-COPY diego-server-console/src     /app/diego-server-console/src
-COPY diego-server-admin/src       /app/diego-server-admin/src
+COPY cooperise-server-core/src        /app/cooperise-server-core/src
+COPY cooperise-server-common/src      /app/cooperise-server-common/src
+COPY cooperise-server-system/src      /app/cooperise-server-system/src
+COPY cooperise-server-enterprise/src  /app/cooperise-server-enterprise/src
+COPY cooperise-server-auth/src        /app/cooperise-server-auth/src
+COPY cooperise-server-console/src     /app/cooperise-server-console/src
+COPY cooperise-server-admin/src       /app/cooperise-server-admin/src
 
 
 RUN mvn -f /app/pom.xml clean install -DskipTests -N -B -Drevision=1.0.0-SNAPSHOT
@@ -64,7 +64,7 @@ WORKDIR /app
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
 
-COPY --from=build /app/diego-server-admin/target/*.jar /app/app.jar
+COPY --from=build /app/cooperise-server-admin/target/*.jar /app/app.jar
 
 # 创建日志和上传目录
 RUN mkdir -p /app/logs /app/uploads && \
