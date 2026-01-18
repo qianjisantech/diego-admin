@@ -4,7 +4,7 @@ import com.qianjisan.core.PageVO;
 import com.qianjisan.console.entity.IssueDetail;
 import com.qianjisan.console.request.IssueDetailQueryRequest;
 import com.qianjisan.console.request.IssueDetailRequest;
-import com.qianjisan.console.vo.IssueDetailVO;
+import com.qianjisan.console.vo.IssueVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -37,20 +37,20 @@ public interface IssueDetailService extends IService<IssueDetail> {
     /**
      * 根据ID查询事项详情
      */
-    IssueDetailVO getIssueDetailById(Long id);
+    IssueVO getIssueDetailById(Long id);
 
     /**
      * 分页查询事项详情
      */
-    PageVO<IssueDetailVO> getIssueDetailPage(IssueDetailQueryRequest request);
+    PageVO<IssueVO> getIssueDetailPage(IssueDetailQueryRequest request);
 
     /**
      * 根据企业ID查询事项详情列表
      */
-    List<IssueDetailVO> getIssueDetailsByCompanyId(Long companyId);
+    List<IssueVO> getIssueDetailsByCompanyId(Long companyId);
 
     /**
      * 根据模板字段ID查询事项详情列表
      */
-    List<IssueDetailVO> getIssueDetailsByTemplateFieldId(Long templateFieldId);
+    List<IssueVO> getIssueDetailsByTemplateFieldId(Long templateFieldId);
 }

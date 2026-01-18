@@ -39,7 +39,7 @@ public class TemplateField implements Serializable {
      * 模板id
      */
     @TableField("template_id")
-    private String templateId;
+    private Long templateId;
 
 
     /**

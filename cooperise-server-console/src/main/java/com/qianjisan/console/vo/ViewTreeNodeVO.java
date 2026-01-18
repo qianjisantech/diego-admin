@@ -40,7 +40,7 @@ public class ViewTreeNodeVO {
     private String description;
 
     /**
-     * 所属空间ID（仅视图有）
+     * 所属企业ID（仅视图有）
      */
     private Long spaceId;
 

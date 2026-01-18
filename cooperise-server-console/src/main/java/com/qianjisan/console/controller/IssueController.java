@@ -1,6 +1,6 @@
 package com.qianjisan.console.controller;
 
-import com.qianjisan.console.vo.IssueDetailVO;
+import com.qianjisan.console.vo.IssueVO;
 import com.qianjisan.console.vo.IssuePageVO;
 import com.qianjisan.core.Result;
 import com.qianjisan.annotation.RequiresPermission;
@@ -81,7 +81,7 @@ public class IssueController {
      * 删除事项
      */
     @Operation(summary = "删除事项")
-    @RequiresPermission("workspace:issue:delete")
+
     @DeleteMapping("/{id}")
     public Result<Void> delete(@PathVariable Long id) {
         try {
@@ -99,15 +99,11 @@ public class IssueController {
      * 根据ID查询事项详情（包含扩展字段）
      */
     @Operation(summary = "根据ID查询事项")
-    @RequiresPermission("workspace:issue:view")
     @GetMapping("/{id}")
-    public Result<IssueDetailVO> getById(@PathVariable Long id) {
+    public Result<IssueVO> getById(@PathVariable Long id) {
         try {
             log.info("[查询事项] ID: {}", id);
-            IssueDetailVO issueDetail = workspaceIssueService.getIssueDetailById(id);
-            if (issueDetail == null) {
-                return Result.error("事项不存在");
-            }
+            IssueVO issueDetail = workspaceIssueService.getIssueDetailById(id);
             return Result.success(issueDetail);
         } catch (Exception e) {
             log.error("[查询事项] 失败，失败原因：{}", e.getMessage(), e);
@@ -119,7 +115,6 @@ public class IssueController {
      * 分页查询事项
      */
     @Operation(summary = "分页查询事项")
-    @RequiresPermission("workspace:issue:view")
     @PostMapping("/page")
     public Result<PageVO<IssuePageVO>> page(@RequestBody IssueQueryRequest request) {
         log.info("[分页查询事项] 查询参数: {}", request);
@@ -138,7 +133,6 @@ public class IssueController {
      * 用于顶部搜索框的自动提示
      */
     @Operation(summary = "搜索事项")
-    @RequiresPermission("workspace:issue:view")
     @GetMapping("/search")
     public Result<List<Map<String, Object>>> search(@RequestParam String keyword) {
         log.info("[搜索事项] 关键词: {}", keyword);

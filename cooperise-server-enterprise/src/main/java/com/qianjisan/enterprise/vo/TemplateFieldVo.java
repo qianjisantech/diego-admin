@@ -2,6 +2,7 @@ package com.qianjisan.enterprise.vo;
 
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 @Data
 public class TemplateFieldVo implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**
@@ -21,7 +23,7 @@ public class TemplateFieldVo implements Serializable {
     /**
      * 模板id
      */
-    private String templateId;
+    private Long templateId;
 
     /**
      * 字段编码
@@ -63,53 +65,5 @@ public class TemplateFieldVo implements Serializable {
      */
     private Integer sort;
 
-    /**
-     * 位置
-     */
-    private String position;
-
-    /**
-     * 状态：1-启用 0-禁用
-     */
-    private Integer status;
-
-    /**
-     * 创建时间
-     */
-    private LocalDateTime createTime;
-
-    /**
-     * 更新时间
-     */
-    private LocalDateTime updateTime;
-
-    /**
-     * 创建人ID
-     */
-    private Long createById;
-
-    /**
-     * 创建人用户名
-     */
-    private String createByCode;
-
-    /**
-     * 创建人昵称
-     */
-    private String createByName;
-
-    /**
-     * 更新人ID
-     */
-    private Long updateById;
-
-    /**
-     * 更新人用户名
-     */
-    private String updateByCode;
-
-    /**
-     * 更新人昵称
-     */
-    private String updateByName;
 }
+

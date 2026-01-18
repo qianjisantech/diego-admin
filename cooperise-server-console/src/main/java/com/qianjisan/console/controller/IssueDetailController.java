@@ -5,7 +5,7 @@ import com.qianjisan.core.Result;
 import com.qianjisan.console.request.IssueDetailQueryRequest;
 import com.qianjisan.console.request.IssueDetailRequest;
 import com.qianjisan.console.service.IssueDetailService;
-import com.qianjisan.console.vo.IssueDetailVO;
+import com.qianjisan.console.vo.IssueVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -69,23 +69,30 @@ public class IssueDetailController {
         }
     }
 
-    @Operation(summary = "根据ID查询事项详情")
+    /**
+     * 根据ID查询事项详情（包含扩展字段）
+     */
+    @Operation(summary = "根据ID查询事项")
     @GetMapping("/{id}")
-    public Result<IssueDetailVO> getById(@PathVariable Long id) {
+    public Result<IssueVO> getById(@PathVariable Long id) {
         try {
-            IssueDetailVO vo = issueDetailService.getIssueDetailById(id);
-            return Result.success(vo);
+            log.info("[查询事项] ID: {}", id);
+            IssueVO issueDetail = issueDetailService.getIssueDetailById(id);
+            if (issueDetail == null) {
+                return Result.error("事项不存在");
+            }
+            return Result.success(issueDetail);
         } catch (Exception e) {
-            log.error("查询事项详情失败", e);
+            log.error("[查询事项] 失败，失败原因：{}", e.getMessage(), e);
             return Result.error(e.getMessage());
         }
     }
 
     @Operation(summary = "分页查询事项详情")
     @PostMapping("/page")
-    public Result<PageVO<IssueDetailVO>> page(@RequestBody IssueDetailQueryRequest request) {
+    public Result<PageVO<IssueVO>> page(@RequestBody IssueDetailQueryRequest request) {
         try {
-            PageVO<IssueDetailVO> pageVO = issueDetailService.getIssueDetailPage(request);
+            PageVO<IssueVO> pageVO = issueDetailService.getIssueDetailPage(request);
             return Result.success(pageVO);
         } catch (Exception e) {
             log.error("分页查询事项详情失败", e);
@@ -95,9 +102,9 @@ public class IssueDetailController {
 
     @Operation(summary = "根据企业ID查询事项详情列表")
     @GetMapping("/company/{companyId}")
-    public Result<List<IssueDetailVO>> getByCompanyId(@PathVariable Long companyId) {
+    public Result<List<IssueVO>> getByCompanyId(@PathVariable Long companyId) {
         try {
-            List<IssueDetailVO> vos = issueDetailService.getIssueDetailsByCompanyId(companyId);
+            List<IssueVO> vos = issueDetailService.getIssueDetailsByCompanyId(companyId);
             return Result.success(vos);
         } catch (Exception e) {
             log.error("根据企业ID查询事项详情失败", e);
@@ -107,9 +114,9 @@ public class IssueDetailController {
 
     @Operation(summary = "根据模板字段ID查询事项详情列表")
     @GetMapping("/template-field/{templateFieldId}")
-    public Result<List<IssueDetailVO>> getByTemplateFieldId(@PathVariable Long templateFieldId) {
+    public Result<List<IssueVO>> getByTemplateFieldId(@PathVariable Long templateFieldId) {
         try {
-            List<IssueDetailVO> vos = issueDetailService.getIssueDetailsByTemplateFieldId(templateFieldId);
+            List<IssueVO> vos = issueDetailService.getIssueDetailsByTemplateFieldId(templateFieldId);
             return Result.success(vos);
         } catch (Exception e) {
             log.error("根据模板字段ID查询事项详情失败", e);

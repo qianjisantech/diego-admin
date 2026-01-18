@@ -48,18 +48,6 @@ public class TemplateFieldController {
 
 
 
-    @Operation(summary = "更新模板字段")
-    @PutMapping("/{id}")
-    public Result<Void> update(@PathVariable Long id, @Valid @RequestBody BatchSaveTemplateFieldRequest request) {
-        try {
-            templateFieldService.updateTemplateField(id, request);
-            return Result.success();
-        } catch (Exception e) {
-            log.error("更新模板字段失败", e);
-            return Result.error(e.getMessage());
-        }
-    }
-
     @Operation(summary = "删除模板字段")
     @DeleteMapping("/{id}")
     public Result<Void> delete(@PathVariable Long id) {
@@ -74,37 +62,15 @@ public class TemplateFieldController {
 
     @Operation(summary = "根据ID查询模板字段")
     @GetMapping("/{id}")
-    public Result<TemplateFieldVo> getById(@PathVariable Long id) {
+    public Result< List<TemplateFieldVo>> getTemplateFieldById(@PathVariable Long id) {
         try {
-            TemplateFieldVo vo = templateFieldService.getTemplateFieldById(id);
-            return Result.success(vo);
+            List<TemplateFieldVo> templateFieldVos = templateFieldService.getFieldsByTemplateId(id);
+            return Result.success(templateFieldVos);
         } catch (Exception e) {
             log.error("查询模板字段失败", e);
             return Result.error(e.getMessage());
         }
     }
 
-    @Operation(summary = "分页查询模板字段")
-    @PostMapping("/page")
-    public Result<PageVO<TemplateFieldVo>> page(@RequestBody TemplateFieldQueryRequest request) {
-        try {
-            PageVO<TemplateFieldVo> pageVO = templateFieldService.getTemplateFieldPage(request);
-            return Result.success(pageVO);
-        } catch (Exception e) {
-            log.error("分页查询模板字段失败", e);
-            return Result.error(e.getMessage());
-        }
-    }
 
-    @Operation(summary = "根据模板ID查询字段列表")
-    @GetMapping("/template/{templateId}")
-    public Result<List<TemplateFieldVo>> getFieldsByTemplateId(@PathVariable String templateId) {
-        try {
-            List<TemplateFieldVo> vos = templateFieldService.getFieldsByTemplateId(templateId);
-            return Result.success(vos);
-        } catch (Exception e) {
-            log.error("根据模板ID查询字段列表失败", e);
-            return Result.error(e.getMessage());
-        }
-    }
 }

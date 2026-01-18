@@ -11,7 +11,7 @@ import java.lang.annotation.*;
  * 用于控制用户对数据的访问权限
  *
  * 使用示例:
- * 1. 空间数据权限: @DataPermission(type = DataPermissionType.SPACE)
+ * 1. 企业数据权限: @DataPermission(type = DataPermissionType.SPACE)
  * 2. 视图数据权限: @DataPermission(type = DataPermissionType.VIEW)
  * 3. 个人数据: @DataPermission(type = DataPermissionType.OWNER)
  *

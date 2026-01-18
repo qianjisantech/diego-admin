@@ -36,7 +36,7 @@ dcp-admin/
 │   ├── controller/                  # 控制器层
 │   │   ├── AuthController.java     # 认证控制器
 │   │   ├── UserController.java     # 用户控制器
-│   │   ├── SpaceController.java    # 空间控制器
+│   │   ├── SpaceController.java    # 企业控制器
 │   │   ├── WorkspaceIssueController.java  # 事项控制器
 │   │   └── ...                     # 其他控制器
 │   ├── service/                     # 服务层
@@ -125,13 +125,13 @@ java -jar target/dcp-admin.jar
 - `PUT /sysUser/{id}` - 更新用户
 - `DELETE /sysUser/{id}` - 删除用户
 
-### 空间接口
+### 企业接口
 
-- `POST /space/page` - 分页查询空间列表
-- `GET /space/{id}` - 获取空间详情
-- `POST /space` - 创建空间
-- `PUT /space/{id}` - 更新空间
-- `DELETE /space/{id}` - 删除空间
+- `POST /space/page` - 分页查询企业列表
+- `GET /space/{id}` - 获取企业详情
+- `POST /space` - 创建企业
+- `PUT /space/{id}` - 更新企业
+- `DELETE /space/{id}` - 删除企业
 
 ### 事项接口
 

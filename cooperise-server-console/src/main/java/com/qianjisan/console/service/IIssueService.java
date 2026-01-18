@@ -1,7 +1,7 @@
 package com.qianjisan.console.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.qianjisan.console.vo.IssueDetailVO;
+import com.qianjisan.console.vo.IssueVO;
 import com.qianjisan.console.vo.IssuePageVO;
 import com.qianjisan.core.PageVO;
 import com.qianjisan.console.entity.Issue;
@@ -43,13 +43,13 @@ public interface IIssueService extends IService<Issue> {
 
     /**
      * 根据ID查询事项详情（包含扩展字段）
-     * - 包含空间名称
+     * - 包含企业名称
      * - 包含经办人、报告人姓名
      *
      * @param id 事项ID
      * @return 事项详情VO（包含扩展字段）
      */
-    IssueDetailVO getIssueDetailById(Long id);
+    IssueVO getIssueDetailById(Long id);
 
     /**
      * 分页查询事项（包含复杂查询条件）

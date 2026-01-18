@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 工作空间视图查询请求
+ * 工作企业视图查询请求
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -17,7 +17,7 @@ public class ViewQueryRequest extends PageQuery {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 空间ID
+     * 企业ID
      */
     private Long spaceId;
 

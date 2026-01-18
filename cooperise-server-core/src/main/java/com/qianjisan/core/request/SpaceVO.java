@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 空间视图对象
+ * 企业视图对象
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -17,18 +17,18 @@ public class SpaceVO extends BaseVO {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 空间名称
+     * 企业名称
      */
     private String name;
 
 
     /**
-     * 空间关键词（用于生成事项单号）
+     * 企业关键词（用于生成事项单号）
      */
     private String keyword;
 
     /**
-     * 空间描述
+     * 企业描述
      */
     private String description;
 

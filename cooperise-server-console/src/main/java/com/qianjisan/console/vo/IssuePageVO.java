@@ -28,17 +28,17 @@ public class IssuePageVO implements Serializable {
     private String issueNo;
 
     /**
-     * 所属空间ID
+     * 所属企业ID
      */
     private Long spaceId;
 
     /**
-     * 空间名称
+     * 企业名称
      */
     private String spaceName;
 
     /**
-     * 空间关键词
+     * 企业关键词
      */
     private String spaceKeyword;
 

@@ -21,10 +21,6 @@ import java.util.List;
 public interface TemplateFieldService extends IService<TemplateField> {
 
 
-    /**
-     * 更新模板字段
-     */
-    void updateTemplateField(Long id, BatchSaveTemplateFieldRequest request);
 
     /**
      * 删除模板字段
@@ -36,18 +32,9 @@ public interface TemplateFieldService extends IService<TemplateField> {
      */
     void batchSaveTemplateFields(BatchSaveTemplateFieldRequest request);
 
-    /**
-     * 根据ID查询模板字段
-     */
-    TemplateFieldVo getTemplateFieldById(Long id);
-
-    /**
-     * 分页查询模板字段
-     */
-    PageVO<TemplateFieldVo> getTemplateFieldPage(TemplateFieldQueryRequest request);
 
     /**
      * 根据模板ID查询字段列表
      */
-    List<TemplateFieldVo> getFieldsByTemplateId(String templateId);
+    List<TemplateFieldVo> getFieldsByTemplateId(Long templateId);
 }

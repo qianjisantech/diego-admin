@@ -4,8 +4,12 @@ import com.qianjisan.core.PageVO;
 import com.qianjisan.enterprise.entity.Template;
 import com.qianjisan.enterprise.request.TemplateQueryRequest;
 import com.qianjisan.enterprise.request.TemplateRequest;
+import com.qianjisan.enterprise.vo.TemplateOptionVo;
+import com.qianjisan.enterprise.vo.TemplateQueryPageVo;
 import com.qianjisan.enterprise.vo.TemplateVo;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -35,10 +39,16 @@ public interface TemplateService extends IService<Template> {
     /**
      * 根据ID查询模板
      */
-    TemplateVo getTemplateById(Long id);
+    TemplateVo getTemplateDetailById(Long id);
 
     /**
      * 分页查询模板
      */
-    PageVO<TemplateVo> getTemplatePage(TemplateQueryRequest request);
+    PageVO<TemplateQueryPageVo> getTemplatePage(TemplateQueryRequest request);
+
+    /**
+     * 获取模板选项列表（用于下拉框）
+     * @param companyId 企业ID
+     */
+    List<TemplateOptionVo> getTemplateOptions(Long companyId);
 }

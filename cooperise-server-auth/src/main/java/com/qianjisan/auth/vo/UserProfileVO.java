@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 用户档案VO（包含权限和空间信息）
+ * 用户档案VO（包含权限和企业信息）
  *
  * @author DCP Team
  * @since 2024-12-20

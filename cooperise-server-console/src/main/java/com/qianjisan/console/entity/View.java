@@ -41,7 +41,7 @@ public class View extends BaseEntity {
     private String type;
 
     /**
-     * 所属空间ID（空间视图）
+     * 所属企业ID（企业视图）
      */
     @TableField("space_id")
     private Long spaceId;

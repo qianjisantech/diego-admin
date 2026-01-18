@@ -49,30 +49,8 @@ Authorization: Bearer {{token}}
 
 
 
-### 分页查询模板字段
-POST {{baseUrl}}/enterprise/template-field/page
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
-{
-  "current": 1,
-  "size": 10,
-  "templateId": "",
-  "fieldName": "",
-  "fieldCode": "",
-  "fieldType": "",
-  "isEdit": null,
-  "isRequired": null,
-  "status": null,
-  "position": ""
-}
-
 ### 获取模板字段详情
 GET {{baseUrl}}/enterprise/template-field/1
-Authorization: Bearer {{token}}
-
-### 根据模板ID查询字段列表
-GET {{baseUrl}}/enterprise/template-field/template/1
 Authorization: Bearer {{token}}
 
 ### 批量保存模板字段

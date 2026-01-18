@@ -11,7 +11,7 @@ import com.qianjisan.console.mapper.IssueDetailMapper;
 import com.qianjisan.console.request.IssueDetailQueryRequest;
 import com.qianjisan.console.request.IssueDetailRequest;
 import com.qianjisan.console.service.IssueDetailService;
-import com.qianjisan.console.vo.IssueDetailVO;
+import com.qianjisan.console.vo.IssueVO;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +19,7 @@ import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -88,17 +89,27 @@ public class IssueDetailServiceImpl extends ServiceImpl<IssueDetailMapper, Issue
     }
 
     @Override
-    public IssueDetailVO getIssueDetailById(Long id) {
+    public IssueVO getIssueDetailById(Long id) {
         IssueDetail issueDetail = this.getById(id);
         if (issueDetail == null) {
-            throw new RuntimeException("事项详情不存在");
+            return null;
         }
 
-        return BeanUtil.copyProperties(issueDetail, IssueDetailVO.class);
+        IssueVO vo = BeanUtil.copyProperties(issueDetail, IssueVO.class);
+
+        // 查询相关的事项详情列表（根据企业ID查询同一企业的其他事项详情）
+        List<IssueVO> relatedIssueDetails = getIssueDetailsByCompanyId(issueDetail.getCompanyId());
+        // 过滤掉当前记录本身
+        relatedIssueDetails = relatedIssueDetails.stream()
+                .filter(item -> !item.getId().equals(id))
+                .collect(Collectors.toList());
+        vo.setIssueDetailList(relatedIssueDetails);
+
+        return vo;
     }
 
     @Override
-    public PageVO<IssueDetailVO> getIssueDetailPage(IssueDetailQueryRequest request) {
+    public PageVO<IssueVO> getIssueDetailPage(IssueDetailQueryRequest request) {
         LambdaQueryWrapper<IssueDetail> queryWrapper = new LambdaQueryWrapper<>();
 
         // 构建查询条件
@@ -128,8 +139,8 @@ public class IssueDetailServiceImpl extends ServiceImpl<IssueDetailMapper, Issue
         IPage<IssueDetail> page = this.page(new Page<>(request.getCurrent(), request.getSize()), queryWrapper);
 
         // 转换为VO
-        PageVO<IssueDetailVO> pageVO = new PageVO<>();
-        pageVO.setRecords(BeanUtil.copyToList(page.getRecords(), IssueDetailVO.class));
+        PageVO<IssueVO> pageVO = new PageVO<>();
+        pageVO.setRecords(BeanUtil.copyToList(page.getRecords(), IssueVO.class));
         pageVO.setCurrent(page.getCurrent());
         pageVO.setSize(page.getSize());
         pageVO.setTotal(page.getTotal());
@@ -139,22 +150,22 @@ public class IssueDetailServiceImpl extends ServiceImpl<IssueDetailMapper, Issue
     }
 
     @Override
-    public List<IssueDetailVO> getIssueDetailsByCompanyId(Long companyId) {
+    public List<IssueVO> getIssueDetailsByCompanyId(Long companyId) {
         LambdaQueryWrapper<IssueDetail> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(IssueDetail::getCompanyId, companyId)
                 .orderByDesc(IssueDetail::getCreateTime);
 
         List<IssueDetail> issueDetails = this.list(queryWrapper);
-        return BeanUtil.copyToList(issueDetails, IssueDetailVO.class);
+        return BeanUtil.copyToList(issueDetails, IssueVO.class);
     }
 
     @Override
-    public List<IssueDetailVO> getIssueDetailsByTemplateFieldId(Long templateFieldId) {
+    public List<IssueVO> getIssueDetailsByTemplateFieldId(Long templateFieldId) {
         LambdaQueryWrapper<IssueDetail> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(IssueDetail::getTemplateFieldId, templateFieldId)
                 .orderByDesc(IssueDetail::getCreateTime);
 
         List<IssueDetail> issueDetails = this.list(queryWrapper);
-        return BeanUtil.copyToList(issueDetails, IssueDetailVO.class);
+        return BeanUtil.copyToList(issueDetails, IssueVO.class);
     }
 }

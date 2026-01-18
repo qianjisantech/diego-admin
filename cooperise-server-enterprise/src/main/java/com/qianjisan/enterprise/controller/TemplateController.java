@@ -5,7 +5,11 @@ import com.qianjisan.core.Result;
 import com.qianjisan.enterprise.request.TemplateQueryRequest;
 import com.qianjisan.enterprise.request.TemplateRequest;
 import com.qianjisan.enterprise.service.TemplateService;
+import com.qianjisan.enterprise.vo.TemplateOptionVo;
+import com.qianjisan.enterprise.vo.TemplateQueryPageVo;
 import com.qianjisan.enterprise.vo.TemplateVo;
+
+import java.util.List;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -67,11 +71,11 @@ public class TemplateController {
         }
     }
 
-    @Operation(summary = "根据ID查询模板")
+    @Operation(summary = "根据ID查询模板详情")
     @GetMapping("/{id}")
-    public Result<TemplateVo> getById(@PathVariable Long id) {
+    public Result<TemplateVo> getTemplateDetailById(@PathVariable Long id) {
         try {
-            TemplateVo vo = templateService.getTemplateById(id);
+            TemplateVo vo = templateService.getTemplateDetailById(id);
             return Result.success(vo);
         } catch (Exception e) {
             log.error("查询模板失败", e);
@@ -81,12 +85,24 @@ public class TemplateController {
 
     @Operation(summary = "分页查询模板")
     @PostMapping("/page")
-    public Result<PageVO<TemplateVo>> page(@RequestBody TemplateQueryRequest request) {
+    public Result<PageVO<TemplateQueryPageVo>> page(@RequestBody TemplateQueryRequest request) {
         try {
-            PageVO<TemplateVo> pageVO = templateService.getTemplatePage(request);
+            PageVO<TemplateQueryPageVo> pageVO = templateService.getTemplatePage(request);
             return Result.success(pageVO);
         } catch (Exception e) {
             log.error("分页查询模板失败", e);
+            return Result.error(e.getMessage());
+        }
+    }
+
+    @Operation(summary = "获取模板选项列表（用于下拉框）")
+    @GetMapping("/options")
+    public Result<List<TemplateOptionVo>> getOptions(@RequestParam(required = false) Long companyId) {
+        try {
+            List<TemplateOptionVo> options = templateService.getTemplateOptions(companyId);
+            return Result.success(options);
+        } catch (Exception e) {
+            log.error("获取模板选项列表失败", e);
             return Result.error(e.getMessage());
         }
     }

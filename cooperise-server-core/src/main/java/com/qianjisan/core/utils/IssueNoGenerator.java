@@ -25,11 +25,11 @@ public class IssueNoGenerator {
     }
 
     /**
-     * 根据空间关键词生成事项单号
+     * 根据企业关键词生成事项单号
      * 格式: 关键词-年月日时分秒
      * 例如: PRJ-20241108143025
      *
-     * @param keyword 空间关键词
+     * @param keyword 企业关键词
      * @return 事项单号
      */
     public static String generateWithKeyword(String keyword) {
@@ -43,11 +43,11 @@ public class IssueNoGenerator {
     }
 
     /**
-     * 根据空间代码生成事项单号（兼容旧方法）
-     * 格式: 空间代码-年月日时分秒
+     * 根据企业代码生成事项单号（兼容旧方法）
+     * 格式: 企业代码-年月日时分秒
      * 例如: PRJ-20241108143025
      *
-     * @param spaceCode 空间代码
+     * @param spaceCode 企业代码
      * @return 事项单号
      * @deprecated 请使用 generateWithKeyword
      */

@@ -3,7 +3,7 @@ package com.qianjisan.request;
 import lombok.Data;
 
 /**
- * 空间请求对象
+ * 企业请求对象
  *
  * @author DCP Team
  * @since 2024-12-20
@@ -12,22 +12,22 @@ import lombok.Data;
 public class SpaceRequest {
 
     /**
-     * 空间名称
+     * 企业名称
      */
     private String name;
 
     /**
-     * 空间关键词（用于生成事项单号）
+     * 企业关键词（用于生成事项单号）
      */
     private String keyword;
 
     /**
-     * 空间描述
+     * 企业描述
      */
     private String description;
 
     /**
-     * 空间图标
+     * 企业图标
      */
     private String icon;
 

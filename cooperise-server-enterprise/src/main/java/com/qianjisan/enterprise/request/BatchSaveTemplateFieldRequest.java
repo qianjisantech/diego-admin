@@ -20,8 +20,8 @@ public class BatchSaveTemplateFieldRequest implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @NotBlank(message = "模板ID不能为空")
-    private String templateId;
+    @NotNull(message = "模板ID不能为空")
+    private Long templateId;
 
     @NotNull(message = "字段列表不能为空")
     private List<TemplateFieldRequest> fields;
@@ -36,9 +36,6 @@ public class BatchSaveTemplateFieldRequest implements Serializable {
         private static final long serialVersionUID = 1L;
 
         private Long id;
-
-        @NotBlank(message = "模板ID不能为空")
-        private String templateId;
 
         @NotBlank(message = "字段编码不能为空")
         private String fieldCode;

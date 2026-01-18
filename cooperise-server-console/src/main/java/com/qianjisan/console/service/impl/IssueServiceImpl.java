@@ -3,7 +3,7 @@ package com.qianjisan.console.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.qianjisan.console.vo.IssueDetailVO;
+import com.qianjisan.console.vo.IssueVO;
 import com.qianjisan.console.vo.IssuePageVO;
 import com.qianjisan.core.PageVO;
 import com.qianjisan.core.context.UserContext;
@@ -37,7 +37,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements IIssueService {
 
-    // TODO: 需要实现空间服务和空间成员服务
+    // TODO: 需要实现企业服务和企业成员服务
     // private final ISpaceService spaceService;
     // private final ISpaceMemberService spaceMemberService;
 
@@ -49,7 +49,7 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
     public void createIssue(WorkSpaceIssueRequest request) {
         Issue workspaceIssue = new Issue();
 
-        // 1. 处理空间信息
+        // 1. 处理企业信息
         if (request.getSpace() != null) {
             WorkSpaceIssueRequest.SpaceInfo space = request.getSpace();
             workspaceIssue.setCompanyId(space.getSpaceId());
@@ -64,7 +64,7 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
                 workspaceIssue.setIssueNo(request.getIssueNo());
             }
         } else {
-            // 没有空间信息时，使用默认方式生成事项单号
+            // 没有企业信息时，使用默认方式生成事项单号
             if (StringUtils.isEmpty(request.getIssueNo())) {
                 String issueNo = generateIssueNo(null);
                 workspaceIssue.setIssueNo(issueNo);
@@ -124,7 +124,7 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
         Issue workspaceIssue = new Issue();
         workspaceIssue.setId(id);
 
-        // 1. 处理空间信息
+        // 1. 处理企业信息
         if (request.getSpace() != null) {
             WorkSpaceIssueRequest.SpaceInfo space = request.getSpace();
             workspaceIssue.setCompanyId(space.getSpaceId());
@@ -139,7 +139,7 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
                 workspaceIssue.setIssueNo(request.getIssueNo());
             }
         } else {
-            // 没有空间信息时，使用默认方式生成事项单号
+            // 没有企业信息时，使用默认方式生成事项单号
             if (StringUtils.isEmpty(request.getIssueNo())) {
                 String issueNo = generateIssueNo(null);
                 workspaceIssue.setIssueNo(issueNo);
@@ -187,28 +187,28 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
     }
 
     @Override
-    public IssueDetailVO getIssueDetailById(Long id) {
+    public IssueVO getIssueDetailById(Long id) {
         // 1. 查询事项
         Issue issue = getById(id);
         if (issue == null) {
             return null;
         }
 
-        // 2. 数据权限校验: 检查用户是否有权访问该事项所在的空间
-        // TODO: 需要实现空间权限校验
+        // 2. 数据权限校验: 检查用户是否有权访问该事项所在的企业
+        // TODO: 需要实现企业权限校验
         // UserContext userContext = UserContextHolder.getUser();
         // if (userContext != null && userContext.getUserId() != null && issue.getSpaceId() != null) {
         //     spaceMemberService.checkSpacePermission(issue.getSpaceId(), userContext.getUserId());
         // }
 
         // 3. 创建详情VO对象
-        IssueDetailVO detailVO = new IssueDetailVO();
+        IssueVO detailVO = new IssueVO();
 
         // 4. 复制基本字段
         BeanUtils.copyProperties(issue, detailVO);
 
-        // 5. 添加空间名称（如果数据库中没有冗余存储）
-        // TODO: 如果数据库中没有冗余存储空间名称，需要从空间服务获取
+        // 5. 添加企业名称（如果数据库中没有冗余存储）
+        // TODO: 如果数据库中没有冗余存储企业名称，需要从企业服务获取
         // if (issue.getSpaceId() != null && StringUtils.isBlank(detailVO.getSpaceName())) {
         //     Space space = spaceService.getById(issue.getSpaceId());
         //     if (space != null) {
@@ -284,18 +284,18 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
     private LambdaQueryWrapper<Issue> buildQueryWrapper(IssueQueryRequest request) {
         LambdaQueryWrapper<Issue> queryWrapper = new LambdaQueryWrapper<>();
 
-        // 数据权限过滤: 只查询用户有权访问的空间的事项
-        // TODO: 需要实现空间权限过滤
+        // 数据权限过滤: 只查询用户有权访问的企业的事项
+        // TODO: 需要实现企业权限过滤
         // UserContext userContext = UserContextHolder.getUser();
         // if (userContext != null && userContext.getUserId() != null) {
-        //     // 获取用户所在的所有空间ID
+        //     // 获取用户所在的所有企业ID
         //     List<Long> userSpaceIds = spaceMemberService.getUserSpaceIds(userContext.getUserId());
         //
         //     if (userSpaceIds != null && !userSpaceIds.isEmpty()) {
-        //         // 只查询用户所在空间的事项
+        //         // 只查询用户所在企业的事项
         //         queryWrapper.in(Issue::getSpaceId, userSpaceIds);
         //     } else {
-        //         // 用户不在任何空间中,返回空结果
+        //         // 用户不在任何企业中,返回空结果
         //         queryWrapper.eq(Issue::getId, -1L);
         //     }
         // }
@@ -339,18 +339,18 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
     public List<Map<String, Object>> searchIssues(String keyword) {
         LambdaQueryWrapper<Issue> wrapper = new LambdaQueryWrapper<>();
 
-        // 数据权限过滤: 只搜索用户有权访问的空间的事项
-        // TODO: 需要实现空间权限过滤
+        // 数据权限过滤: 只搜索用户有权访问的企业的事项
+        // TODO: 需要实现企业权限过滤
         // UserContext userContext = UserContextHolder.getUser();
         // if (userContext != null && userContext.getUserId() != null) {
-        //     // 获取用户所在的所有空间ID
+        //     // 获取用户所在的所有企业ID
         //     List<Long> userSpaceIds = spaceMemberService.getUserSpaceIds(userContext.getUserId());
         //
         //     if (userSpaceIds != null && !userSpaceIds.isEmpty()) {
-        //         // 只搜索用户所在空间的事项
+        //         // 只搜索用户所在企业的事项
         //         wrapper.in(Issue::getSpaceId, userSpaceIds);
         //     } else {
-        //         // 用户不在任何空间中,返回空结果
+        //         // 用户不在任何企业中,返回空结果
         //         return List.of();
         //     }
         // }

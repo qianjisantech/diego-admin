@@ -39,7 +39,7 @@ public class ViewPageVO implements Serializable {
     private String type;
 
     /**
-     * 所属空间ID（空间视图）
+     * 所属企业ID（企业视图）
      */
     private Long spaceId;
 

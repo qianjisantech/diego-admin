@@ -9,8 +9,8 @@ package com.qianjisan.core.enums;
 public enum DataPermissionType {
 
     /**
-     * 空间级别权限
-     * 用户只能访问其所在空间的数据
+     * 企业级别权限
+     * 用户只能访问其所在企业的数据
      */
     SPACE,
 

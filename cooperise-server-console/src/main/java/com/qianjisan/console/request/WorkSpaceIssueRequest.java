@@ -83,14 +83,14 @@ public class WorkSpaceIssueRequest implements Serializable {
 
     @Data
     public static class SpaceInfo {
-        @NotNull(message = "空间ID不能为空")
+        @NotNull(message = "企业ID不能为空")
         private Long spaceId;
 
-        @NotBlank(message = "空间名称不能为空")
-        @Size(max = 100, message = "空间名称长度不能超过100个字符")
+        @NotBlank(message = "企业名称不能为空")
+        @Size(max = 100, message = "企业名称长度不能超过100个字符")
         private String spaceName;
 
-        @Size(max = 50, message = "空间关键词长度不能超过50个字符")
+        @Size(max = 50, message = "企业关键词长度不能超过50个字符")
         private String spaceKeyword;
     }
 

@@ -113,6 +113,14 @@ Authorization: Bearer {{token}}
   "status": 0
 }
 
+### 获取模板选项列表（用于下拉框）
+GET {{baseUrl}}/enterprise/template/options
+Authorization: Bearer {{token}}
+
+### 获取指定企业的模板选项列表
+GET {{baseUrl}}/enterprise/template/options?companyId=1
+Authorization: Bearer {{token}}
+
 
 
 
