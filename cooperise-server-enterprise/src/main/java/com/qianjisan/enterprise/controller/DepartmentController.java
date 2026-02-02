@@ -17,12 +17,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * 企业部门控制器（使用 Request/Vo DTO）
- */
 @Tag(name = "企业部门", description = "Company Department 相关接口")
 @RestController
-@RequestMapping("/enterprise/department")
+@RequestMapping("/enterprise-api/department")
 @RequiredArgsConstructor
 @Slf4j
 public class DepartmentController {
@@ -101,4 +98,3 @@ public class DepartmentController {
         }
     }
 }
-

@@ -18,20 +18,16 @@ public class IssueVO implements Serializable {
      */
     private Long id;
 
-    /**
-     * 企业id
-     */
-    private Long companyId;
 
     /**
      * 企业名称
      */
-    private String companyName;
+    private String enterpriseName;
 
     /**
      * 企业编码
      */
-    private String companyCode;
+    private String enterpriseCode;
 
 
     /**

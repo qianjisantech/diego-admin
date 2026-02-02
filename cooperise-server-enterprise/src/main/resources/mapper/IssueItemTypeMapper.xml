@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianjisan.enterprise.mapper.IssueItemTypeMapper">
+
+    <resultMap id="BaseResultMap" type="com.qianjisan.enterprise.entity.IssueItemType">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="code" property="code" />
+        <result column="status" property="status" />
+        <result column="description" property="description" />
+        <result column="department_id" property="departmentId" />
+        <result column="company_id" property="companyId" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="create_by_code" property="createByCode" />
+        <result column="update_by_code" property="updateByCode" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="create_by_name" property="createByName" />
+        <result column="update_by_name" property="updateByName" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, name, code, status, description, department_id, company_id, create_time, update_time, create_by_code, update_by_code, is_deleted, create_by_name, update_by_name
+    </sql>
+
+</mapper>

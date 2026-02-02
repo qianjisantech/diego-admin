@@ -17,17 +17,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * <p>
- * 模板字段 前端控制器
- * </p>
- *
- * @author cooperise
- * @since 2026-01-17
- */
 @Tag(name = "模板字段管理", description = "TemplateField 相关接口")
 @RestController
-@RequestMapping("/enterprise/template-field")
+@RequestMapping("/enterprise-api/template-field")
 @RequiredArgsConstructor
 @Slf4j
 public class TemplateFieldController {

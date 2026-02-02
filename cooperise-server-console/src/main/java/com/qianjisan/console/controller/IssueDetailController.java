@@ -16,17 +16,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * <p>
- * 事项主表 前端控制器
- * </p>
- *
- * @author cooperise
- * @since 2026-01-17
- */
 @Tag(name = "事项详情管理", description = "IssueDetail 相关接口")
 @RestController
-@RequestMapping("/console/issue-detail")
+@RequestMapping("/console-api/issue-detail")
 @RequiredArgsConstructor
 @Slf4j
 public class IssueDetailController {
@@ -69,9 +61,6 @@ public class IssueDetailController {
         }
     }
 
-    /**
-     * 根据ID查询事项详情（包含扩展字段）
-     */
     @Operation(summary = "根据ID查询事项")
     @GetMapping("/{id}")
     public Result<IssueVO> getById(@PathVariable Long id) {

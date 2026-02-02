@@ -19,23 +19,15 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import java.util.List;
 
-/**
- * 配置管理控制器
- *
- * @author DCP Team
- * @since 2024-12-20
- */
 @Tag(name = "配置管理", description = "Config相关接口")
 @RestController
-@RequestMapping("/rbac/config")
+@RequestMapping("/system-api/config")
 @RequiredArgsConstructor
 @Slf4j
 public class SysConfigController {
 
     private final ISysConfigService configService;
     private final SysFieldConfigMapper fieldConfigMapper;
-
-    // ==================== 系统配置管理 ====================
 
     @Operation(summary = "创建配置")
     @PostMapping
@@ -102,8 +94,6 @@ public class SysConfigController {
             return Result.error(e.getMessage());
         }
     }
-
-    // ==================== 字段配置管理 ====================
 
     @Operation(summary = "查询字段配置列表")
     @GetMapping("/field-config/list/{moduleCode}")

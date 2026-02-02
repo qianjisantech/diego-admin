@@ -14,15 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import java.util.List;
 
-/**
- * 菜单管理控制器
- *
- * @author DCP Team
- * @since 2024-12-20
- */
 @Tag(name = "菜单管理", description = "Menu相关接口")
 @RestController
-@RequestMapping("/rbac/menu")
+@RequestMapping("/system-api/menu")
 @RequiredArgsConstructor
 @Slf4j
 public class SysMenuController {

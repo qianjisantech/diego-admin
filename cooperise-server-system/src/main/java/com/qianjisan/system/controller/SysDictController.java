@@ -19,23 +19,15 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import java.util.List;
 
-/**
- * 字典管理控制器
- *
- * @author DCP Team
- * @since 2024-12-20
- */
 @Tag(name = "字典管理", description = "Dict相关接口")
 @RestController
-@RequestMapping("/rbac/dict")
+@RequestMapping("/system-api/dict")
 @RequiredArgsConstructor
 @Slf4j
 public class SysDictController {
 
     private final ISysDictService dictService;
     private final SysDictDataMapper dictDataMapper;
-
-    // ==================== 字典类型管理 ====================
 
     @Operation(summary = "创建字典类型")
     @PostMapping("/type")
@@ -90,8 +82,6 @@ public class SysDictController {
             return Result.error(e.getMessage());
         }
     }
-
-    // ==================== 字典数据管理 ====================
 
     @Operation(summary = "创建字典数据")
     @PostMapping("/data")

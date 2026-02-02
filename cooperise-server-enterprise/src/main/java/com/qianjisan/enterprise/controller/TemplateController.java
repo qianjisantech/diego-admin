@@ -18,17 +18,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * <p>
- * 事项表 前端控制器
- * </p>
- *
- * @author cooperise
- * @since 2026-01-17
- */
 @Tag(name = "模板管理", description = "Template 相关接口")
 @RestController
-@RequestMapping("/enterprise/template")
+@RequestMapping("/enterprise-api/template")
 @RequiredArgsConstructor
 @Slf4j
 public class TemplateController {

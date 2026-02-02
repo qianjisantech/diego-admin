@@ -69,11 +69,6 @@ public class CooperiseServerApplication implements CommandLineRunner {
      * 打印所有API接口信息
      */
     private void printAllApiEndpoints() {
-        System.out.println();
-        System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
-        System.out.println("║                                        API 接口列表                                                    ║");
-        System.out.println("╠══════════════════════════════════════════════════════════════════════════════════════════════════════════════╣");
-
         // 获取所有Controller
         Map<String, Object> controllers = applicationContext.getBeansWithAnnotation(RestController.class);
         controllers.putAll(applicationContext.getBeansWithAnnotation(Controller.class));
@@ -98,9 +93,7 @@ public class CooperiseServerApplication implements CommandLineRunner {
                     method.isAnnotationPresent(PatchMapping.class)) {
 
                     ApiEndpoint endpoint = createApiEndpoint(method, basePath, controllerName);
-                    if (endpoint != null) {
-                        endpoints.add(endpoint);
-                    }
+                    endpoints.add(endpoint);
                 }
             }
         }

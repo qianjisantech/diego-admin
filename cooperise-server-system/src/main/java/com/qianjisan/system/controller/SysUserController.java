@@ -14,15 +14,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * 用户管理Controller
- *
- * @author DCP Team
- * @since 2024-12-20
- */
 @Tag(name = "用户管理", description = "User相关接口")
 @RestController
-@RequestMapping("/rbac/user")
+@RequestMapping("/system-api/user")
 @RequiredArgsConstructor
 @Slf4j
 public class SysUserController {

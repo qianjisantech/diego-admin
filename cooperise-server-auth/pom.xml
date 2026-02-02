@@ -23,7 +23,11 @@
         </dependency>
         <dependency>
             <groupId>com.qianjisan</groupId>
-            <artifactId>cooperise-server-console</artifactId>
+            <artifactId>cooperise-server-system</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.qianjisan</groupId>
+            <artifactId>cooperise-server-enterprise</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

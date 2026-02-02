@@ -7,7 +7,7 @@ import com.qianjisan.core.PageVO;
 import com.qianjisan.console.entity.Issue;
 
 import com.qianjisan.console.request.IssueQueryRequest;
-import com.qianjisan.console.request.WorkSpaceIssueRequest;
+import com.qianjisan.console.request.IssueRequest;
 
 import java.util.List;
 import java.util.Map;
@@ -30,7 +30,7 @@ public interface IIssueService extends IService<Issue> {
      * @param request 事项信息
      * @return 创建后的事项
      */
-    void createIssue(WorkSpaceIssueRequest request);
+    void createIssue(IssueRequest request);
 
     /**
      * 更新事项（包含业务逻辑）
@@ -39,7 +39,7 @@ public interface IIssueService extends IService<Issue> {
      * @param request 更新的事项信息
      * @return 更新后的事项
      */
-    void updateIssue(Long id, WorkSpaceIssueRequest request);
+    void updateIssue(Long id, IssueRequest request);
 
     /**
      * 根据ID查询事项详情（包含扩展字段）

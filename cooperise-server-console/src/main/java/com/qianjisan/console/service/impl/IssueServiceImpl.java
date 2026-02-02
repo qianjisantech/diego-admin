@@ -10,7 +10,7 @@ import com.qianjisan.core.context.UserContext;
 import com.qianjisan.core.context.UserContextHolder;
 
 import com.qianjisan.core.utils.IssueNoGenerator;
-import com.qianjisan.console.request.WorkSpaceIssueRequest;
+import com.qianjisan.console.request.IssueRequest;
 import com.qianjisan.console.request.IssueQueryRequest;
 
 import com.qianjisan.console.entity.Issue;
@@ -46,12 +46,12 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
      * @param request 事项信息
      */
     @Override
-    public void createIssue(WorkSpaceIssueRequest request) {
+    public void createIssue(IssueRequest request) {
         Issue workspaceIssue = new Issue();
 
         // 1. 处理企业信息
         if (request.getSpace() != null) {
-            WorkSpaceIssueRequest.SpaceInfo space = request.getSpace();
+            IssueRequest.SpaceInfo space = request.getSpace();
             workspaceIssue.setCompanyId(space.getSpaceId());
             workspaceIssue.setCompanyName(space.getSpaceName());
             workspaceIssue.setCompanyCode(space.getSpaceKeyword());
@@ -120,13 +120,13 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
     }
 
     @Override
-    public void updateIssue(Long id, WorkSpaceIssueRequest request) {
+    public void updateIssue(Long id, IssueRequest request) {
         Issue workspaceIssue = new Issue();
         workspaceIssue.setId(id);
 
         // 1. 处理企业信息
         if (request.getSpace() != null) {
-            WorkSpaceIssueRequest.SpaceInfo space = request.getSpace();
+            IssueRequest.SpaceInfo space = request.getSpace();
             workspaceIssue.setCompanyId(space.getSpaceId());
             workspaceIssue.setCompanyName(space.getSpaceName());
             workspaceIssue.setCompanyCode(space.getSpaceKeyword());
@@ -265,7 +265,7 @@ public class IssueServiceImpl extends ServiceImpl<IssueMapper, Issue> implements
      *
      * @param space 事项对象
      */
-    private String generateIssueNo(WorkSpaceIssueRequest.SpaceInfo space) {
+    private String generateIssueNo(IssueRequest.SpaceInfo space) {
 
         if (ObjectUtils.isNotEmpty(space)) {
             return IssueNoGenerator.generateWithKeyword(space.getSpaceKeyword());

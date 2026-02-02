@@ -17,15 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import java.util.List;
 
-/**
- * 角色管理控制器
- *
- * @author DCP Team
- * @since 2024-12-20
- */
 @Tag(name = "角色管理", description = "Role相关接口")
 @RestController
-@RequestMapping("/rbac/role")
+@RequestMapping("/system-api/role")
 @RequiredArgsConstructor
 @Slf4j
 public class SysRoleController {

@@ -37,10 +37,8 @@ public class UriPermissionAspect {
      * 排除认证相关接口（通过路径模式匹配）
      */
     @Pointcut("execution(* com.qianjisan..controller..*.*(..)) && " +
-              "!execution(* com.qianjisan..controller.*AuthController.*(..)) && " +
-              "!execution(* com.qianjisan..controller.*TrackingLogController.*(..)) && " +
-              "!execution(* com.qianjisan.console.controller.SelfController.selfCompanyInviteInfo(..))")
-    public void controllerMethods() {}
+              "!execution(* com.qianjisan..controller.*AuthController.*(..)) ")
+            public void controllerMethods() {}
 
     /**
      * 权限校验切面

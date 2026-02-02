@@ -13,26 +13,29 @@
 
     <artifactId>cooperise-server-console</artifactId>
     <name>cooperise-server-console</name>
-    <description>应用启动服务-管理各种模块</description>
+    <description>用户访问端-包含事项、视图等</description>
 
     <dependencies>
-
-
-        <!-- 依赖 rbac 模块 -->
         <dependency>
             <groupId>com.qianjisan</groupId>
             <artifactId>cooperise-server-system</artifactId>
         </dependency>
 
-        <!-- 依赖 enterprise 模块 -->
         <dependency>
             <groupId>com.qianjisan</groupId>
             <artifactId>cooperise-server-enterprise</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.qianjisan</groupId>
+            <artifactId>cooperise-server-auth</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>com.qianjisan</groupId>
+            <artifactId>cooperise-server-common</artifactId>
+        </dependency>
 
-        <!-- JWT -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
@@ -46,21 +49,12 @@
             <artifactId>jjwt-jackson</artifactId>
         </dependency>
 
-
-        <!-- Spring Boot Configuration Processor -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
 
-
-        <!-- Spring Security Test -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-test</artifactId>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>
             <artifactId>fastjson2</artifactId>
@@ -68,10 +62,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.qianjisan</groupId>
-            <artifactId>cooperise-server-common</artifactId>
         </dependency>
     </dependencies>
 

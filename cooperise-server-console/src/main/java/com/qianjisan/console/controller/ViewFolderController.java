@@ -18,15 +18,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * 视图文件夹管理控制器
- *
- * @author DCP Team
- * @since 2024-12-20
- */
 @Tag(name = "视图文件夹管理", description = "WorkspaceViewFolder相关接口")
 @RestController
-@RequestMapping("/workspace/view-folder")
+@RequestMapping("/console-api/view-folder")
 @RequiredArgsConstructor
 @Slf4j
 public class ViewFolderController {

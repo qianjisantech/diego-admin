@@ -20,15 +20,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * 视图管理控制器
- *
- * @author DCP Team
- * @since 2024-12-20
- */
 @Tag(name = "视图管理", description = "WorkspaceView相关接口")
 @RestController
-@RequestMapping("/workspace/view")
+@RequestMapping("/console-api/view")
 @RequiredArgsConstructor
 @Slf4j
 public class ViewController {

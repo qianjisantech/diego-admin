@@ -5,8 +5,8 @@ import cn.hutool.core.collection.CollectionUtil;
 import com.qianjisan.auth.service.IAuthService;
 import com.qianjisan.auth.service.IVerificationCodeService;
 import com.qianjisan.auth.vo.UserProfileVO;
-import com.qianjisan.console.dto.SelfUserCompanyDTO;
-import com.qianjisan.console.mapper.UserCompanyMapper;
+import com.qianjisan.enterprise.dto.SelfUserEnterpriseDTO;
+import com.qianjisan.enterprise.mapper.UserEnterpriseMapper;
 
 import com.qianjisan.core.context.UserContextHolder;
 import com.qianjisan.core.exception.BusinessException;
@@ -14,12 +14,10 @@ import com.qianjisan.core.utils.BeanConverter;
 import com.qianjisan.core.utils.JwtUtil;
 import com.qianjisan.core.utils.UserCodeGenerator;
 
-import com.qianjisan.enterprise.vo.CompanyVo;
 import com.qianjisan.system.entity.SysUser;
 import com.qianjisan.system.service.ISysMenuService;
 import com.qianjisan.system.service.ISysUserService;
 import com.qianjisan.system.vo.SysMenuTreeVO;
-import com.qianjisan.system.vo.SysMenuVO;
 import com.qianjisan.common.service.IAsyncEmailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +27,6 @@ import org.springframework.util.StringUtils;
 import com.qianjisan.auth.vo.LoginResponseVO;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,7 +45,7 @@ public class AuthServiceImpl implements IAuthService {
     private final ISysMenuService menuService;
     private final IAsyncEmailService asyncEmailService;
     private final IVerificationCodeService verificationCodeService;
-    private final UserCompanyMapper userCompanyMapper;
+    private final UserEnterpriseMapper userEnterpriseMapper;
 
     // 普通用户角色ID（对应sys_role表中的USER角色）
     private static final Long DEFAULT_USER_ROLE_ID = 3L;
@@ -295,16 +292,16 @@ public class AuthServiceImpl implements IAuthService {
 
 
         try {
-            List<SelfUserCompanyDTO> selfUserCompanyDTOS = userCompanyMapper.selectCompaniesByUserId(userId);
+            List<SelfUserEnterpriseDTO> selfUserCompanyDTOS = userEnterpriseMapper.selectEnterprisesByUserId(userId);
             if (selfUserCompanyDTOS != null && !selfUserCompanyDTOS.isEmpty()) {
 
                 List<UserProfileVO.UserCompanyVo> companyVos = new ArrayList<>();
 
-                for (SelfUserCompanyDTO c : selfUserCompanyDTOS) {
+                for (SelfUserEnterpriseDTO c : selfUserCompanyDTOS) {
                     UserProfileVO.UserCompanyVo cv = new UserProfileVO.UserCompanyVo();
                     cv.setId(c.getId());
-                    cv.setCompanyCode(c.getCompanyCode());
-                    cv.setCompanyName(c.getCompanyName());
+                    cv.setCompanyCode(c.getCode());
+                    cv.setCompanyName(c.getName());
                     cv.setIsDefault(c.getIsDefault() == 1);
                     companyVos.add(cv);
                 }

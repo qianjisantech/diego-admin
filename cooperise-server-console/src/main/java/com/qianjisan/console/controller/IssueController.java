@@ -5,7 +5,7 @@ import com.qianjisan.console.vo.IssuePageVO;
 import com.qianjisan.core.Result;
 import com.qianjisan.annotation.RequiresPermission;
 import com.qianjisan.core.PageVO;
-import com.qianjisan.console.request.WorkSpaceIssueRequest;
+import com.qianjisan.console.request.IssueRequest;
 import com.qianjisan.console.request.IssueQueryRequest;
 
 import com.qianjisan.console.service.IIssueService;
@@ -20,34 +20,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-/**
- * 事项管理控制器
- *
- * Controller层职责：
- * 1. 接收HTTP请求
- * 2. 参数验证（基础验证）
- * 3. 调用Service层处理业务逻辑
- * 4. 返回统一的响应结果
- *
- * @author DCP Team
- * @since 2024-12-20
- */
 @Tag(name = "事项管理", description = "事项相关接口")
 @RestController
-@RequestMapping("/console/issue")
+@RequestMapping("/console-api/issue")
 @RequiredArgsConstructor
 @Slf4j
 public class IssueController {
 
     private final IIssueService workspaceIssueService;
 
-    /**
-     * 创建事项
-     */
     @Operation(summary = "创建事项")
     @RequiresPermission("workspace:issue:add")
     @PostMapping
-    public Result<Void> create(@RequestBody @Valid WorkSpaceIssueRequest request) {
+    public Result<Void> create(@RequestBody @Valid IssueRequest request) {
         try {
             log.info("[创建事项] 请求参数: {}", request);
             workspaceIssueService.createIssue(request);
@@ -59,13 +44,10 @@ public class IssueController {
         }
     }
 
-    /**
-     * 更新事项
-     */
     @Operation(summary = "更新事项")
     @RequiresPermission("workspace:issue:edit")
     @PutMapping("/{id}")
-    public Result<Void> update(@PathVariable Long id, @RequestBody @Valid WorkSpaceIssueRequest request) {
+    public Result<Void> update(@PathVariable Long id, @RequestBody @Valid IssueRequest request) {
         try {
             log.info("[更新事项] ID: {}, 请求参数: {}", id, request);
             workspaceIssueService.updateIssue(id, request);
@@ -77,9 +59,6 @@ public class IssueController {
         }
     }
 
-    /**
-     * 删除事项
-     */
     @Operation(summary = "删除事项")
 
     @DeleteMapping("/{id}")
@@ -95,9 +74,6 @@ public class IssueController {
         }
     }
 
-    /**
-     * 根据ID查询事项详情（包含扩展字段）
-     */
     @Operation(summary = "根据ID查询事项")
     @GetMapping("/{id}")
     public Result<IssueVO> getById(@PathVariable Long id) {
@@ -111,9 +87,6 @@ public class IssueController {
         }
     }
 
-    /**
-     * 分页查询事项
-     */
     @Operation(summary = "分页查询事项")
     @PostMapping("/page")
     public Result<PageVO<IssuePageVO>> page(@RequestBody IssueQueryRequest request) {
@@ -128,10 +101,6 @@ public class IssueController {
         }
     }
 
-    /**
-     * 搜索事项（支持事项单号和标题搜索）
-     * 用于顶部搜索框的自动提示
-     */
     @Operation(summary = "搜索事项")
     @GetMapping("/search")
     public Result<List<Map<String, Object>>> search(@RequestParam String keyword) {
