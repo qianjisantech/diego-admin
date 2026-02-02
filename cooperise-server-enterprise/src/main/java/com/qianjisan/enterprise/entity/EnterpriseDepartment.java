@@ -9,13 +9,13 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 公司与部门关联实体
+ * 企业与部门关联实体
  *
- * 对应表：company_department
+ * 对应表：enterprise_department
  */
 @Data
-@TableName("company_department")
-public class CompanyDepartment implements Serializable {
+@TableName("enterprise_department")
+public class EnterpriseDepartment implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,12 +23,11 @@ public class CompanyDepartment implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    /** 公司ID */
-    @TableField("company_id")
-    private Long companyId;
+    /** 企业ID */
+    @TableField("enterprise_id")
+    private Long enterpriseId;
 
     /** 部门ID */
     @TableField("department_id")
     private Long departmentId;
 }
-
